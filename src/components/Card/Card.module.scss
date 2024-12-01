@@ -1,0 +1,55 @@
+@import '@assets/styles/global.scss';
+
+.card {
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 4px 24px rgba(#7b7b7b, 0.15);
+}
+
+.wrap {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 100%;
+}
+.image {
+	width: 100%;
+	height: 200px;
+	flex: 0 0 200px;
+	background-color: #f7f8fa;
+	position: relative;
+	& img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.block {
+	padding: 15px 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	flex: auto;
+}
+
+.title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: auto;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 1.4;
+	text-transform: uppercase;
+	text-align: center;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3; /* количество строк */
+	overflow: hidden;
+}
+
+.price {
+	display: flex;
+	justify-content: flex-end;
+	@include price(18px);
+}

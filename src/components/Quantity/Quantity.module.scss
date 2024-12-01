@@ -1,0 +1,31 @@
+@import '@assets/styles/index.scss';
+
+.wrap {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	border: 1px solid $colorGreen;
+	width: 100%;
+	max-width: 75px;
+	height: 30px;
+}
+
+.plus {
+	color: $colorGreen;
+	font-size: 18px;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.value {
+	color: $colorBlack;
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.minus {
+	color: rgba($colorBlack, 0.5);
+	font-size: 18px;
+	font-weight: 500;
+	cursor: pointer;
+}

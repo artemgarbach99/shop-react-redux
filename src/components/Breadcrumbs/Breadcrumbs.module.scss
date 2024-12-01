@@ -1,0 +1,28 @@
+@import "@assets/styles/index.scss";
+.breadcrumbs {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	padding: 20px 0 40px;
+}
+.nav {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 16px;
+	font-weight: 500;
+	color: rgba($colorBlack, 0.5);
+	pointer-events: none;
+	&.active {
+		color: $colorGreen;
+		pointer-events: auto;
+	}
+	&.current {
+		color: $colorBlack;
+	}
+}

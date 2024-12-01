@@ -1,0 +1,85 @@
+@import "@assets/styles/index.scss";
+@import "@/assets/styles/global";
+
+.basket {
+	padding: 60px 0;
+	flex: 1 1 auto;
+	height: 100%;
+}
+
+.body {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 100%;
+}
+
+.heading {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+
+	& > h2 {
+		font-size: 26px;
+		font-weight: 500;
+	}
+}
+
+.link {
+	@include greenLink;
+}
+
+.void {
+	display: flex;
+	justify-content: center;
+	padding: 100px 0;
+	height: 100%;
+	& > p {
+		font-size: 20px;
+		font-weight: 500;
+	}
+}
+
+.main {
+	padding-top: 60px;
+}
+
+.sections {
+	display: flex;
+	align-items: center;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #E5E5E5;
+}
+
+.section {
+	flex: 0 0 190px;
+	&:first-child {
+		flex: 1 1 auto;
+	}
+}
+
+.label {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+
+.line {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.button {
+	@include greenButton;
+	max-width: 180px;
+}
+
+.check {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 70px;
+	padding-top: 20px;
+	border-top: 1px solid #E5E5E5;
+}

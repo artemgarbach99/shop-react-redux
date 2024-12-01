@@ -1,0 +1,69 @@
+@import '@/assets/styles/index';
+
+.item-select {
+	&__control {
+		border: 1px solid #898989 !important;
+		border-radius: 5px !important;
+		overflow: hidden !important;
+		width: 100% !important;
+		box-shadow: none !important;
+
+		&--is-focused {
+			border: 1px solid $colorGreen !important;
+		}
+
+		&:hover {
+			border-color: $colorGreen !important;
+		}
+	}
+
+	&__value-container {
+		padding: 10px !important;
+	}
+	&__placeholder {
+		font-weight: 400 !important;
+	}
+
+	&__single-value {
+		color: rgba($colorBlack, 0.5) !important;
+		height: 100%;
+		display: flex;
+		align-items: center;
+
+		.item-select__value-container--has-value & {
+			color: $colorGreen !important;
+		}
+	}
+
+	&__input-container {
+		margin: 0 !important;
+		color: rgba($colorBlack, 0.5) !important;
+		font-size: 16px !important;
+	}
+
+	&__menu {
+		border: 1px solid #898989 !important;
+		border-radius: 5px !important;
+		background-color: #fff !important;
+	}
+
+	&__option {
+		color: rgba($colorBlack, 0.5) !important;
+		padding: 10px;
+
+		&:hover {
+			background-color: rgba($colorBlack, 0.2) !important;
+			color: $colorWhite !important;
+		}
+
+		&--is-selected {
+			background-color: $colorGreen !important;
+			color: $colorWhite !important;
+		}
+
+		&--is-focused {
+			background-color: rgba($colorGreen, 0.8) !important;
+			color: $colorWhite !important;
+		}
+	}
+}

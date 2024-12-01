@@ -1,0 +1,13 @@
+.list {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+.link {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}

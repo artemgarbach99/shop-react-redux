@@ -1,0 +1,31 @@
+@import "@assets/styles/index.scss";
+
+.modal {
+	display: none;
+	position: fixed;
+	top: 60px;
+	left: 50%;
+	transform: translate(-50%, 0);
+	z-index: 5;
+
+	&.active {
+		display: block;
+	}
+}
+
+.content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $colorWhite;
+	padding: 15px;
+	border-radius: 5px;
+	border: 1px solid $colorGreen;
+}
+
+.title {
+	font-size: 14px;
+	line-height: 1;
+	font-weight: 500;
+	color: $colorBlack;
+}

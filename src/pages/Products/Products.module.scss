@@ -1,0 +1,23 @@
+.products {
+  padding: 40px 0;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  margin-top: 15px;
+}

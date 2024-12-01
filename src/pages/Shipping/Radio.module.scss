@@ -1,0 +1,60 @@
+@import '@/assets/styles/index';
+
+.radio {
+	display: flex;
+	flex-direction: column;
+}
+
+.block {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid $colorGreen;
+	border-radius: 7px;
+	padding: 20px;
+}
+
+.item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.input {
+	position: absolute;
+	width: 0;
+	height: 0;
+	opacity: 0;
+
+	&:checked + .label:before {
+		content: '';
+		background-color: $colorGreen;
+	}
+}
+
+.label {
+	flex-grow: 1;
+	font-size: 13px;
+	text-transform: uppercase;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	position: relative;
+	gap: 10px;
+
+	&:before {
+		content: '';
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex: 0 0 15px;
+		width: 15px;
+		height: 15px;
+		background-color: $colorWhite;
+		border: 1px solid $colorGreen;
+		border-radius: 50%;
+	}
+}
+.value {
+	font-size: 16px;
+	font-weight: 500;
+}

@@ -1,0 +1,36 @@
+@import '@assets/styles/index.scss';
+
+.main {
+	height: 100vh;
+	position: relative;
+}
+
+.bg {
+	@include ibg;
+	height: 100%;
+}
+
+.content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: rgba($colorGrey, 0.8);
+	padding: 30px 70px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 40px;
+}
+
+.title {
+	font-size: 40px;
+	line-height: 1;
+	font-weight: 500;
+}
+
+.link {
+	@include greenButton;
+	max-width: 310px;
+}

@@ -1,0 +1,62 @@
+@import '@/assets/styles/index';
+
+.details {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.block {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.title {
+	font-size: 22px;
+	line-height: 1;
+	font-weight: 500;
+}
+
+.inputs {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.input {
+	width: 100%;
+
+	& input {
+		border: 1px solid #898989;
+		border-radius: 5px;
+		overflow: hidden;
+		width: 100%;
+		padding: 15px;
+		color: $colorGreen;
+		font-weight: 500;
+
+		&::placeholder {
+			color: rgba($colorBlack, 0.5);
+			font-size: 16px;
+		}
+
+		&:focus {
+			border: 1px solid $colorGreen;
+			outline: none;
+		}
+
+		&:hover {
+			border: 1px solid $colorGreen;
+		}
+	}
+}
+
+.row {
+	display: flex;
+	gap: 15px;
+}
+
+.select {
+	width: 100%;
+}
