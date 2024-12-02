@@ -18,6 +18,7 @@ import paymentMethod from '@/components/PaymentMethod/PaymentMethod.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { actions } from '@/store/basket/basket.slice.js'
 import { modalActions } from '@/store/modal/modal.slice.js'
+import { validationFormActions } from '@/store/validationForm/validationForm.slice.js'
 
 export const App = () => {
 	const [basket, setBasket] = useState([])
@@ -26,6 +27,7 @@ export const App = () => {
 	const [isLoading, setLoading] = useState(true)
 	const [modalActive, setModalActive] = useState(false)
 	const [modalMessage, setModalMessage] = useState('')
+	// добавить в redux
 	const [shippingInputValues, setShippingInputValues] = useState({
 		inputContacts: '',
 		inputAddress: '',
@@ -140,47 +142,37 @@ export const App = () => {
 	// }
 
 	const fieldCheck = () => {
-		const inputs = document.querySelectorAll(`.${style.input} input`)
+		const inputs = document.querySelectorAll(`.${style.input} input, .${paymentMethod.input} input`)
 		const radioButtons = document.querySelectorAll(`.${radio.input}[type='radio']`)
-		const taxInputs = document.querySelectorAll(`.${paymentMethod.input} input`)
+		let formIsValid = true
 
-		let allValid = true // Переменная для проверки валидности
-
-		// проверка инпутов на details и shipping (PaymentMethod)
-		inputs.forEach(input => {
+		dispatch(validationFormActions.valid())
+		for (let input of inputs) {
 			if (!input.value.trim()) {
-				allValid = false // Обновляем переменную, если находим пустое поле
+				formIsValid = false
+				break
 			}
-		})
-
-		// проверка селектов на details
-		if (!shippingInputValues.inputProvince || !shippingInputValues.inputCountry) {
-			allValid = false
 		}
 
-		// Проверяем, выбрана ли хотя бы одна радиокнопка const
+		if (!shippingInputValues.inputProvince || !shippingInputValues.inputCountry) {
+			formIsValid = false
+		}
+
 		if (radioButtons.length > 0) {
 			const isRadioSelected = Array.from(radioButtons).some(radio => radio.checked)
 			if (!isRadioSelected) {
-				allValid = false
+				formIsValid = false
 			}
 		}
 
-		if (taxInputs.length > 0) {
-			taxInputs.forEach(input => {
-				if (!input.value.trim()) {
-					allValid = false // Обновляем переменную, если находим пустое поле
-				}
-			})
-		}
-
-		if (!allValid) {
+		if (!formIsValid) {
+			dispatch(validationFormActions.invalid())
 			dispatch(modalActions.modalActive('Fill in the input fields!'))
-			// showModal('Заполните поля ввода!')
-			// event.preventDefault()
+		} else {
+			dispatch(validationFormActions.valid())
 		}
 
-		return allValid
+		return formIsValid
 	}
 
 	// const clearBasketIfConfirmed = () => {
