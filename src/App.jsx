@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { actions } from '@/store/basket/basket.slice.js'
 import { modalActions } from '@/store/modal/modal.slice.js'
 import { validationFormActions } from '@/store/validationForm/validationForm.slice.js'
+import { shippingInputsActions } from '@/store/shippingInputs/shippingInputs.slice.js'
 
 export const App = () => {
 	const [basket, setBasket] = useState([])
@@ -42,6 +43,7 @@ export const App = () => {
 
 	// console.log(subtotal)
 
+	// добавить в redux
 	const handleOptionChange = event => {
 		setSelectedOption(event.target.value)
 		const value = event.target.getAttribute('data-value')
@@ -72,12 +74,12 @@ export const App = () => {
 	// 	}
 	// }, [modalActive])
 
-	const modalProps = {
-		modalActive,
-		setModalActive,
-		modalMessage,
-		setModalMessage
-	}
+	// const modalProps = {
+	// 	modalActive,
+	// 	setModalActive,
+	// 	modalMessage,
+	// 	setModalMessage
+	// }
 
 	// добавить в redux thunk
 	// https://fakestoreapi.in/api/products
@@ -122,24 +124,30 @@ export const App = () => {
 
 	const handleShippingInputChange = event => {
 		const { name, value } = event.target
-		setShippingInputValues({
-			...shippingInputValues,
-			[name]: value
-		})
+		dispatch(shippingInputsActions.setInputValue({ name, value }))
+		// setShippingInputValues({
+		// 	...shippingInputValues,
+		// 	[name]: value
+		// })
 	}
 
 	const handleShippingSelectChange = (selectedOption, actionMeta) => {
 		const { name } = actionMeta
-		setShippingInputValues({
-			...shippingInputValues,
-			[name]: selectedOption
-		})
+		const { value } = selectedOption
+		dispatch(shippingInputsActions.setInputValue({ name, value }))
+		// setShippingInputValues({
+		// 	...shippingInputValues,
+		// 	[name]: selectedOption
+		// })
 	}
 
 	// const showModal = message => {
 	// 	setModalMessage(message)
 	// 	setModalActive(true)
 	// }
+
+	const shippingInputProvince = useSelector(state => state.shippingInputs.inputProvince)
+	const shippingInputCountry = useSelector(state => state.shippingInputs.inputCountry)
 
 	const fieldCheck = () => {
 		const inputs = document.querySelectorAll(`.${style.input} input, .${paymentMethod.input} input`)
@@ -154,7 +162,11 @@ export const App = () => {
 			}
 		}
 
-		if (!shippingInputValues.inputProvince || !shippingInputValues.inputCountry) {
+		// if (!shippingInputValues.inputProvince || !shippingInputValues.inputCountry) {
+		// 	formIsValid = false
+		// }
+
+		if (!shippingInputProvince || !shippingInputCountry) {
 			formIsValid = false
 		}
 
@@ -228,7 +240,7 @@ export const App = () => {
 						path='details'
 						element={
 							<Details
-								{...modalProps}
+								/*{...modalProps}*/
 								shippingInputValues={shippingInputValues}
 								handleShippingInputChange={handleShippingInputChange}
 								handleShippingSelectChange={handleShippingSelectChange}
@@ -240,7 +252,7 @@ export const App = () => {
 						path='shipping'
 						element={
 							<Shipping
-								{...modalProps}
+								/*{...modalProps}*/
 								shippingInputValues={shippingInputValues}
 								selectedOption={selectedOption}
 								handleOptionChange={handleOptionChange}
@@ -252,7 +264,7 @@ export const App = () => {
 						path='payment'
 						element={
 							<Payment
-								{...modalProps}
+								/*{...modalProps}*/
 								shippingInputValues={shippingInputValues}
 								selectedOptionValue={selectedOptionValue}
 								selectedOptionLabel={selectedOptionLabel}

@@ -21,8 +21,6 @@ export const Basket = ({ basket, removeFromBasket, setSubtotal, updateQuantity, 
 
 	const totalPriceRedux = useSelector(state => state.basket.totalPrice)
 
-	console.log(totalPriceRedux)
-
 	// const updateTotalPrice = (id, totalPrice) => {
 	// 	setTotalPrices(prevPrices => ({ ...prevPrices, [id]: totalPrice }))
 	// }

@@ -84,6 +84,14 @@ export const Details = ({
 	const modalReduxActive = useSelector(state => state.modal.isOpen)
 	const modalReduxMessage = useSelector(state => state.modal.message)
 
+	// shippingInputsSlice
+	const shippingInputContacts = useSelector(state => state.shippingInputs.inputContacts)
+	const shippingInputAddress = useSelector(state => state.shippingInputs.inputAddress)
+	const shippingInputCity = useSelector(state => state.shippingInputs.inputCity)
+	const shippingInputCode = useSelector(state => state.shippingInputs.inputCode)
+	const shippingInputProvince = useSelector(state => state.shippingInputs.inputProvince)
+	const shippingInputCountry = useSelector(state => state.shippingInputs.inputCountry)
+
 	return (
 		<div className={style.details}>
 			<div className={style.block}>
@@ -92,10 +100,9 @@ export const Details = ({
 					<input
 						type='text'
 						name='inputContacts'
-						value={shippingInputValues.inputContacts}
+						value={shippingInputContacts}
+						// value={shippingInputValues.inputContacts}
 						onChange={handleShippingInputChange}
-						// value={contactInputValue}
-						// onChange={handleContactInputChange}
 						placeholder='Email or mobile phone number'
 					/>
 				</div>
@@ -115,7 +122,8 @@ export const Details = ({
 						<input
 							type='text'
 							name='inputAddress'
-							value={shippingInputValues.inputAddress}
+							value={shippingInputAddress}
+							// value={shippingInputValues.inputAddress}
 							onChange={handleShippingInputChange}
 							placeholder='Address and number'
 						/>
@@ -128,7 +136,8 @@ export const Details = ({
 							<input
 								type='text'
 								name='inputCity'
-								value={shippingInputValues.inputCity}
+								value={shippingInputCity}
+								// value={shippingInputValues.inputCity}
 								onChange={handleShippingInputChange}
 								placeholder='City'
 							/>
@@ -137,17 +146,17 @@ export const Details = ({
 							<input
 								type='text'
 								name='inputCode'
-								value={shippingInputValues.inputCode}
+								value={shippingInputCode}
+								// value={shippingInputValues.inputCode}
 								onChange={handleShippingInputChange}
 								placeholder='Postal Code'
 							/>
 						</div>
 						<Select
 							name='inputProvince'
-							defaultValue={shippingInputValues.inputProvince}
+							defaultValue={shippingInputProvince}
+							// defaultValue={shippingInputValues.inputProvince}
 							onChange={handleShippingSelectChange}
-							// defaultValue={selectedOptionProvince}
-							// onChange={setSelectedOptionProvince}
 							options={optionsProvince}
 							className={style.select}
 							classNamePrefix='item-select'
@@ -156,10 +165,9 @@ export const Details = ({
 					</div>
 					<Select
 						name='inputCountry'
-						defaultValue={shippingInputValues.inputCountry}
+						defaultValue={shippingInputCountry}
+						// defaultValue={shippingInputValues.inputCountry}
 						onChange={handleShippingSelectChange}
-						// defaultValue={selectedOptionCity}
-						// onChange={setSelectedOptionCity}
 						options={optionsCities}
 						className={style.select}
 						classNamePrefix='item-select'
