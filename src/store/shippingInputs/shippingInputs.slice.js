@@ -6,7 +6,10 @@ const initialState = {
 	inputCity: '',
 	inputCode: '',
 	inputProvince: null,
-	inputCountry: null
+	inputCountry: null,
+	inputName: '',
+	inputSecondName: '',
+	inputOptional: ''
 	//! добавить остальные инпуты их shipping
 }
 

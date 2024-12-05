@@ -91,6 +91,9 @@ export const Details = ({
 	const shippingInputCode = useSelector(state => state.shippingInputs.inputCode)
 	const shippingInputProvince = useSelector(state => state.shippingInputs.inputProvince)
 	const shippingInputCountry = useSelector(state => state.shippingInputs.inputCountry)
+	const shippingInputName = useSelector(state => state.shippingInputs.inputName)
+	const shippingInputSecondName = useSelector(state => state.shippingInputs.inputSecondName)
+	const shippingInputOptional = useSelector(state => state.shippingInputs.inputOptional)
 
 	return (
 		<div className={style.details}>
@@ -101,7 +104,6 @@ export const Details = ({
 						type='text'
 						name='inputContacts'
 						value={shippingInputContacts}
-						// value={shippingInputValues.inputContacts}
 						onChange={handleShippingInputChange}
 						placeholder='Email or mobile phone number'
 					/>
@@ -112,10 +114,24 @@ export const Details = ({
 				<div className={style.inputs}>
 					<div className={style.row}>
 						<div className={style.input}>
-							<input type='text' name='' id='' placeholder='Name' />
+							<input
+								type='text'
+								name='inputName'
+								value={shippingInputName}
+								onChange={handleShippingInputChange}
+								placeholder='Name'
+							/>
+							{/*<input type='text' name='' id='' placeholder='Name' />*/}
 						</div>
 						<div className={style.input}>
-							<input type='text' name='' id='' placeholder='Second Name' />
+							<input
+								type='text'
+								name='inputSecondName'
+								value={shippingInputSecondName}
+								onChange={handleShippingInputChange}
+								placeholder='Second Name'
+							/>
+							{/*<input type='text' name='' id='' placeholder='Second Name' />*/}
 						</div>
 					</div>
 					<div className={style.input}>
@@ -129,7 +145,14 @@ export const Details = ({
 						/>
 					</div>
 					<div className={style.input}>
-						<input type='text' name='' id='' placeholder='Shipping note (optional)' />
+						<input
+							type='text'
+							name='inputOptional'
+							value={shippingInputOptional}
+							onChange={handleShippingInputChange}
+							placeholder='Shipping note (optional)'
+						/>
+						{/*<input type='text' name='' id='' placeholder='Shipping note (optional)' />*/}
 					</div>
 					<div className={style.row}>
 						<div className={style.input}>

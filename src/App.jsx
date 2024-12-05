@@ -28,22 +28,19 @@ export const App = () => {
 	const [isLoading, setLoading] = useState(true)
 	const [modalActive, setModalActive] = useState(false)
 	const [modalMessage, setModalMessage] = useState('')
-	// добавить в redux
-	const [shippingInputValues, setShippingInputValues] = useState({
-		inputContacts: '',
-		inputAddress: '',
-		inputCity: '',
-		inputCode: '',
-		inputProvince: null,
-		inputCountry: null
-	})
+	// const [shippingInputValues, setShippingInputValues] = useState({
+	// 	inputContacts: '',
+	// 	inputAddress: '',
+	// 	inputCity: '',
+	// 	inputCode: '',
+	// 	inputProvince: null,
+	// 	inputCountry: null
+	// })
 	const [selectedOption, setSelectedOption] = useState('')
 	const [selectedOptionValue, setSelectedOptionValue] = useState('')
 	const [selectedOptionLabel, setSelectedOptionLabel] = useState('')
 
-	// console.log(subtotal)
-
-	// добавить в redux
+	//! добавить в redux
 	const handleOptionChange = event => {
 		setSelectedOption(event.target.value)
 		const value = event.target.getAttribute('data-value')
@@ -81,10 +78,10 @@ export const App = () => {
 	// 	setModalMessage
 	// }
 
-	// добавить в redux thunk
 	// https://fakestoreapi.in/api/products
 	// https://fakestoreapi.com/products
 	// https://api.escuelajs.co/api/v1/products
+	//! добавить в redux thunk
 	useEffect(() => {
 		fetch('https://fakestoreapi.in/api/products')
 			.then(res => res.json())
@@ -195,7 +192,7 @@ export const App = () => {
 		<Router>
 			<Routes>
 				<Route element={<Layout />}>
-					<Route path='/' element={<Navigate to='/main' />} /> {/* Перенаправление на главную страницу */}
+					<Route path='/' element={<Navigate to='/main' />} />
 					<Route path='/main' element={<Main />} />
 					<Route path='/products' element={<Products cards={cards} isLoading={isLoading} />} />
 					<Route
@@ -241,7 +238,7 @@ export const App = () => {
 						element={
 							<Details
 								/*{...modalProps}*/
-								shippingInputValues={shippingInputValues}
+								// shippingInputValues={shippingInputValues}
 								handleShippingInputChange={handleShippingInputChange}
 								handleShippingSelectChange={handleShippingSelectChange}
 								fieldCheck={fieldCheck}
@@ -253,7 +250,7 @@ export const App = () => {
 						element={
 							<Shipping
 								/*{...modalProps}*/
-								shippingInputValues={shippingInputValues}
+								// shippingInputValues={shippingInputValues}
 								selectedOption={selectedOption}
 								handleOptionChange={handleOptionChange}
 								fieldCheck={fieldCheck}
@@ -265,7 +262,7 @@ export const App = () => {
 						element={
 							<Payment
 								/*{...modalProps}*/
-								shippingInputValues={shippingInputValues}
+								// shippingInputValues={shippingInputValues}
 								selectedOptionValue={selectedOptionValue}
 								selectedOptionLabel={selectedOptionLabel}
 								fieldCheck={fieldCheck}
