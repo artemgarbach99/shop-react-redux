@@ -12,6 +12,7 @@ export const CardDetails = ({
 	// addToBasket,
 	// basket,
 	isLoading
+	// products
 	// setModalActive,
 	// setModalMessage,
 	// modalActive,
@@ -25,27 +26,34 @@ export const CardDetails = ({
 	// const basketItem = useSelector(state => state.basket)
 	//
 	const dispatch = useDispatch()
+
+	const { products, loading, error } = useSelector(state => state.products)
 	//
 	// dispatch(modalActions.ModalActive('123'))
 	// console.log(basketItem)
 
 	const { id } = useParams()
-	const card = cards.find(card => card.id === parseInt(id))
+	// const card = cards.find(card => card.id === parseInt(id))
+	// redux
+	const product = products.find(prod => prod.id === parseInt(id))
 
 	// const onClickButton = () => {
 	// 	handleAddToCart()
 	// 	// setModalActive(true)
 	// }
-
-	if (!card) {
+	if (!product) {
 		return <div className={style['not-found']}>Card not found!</div>
 	}
+
+	// if (!card) {
+	// 	return <div className={style['not-found']}>Card not found!</div>
+	// }
 
 	// const handleAddToBasket = card => {
 	// 	dispatch(actions.AddToBasket(card))
 	// }
 
-	const isInBasket = basketRedux.some(basketItem => basketItem.id === card.id)
+	const isInBasket = basketRedux.some(basketItem => basketItem.id === product.id)
 
 	const handleAddToCart = () => {
 		if (isInBasket) {
@@ -55,7 +63,7 @@ export const CardDetails = ({
 			// handleAddToBasket(card)
 			// addToBasket({ ...card })
 			// setModalMessage('Product added!')
-			dispatch(actions.AddToBasket(card))
+			dispatch(actions.AddToBasket(product))
 			dispatch(modalActions.modalActive('Product added!'))
 		}
 	}
@@ -66,22 +74,22 @@ export const CardDetails = ({
 				<div className={style.body}>
 					<div className={style.main}>
 						<div className={style.image}>
-							{isLoading ? (
+							{loading ? (
 								<div className='loader-svg-wrap'>
 									<Skeleton />
 								</div>
 							) : (
-								<img src={card.image} alt={card.title} />
+								<img src={product.image} alt={product.title} />
 							)}
 						</div>
 						<div className={style.content}>
 							<div className={style.top}>
-								<h1 className={style.title}>{card.title}</h1>
-								<div className={style.description}>{card.description}</div>
+								<h1 className={style.title}>{product.title}</h1>
+								<div className={style.description}>{product.description}</div>
 							</div>
 							<div className={style.row}>
 								<div className={style.column}>
-									<p className={style.price}>$ {card.price}</p>
+									<p className={style.price}>$ {product.price}</p>
 								</div>
 								<div className={style.column}>
 									{/*<button className={`${style.button}`} onClick={onClickButton}>*/}

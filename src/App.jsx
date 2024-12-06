@@ -20,6 +20,7 @@ import { actions } from '@/store/basket/basket.slice.js'
 import { modalActions } from '@/store/modal/modal.slice.js'
 import { validationFormActions } from '@/store/validationForm/validationForm.slice.js'
 import { shippingInputsActions } from '@/store/shippingInputs/shippingInputs.slice.js'
+import { fetchProducts } from '@/store/products/products.actions.js'
 
 export const App = () => {
 	const [basket, setBasket] = useState([])
@@ -93,6 +94,17 @@ export const App = () => {
 			.finally(() => setLoading(false))
 	}, [])
 
+	//redux
+	const dispatch = useDispatch()
+
+	//! redux productsSlice
+
+	// const { products, loading, error } = useSelector(state => state.products)
+
+	useEffect(() => {
+		dispatch(fetchProducts())
+	}, [dispatch])
+
 	// const addToBasket = item => {
 	// 	setBasket(prevBasket => {
 	// 		if (prevBasket.find(basketItem => basketItem.id === item.id)) {
@@ -109,9 +121,6 @@ export const App = () => {
 	// const removeFromBasket = id => {
 	// 	setBasket(prevBasket => prevBasket.filter(item => item.id !== id))
 	// }
-
-	//redux
-	const dispatch = useDispatch()
 
 	// обновление количество redux
 	const updateQuantity = (id, quantity) => {
@@ -194,12 +203,20 @@ export const App = () => {
 				<Route element={<Layout />}>
 					<Route path='/' element={<Navigate to='/main' />} />
 					<Route path='/main' element={<Main />} />
-					<Route path='/products' element={<Products cards={cards} isLoading={isLoading} />} />
+					<Route
+						path='/products'
+						element={
+							<Products
+								// cards={cards}
+								isLoading={isLoading}
+							/>
+						}
+					/>
 					<Route
 						path='card/:id'
 						element={
 							<CardDetails
-								cards={cards}
+								// cards={cards}
 								// addToBasket={addToBasket}
 								// basket={basket}
 								isLoading={isLoading}

@@ -10,7 +10,6 @@ const initialState = {
 	inputName: '',
 	inputSecondName: '',
 	inputOptional: ''
-	//! добавить остальные инпуты их shipping
 }
 
 export const shippingInputsSlice = createSlice({
