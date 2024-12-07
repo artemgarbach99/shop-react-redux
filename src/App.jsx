@@ -19,16 +19,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { actions } from '@/store/basket/basket.slice.js'
 import { modalActions } from '@/store/modal/modal.slice.js'
 import { validationFormActions } from '@/store/validationForm/validationForm.slice.js'
-import { shippingInputsActions } from '@/store/shippingInputs/shippingInputs.slice.js'
+import { detailsInputsActions } from '@/store/detailsInputs/detailsInputs.slice.js'
 import { fetchProducts } from '@/store/products/products.actions.js'
 
 export const App = () => {
 	const [basket, setBasket] = useState([])
 	// const [cards, setCards] = useState([])
 	const [subtotal, setSubtotal] = useState(0)
-	const [isLoading, setLoading] = useState(true)
-	const [modalActive, setModalActive] = useState(false)
-	const [modalMessage, setModalMessage] = useState('')
+	// const [isLoading, setLoading] = useState(true)
+	// const [modalActive, setModalActive] = useState(false)
+	// const [modalMessage, setModalMessage] = useState('')
 	// const [shippingInputValues, setShippingInputValues] = useState({
 	// 	inputContacts: '',
 	// 	inputAddress: '',
@@ -131,7 +131,7 @@ export const App = () => {
 
 	const handleShippingInputChange = event => {
 		const { name, value } = event.target
-		dispatch(shippingInputsActions.setInputValue({ name, value }))
+		dispatch(detailsInputsActions.setInputValue({ name, value }))
 		// setShippingInputValues({
 		// 	...shippingInputValues,
 		// 	[name]: value
@@ -141,7 +141,7 @@ export const App = () => {
 	const handleShippingSelectChange = (selectedOption, actionMeta) => {
 		const { name } = actionMeta
 		const { value } = selectedOption
-		dispatch(shippingInputsActions.setInputValue({ name, value }))
+		dispatch(detailsInputsActions.setInputValue({ name, value }))
 		// setShippingInputValues({
 		// 	...shippingInputValues,
 		// 	[name]: selectedOption
@@ -153,8 +153,8 @@ export const App = () => {
 	// 	setModalActive(true)
 	// }
 
-	const shippingInputProvince = useSelector(state => state.shippingInputs.inputProvince)
-	const shippingInputCountry = useSelector(state => state.shippingInputs.inputCountry)
+	const shippingInputProvince = useSelector(state => state.detailsInputs.inputProvince)
+	const shippingInputCountry = useSelector(state => state.detailsInputs.inputCountry)
 
 	const fieldCheck = () => {
 		const inputs = document.querySelectorAll(`.${style.input} input, .${paymentMethod.input} input`)
@@ -242,8 +242,8 @@ export const App = () => {
 						path='/products'
 						element={
 							<Products
-								// cards={cards}
-								isLoading={isLoading}
+							// cards={cards}
+							// isLoading={isLoading}
 							/>
 						}
 					/>
@@ -251,11 +251,11 @@ export const App = () => {
 						path='card/:id'
 						element={
 							<CardDetails
-								// cards={cards}
-								// addToBasket={addToBasket}
-								// basket={basket}
-								isLoading={isLoading}
-								/*{...modalProps}*/
+							// cards={cards}
+							// addToBasket={addToBasket}
+							// basket={basket}
+							// isLoading={isLoading}
+							/*{...modalProps}*/
 							/>
 						}
 					/>
@@ -268,7 +268,7 @@ export const App = () => {
 								subtotal={subtotal}
 								setSubtotal={setSubtotal}
 								updateQuantity={updateQuantity}
-								isLoading={isLoading}
+								// isLoading={isLoading}
 								// basketRedux={basketRedux}
 							/>
 						}
@@ -280,7 +280,7 @@ export const App = () => {
 						<OrderPlacementLayout
 							basket={basket}
 							subtotal={subtotal}
-							isLoading={isLoading}
+							// isLoading={isLoading}
 							selectedOptionValue={selectedOptionValue}
 						/>
 					}>

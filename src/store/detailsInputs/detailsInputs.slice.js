@@ -12,8 +12,8 @@ const initialState = {
 	inputOptional: ''
 }
 
-export const shippingInputsSlice = createSlice({
-	name: 'shippingInputs',
+export const detailsInputsSlice = createSlice({
+	name: 'detailsInputs',
 	initialState,
 	reducers: {
 		setInputValue: (state, action) => {
@@ -23,4 +23,4 @@ export const shippingInputsSlice = createSlice({
 	}
 })
 
-export const { actions: shippingInputsActions, reducer: shippingInputsReducer } = shippingInputsSlice
+export const { actions: detailsInputsActions, reducer: detailsInputsReducer } = detailsInputsSlice

@@ -3,19 +3,19 @@ import { useSelector } from 'react-redux'
 
 export const InfoShipping = ({ shippingInputValues, selectedOptionLabel, selectedOptionValue }) => {
 	// shippingInputsSlice
-	const shippingInputContacts = useSelector(state => state.shippingInputs.inputContacts)
-	const shippingInputAddress = useSelector(state => state.shippingInputs.inputAddress)
-	const shippingInputCity = useSelector(state => state.shippingInputs.inputCity)
-	const shippingInputCode = useSelector(state => state.shippingInputs.inputCode)
-	const shippingInputProvince = useSelector(state => state.shippingInputs.inputProvince)
-	const shippingInputCountry = useSelector(state => state.shippingInputs.inputCountry)
+	const detailsInputContacts = useSelector(state => state.detailsInputs.inputContacts)
+	const detailsInputsAddress = useSelector(state => state.detailsInputs.inputAddress)
+	const detailsInputsCity = useSelector(state => state.detailsInputs.inputCity)
+	const detailsInputsCode = useSelector(state => state.detailsInputs.inputCode)
+	const detailsInputsProvince = useSelector(state => state.detailsInputs.inputProvince)
+	const detailsInputsCountry = useSelector(state => state.detailsInputs.inputCountry)
 
 	return (
 		<div className={shipping.block}>
 			<div className={shipping.item}>
 				<div className={shipping.label}>Contact</div>
 				<div className={shipping.value}>
-					{shippingInputContacts}
+					{detailsInputContacts}
 					{/*{shippingInputValues.inputContacts}*/}
 				</div>
 			</div>
@@ -23,20 +23,20 @@ export const InfoShipping = ({ shippingInputValues, selectedOptionLabel, selecte
 				<div className={shipping.label}>Ship to</div>
 				<div className={shipping.value}>
 					<span>
-						{shippingInputAddress},{/*{shippingInputValues.inputAddress}*/}
+						{detailsInputsAddress},{/*{shippingInputValues.inputAddress}*/}
 					</span>
 					<span>
-						{shippingInputCity},{/*{shippingInputValues.inputCity},*/}
+						{detailsInputsCity},{/*{shippingInputValues.inputCity},*/}
 					</span>
 					<span>
-						{shippingInputCode},{/*{shippingInputValues.inputCode},*/}
+						{detailsInputsCode},{/*{shippingInputValues.inputCode},*/}
 					</span>
 					<span>
-						{shippingInputProvince},
+						{detailsInputsProvince},
 						{/*{shippingInputValues.inputProvince ? shippingInputValues.inputProvince.label : ''},*/}
 					</span>
 					<span>
-						{shippingInputCountry}
+						{detailsInputsCountry}
 						{/*{shippingInputValues.inputCountry ? shippingInputValues.inputCountry.label : ''}*/}
 					</span>
 				</div>
