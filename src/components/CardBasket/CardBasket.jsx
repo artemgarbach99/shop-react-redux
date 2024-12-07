@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Quantity } from '@/components/Quantity/Quantity.jsx'
 import { Skeleton } from '@/components/Skeleton/Skeleton.jsx'
 import '@assets/styles/global.scss'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { actions } from '@/store/basket/basket.slice.js'
 
 export const CardBasket = ({
@@ -20,6 +20,8 @@ export const CardBasket = ({
 }) => {
 	// redux
 	const dispatch = useDispatch()
+
+	const { loading } = useSelector(state => state.products)
 
 	// useEffect(() => {
 	// 	const totalPrice = price * quantity
@@ -39,7 +41,7 @@ export const CardBasket = ({
 			<div className={style.section}>
 				<div className={itemStyles.content}>
 					<div className={itemStyles.image}>
-						{isLoading ? (
+						{loading ? (
 							<div className='loader-svg-wrap'>
 								<Skeleton />
 							</div>

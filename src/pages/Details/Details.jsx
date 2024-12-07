@@ -19,18 +19,20 @@ export const Details = ({
 	fieldCheck
 }) => {
 	// const [selectedOption, setSelectedOption] = useState(null);
-	const [countries, setCountries] = useState([])
+	// const [countries, setCountries] = useState([])
 	const [optionsCities, setOptionsCities] = useState([])
 	// const [isValid, setIsValid] = useState(true)
 	// const [selectedOptionProvince, setSelectedOptionProvince] = useState(null)
 	// const [selectedOptionCity, setSelectedOptionCity] = useState(null)]
+
+	//! добавить в redux
 
 	// https://countriesnow.space/api/v0.1/countries
 	useEffect(() => {
 		fetch('https://countriesnow.space/api/v0.1/countries')
 			.then(res => res.json())
 			.then(json => {
-				setCountries(json.data)
+				// setCountries(json.data)
 				const citiesOptions = json.data.map(country => ({
 					value: country.country,
 					label: country.country
@@ -91,6 +93,8 @@ export const Details = ({
 	const shippingInputCode = useSelector(state => state.shippingInputs.inputCode)
 	const shippingInputProvince = useSelector(state => state.shippingInputs.inputProvince)
 	const shippingInputCountry = useSelector(state => state.shippingInputs.inputCountry)
+	// console.log(shippingInputCountry)
+	// console.log(optionsCities)
 	const shippingInputName = useSelector(state => state.shippingInputs.inputName)
 	const shippingInputSecondName = useSelector(state => state.shippingInputs.inputSecondName)
 	const shippingInputOptional = useSelector(state => state.shippingInputs.inputOptional)

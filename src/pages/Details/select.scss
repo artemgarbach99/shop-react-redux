@@ -7,6 +7,14 @@
 		overflow: hidden !important;
 		width: 100% !important;
 		box-shadow: none !important;
+		&.error {
+			box-shadow: 0 0 5px rgba(255, 0, 0, 0.5) !important;
+			border-color: red !important;
+			&:hover {
+				box-shadow: none !important;
+				border-color: red !important;
+			}
+		}
 
 		&--is-focused {
 			border: 1px solid $colorGreen !important;

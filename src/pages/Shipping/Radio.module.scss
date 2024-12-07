@@ -11,6 +11,10 @@
 	border: 1px solid $colorGreen;
 	border-radius: 7px;
 	padding: 20px;
+	&.error {
+		box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+		border-color: red;
+	}
 }
 
 .item {

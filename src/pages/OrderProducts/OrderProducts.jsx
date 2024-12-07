@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux'
 export const OrderProducts = ({ basket, subtotal, isLoading, selectedOptionValue }) => {
 	const navigate = useNavigate()
 
+	const { loading } = useSelector(state => state.products)
+
 	const basketRedux = useSelector(state => state.basket.basket)
 	const totalPriceRedux = useSelector(state => state.basket.totalPrice)
 
@@ -39,7 +41,7 @@ export const OrderProducts = ({ basket, subtotal, isLoading, selectedOptionValue
 						{basketRedux.map(item => (
 							<div key={item.id} className={order.card}>
 								<div className={order.image}>
-									{isLoading ? <Skeleton /> : <img src={item.image} alt='' />}
+									{loading ? <Skeleton /> : <img src={item.image} alt='' />}
 									<span className={order.quantity}>{item.quantity}</span>
 								</div>
 								<div className={order.content}>

@@ -24,7 +24,7 @@ import { fetchProducts } from '@/store/products/products.actions.js'
 
 export const App = () => {
 	const [basket, setBasket] = useState([])
-	const [cards, setCards] = useState([])
+	// const [cards, setCards] = useState([])
 	const [subtotal, setSubtotal] = useState(0)
 	const [isLoading, setLoading] = useState(true)
 	const [modalActive, setModalActive] = useState(false)
@@ -82,17 +82,18 @@ export const App = () => {
 	// https://fakestoreapi.in/api/products
 	// https://fakestoreapi.com/products
 	// https://api.escuelajs.co/api/v1/products
-	//! добавить в redux thunk
-	useEffect(() => {
-		fetch('https://fakestoreapi.in/api/products')
-			.then(res => res.json())
-			.then(json => setCards(json.products))
-			.catch(err => {
-				console.warn(err)
-				alert('Ошибка при получении данных!')
-			})
-			.finally(() => setLoading(false))
-	}, [])
+	//! изнчальное получение products
+
+	// useEffect(() => {
+	// 	fetch('https://fakestoreapi.in/api/products')
+	// 		.then(res => res.json())
+	// 		.then(json => setCards(json.products))
+	// 		.catch(err => {
+	// 			console.warn(err)
+	// 			alert('Ошибка при получении данных!')
+	// 		})
+	// 		.finally(() => setLoading(false))
+	// }, [])
 
 	//redux
 	const dispatch = useDispatch()
@@ -158,28 +159,62 @@ export const App = () => {
 	const fieldCheck = () => {
 		const inputs = document.querySelectorAll(`.${style.input} input, .${paymentMethod.input} input`)
 		const radioButtons = document.querySelectorAll(`.${radio.input}[type='radio']`)
+		// const selects = document.querySelectorAll(`.${style.select}`)
+		const selects = document.querySelectorAll('.item-select__control')
+		const blockRadioButtons = document.querySelectorAll(`.${radio.block}`)
+
 		let formIsValid = true
 
 		dispatch(validationFormActions.valid())
-		for (let input of inputs) {
+
+		// for (let input of inputs) {
+		// 	if (!input.value.trim()) {
+		// 		formIsValid = false
+		// 		break
+		// 	}
+		// 	inputs.forEach(input => {
+		// 		if (!input.value.trim()) {
+		// 			input.classList.add(`${style.error}`)
+		// 			formIsValid = false
+		// 		} else {
+		// 			input.classList.remove(`${style.error}`)
+		// 		}
+		// 	})
+		// }
+
+		inputs.forEach(input => {
 			if (!input.value.trim()) {
+				input.classList.add(`${style.error}`)
+				input.classList.add(`${paymentMethod.error}`)
 				formIsValid = false
-				break
+			} else {
+				input.classList.remove(`${style.error}`)
+				input.classList.remove(`${paymentMethod.error}`)
 			}
-		}
+		})
 
 		// if (!shippingInputValues.inputProvince || !shippingInputValues.inputCountry) {
 		// 	formIsValid = false
 		// }
 
 		if (!shippingInputProvince || !shippingInputCountry) {
+			selects.forEach(select => {
+				select.classList.add('error')
+			})
 			formIsValid = false
 		}
 
 		if (radioButtons.length > 0) {
 			const isRadioSelected = Array.from(radioButtons).some(radio => radio.checked)
 			if (!isRadioSelected) {
+				blockRadioButtons.forEach(block => {
+					block.classList.add(`${radio.error}`)
+				})
 				formIsValid = false
+			} else {
+				blockRadioButtons.forEach(block => {
+					block.classList.remove(`${radio.error}`)
+				})
 			}
 		}
 
