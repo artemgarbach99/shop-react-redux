@@ -5,6 +5,7 @@ import { validationFormReducer } from '@/store/validationForm/validationForm.sli
 import { detailsInputsReducer } from '@/store/detailsInputs/detailsInputs.slice.js'
 import { productsSlice } from '@/store/products/products.slice.js'
 import { paymentInputsReducer } from '@/store/paymentInputs/paymentInputs.slice.js'
+import { shippingInputsReducer } from '@/store/shippingInputs/shippingInputs.slice.js'
 
 const reducers = combineReducers({
 	basket: basketReducer,
@@ -12,7 +13,8 @@ const reducers = combineReducers({
 	validationForm: validationFormReducer,
 	detailsInputs: detailsInputsReducer,
 	products: productsSlice.reducer,
-	paymentInputs: paymentInputsReducer
+	paymentInputs: paymentInputsReducer,
+	shippingInputs: shippingInputsReducer
 })
 
 export const store = configureStore({

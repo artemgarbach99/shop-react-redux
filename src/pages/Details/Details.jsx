@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 import '@/pages/Details/select.scss'
 import { NavigationOrder } from '@/components/NavigationOrder/NavigationOrder.jsx'
 import { Modal } from '@/components/Modal/Modal.jsx'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { detailsInputsActions } from '@/store/detailsInputs/detailsInputs.slice.js'
 
 export const Details = ({
 	// setModalActive,
@@ -13,20 +14,21 @@ export const Details = ({
 	// modalMessage,
 	// contactInputValue,
 	// handleContactInputChange,
-	shippingInputValues,
-	handleShippingInputChange,
-	handleShippingSelectChange,
+	// shippingInputValues,
+	// handleShippingInputChange,
+	// handleShippingSelectChange,
 	fieldCheck
 }) => {
 	// const [selectedOption, setSelectedOption] = useState(null);
 	// const [countries, setCountries] = useState([])
-	const [optionsCities, setOptionsCities] = useState([])
 	// const [isValid, setIsValid] = useState(true)
 	// const [selectedOptionProvince, setSelectedOptionProvince] = useState(null)
 	// const [selectedOptionCity, setSelectedOptionCity] = useState(null)]
 
-	//! добавить в redux
+	const dispatch = useDispatch()
 
+	//! добавить в redux
+	const [optionsCities, setOptionsCities] = useState([])
 	// https://countriesnow.space/api/v0.1/countries
 	useEffect(() => {
 		fetch('https://countriesnow.space/api/v0.1/countries')
@@ -45,43 +47,12 @@ export const Details = ({
 				alert('Ошибка при получении данных!')
 			})
 	}, [])
-
 	// контент в селект province
 	const optionsProvince = [
 		{ value: 'province', label: 'province' },
 		{ value: 'region', label: 'region' },
 		{ value: 'state', label: 'state' }
 	]
-
-	// const showModal = message => {
-	// 	setModalMessage(message)
-	// 	setModalActive(true)
-	// }
-
-	// const fieldCheck = event => {
-	// 	const inputs = document.querySelectorAll(`.${style.input} input`)
-	//
-	// 	let allValid = true // Переменная для проверки валидности
-	//
-	// 	inputs.forEach(input => {
-	// 		if (!input.value.trim()) {
-	// 			allValid = false // Обновляем переменную, если находим пустое поле
-	// 		}
-	// 	})
-	//
-	// 	if (!shippingInputValues.inputProvince || !shippingInputValues.inputCountry) {
-	// 		allValid = false
-	// 	}
-	//
-	// 	setIsValid(allValid) // Обновляем состояние валидности
-	//
-	// 	if (!allValid) {
-	// 		showModal('Заполните поля ввода!')
-	// 		event.preventDefault()
-	// 	}
-	//
-	// 	return allValid
-	// }
 
 	const modalReduxActive = useSelector(state => state.modal.isOpen)
 	const modalReduxMessage = useSelector(state => state.modal.message)
@@ -93,11 +64,20 @@ export const Details = ({
 	const detailsInputsCode = useSelector(state => state.detailsInputs.inputCode)
 	const detailsInputsProvince = useSelector(state => state.detailsInputs.inputProvince)
 	const detailsInputsCountry = useSelector(state => state.detailsInputs.inputCountry)
-	// console.log(shippingInputCountry)
-	// console.log(optionsCities)
 	const detailsInputsName = useSelector(state => state.detailsInputs.inputName)
 	const detailsInputsSecondName = useSelector(state => state.detailsInputs.inputSecondName)
 	const detailsInputsOptional = useSelector(state => state.detailsInputs.inputOptional)
+
+	const handleShippingInputChange = event => {
+		const { name, value } = event.target
+		dispatch(detailsInputsActions.setInputValue({ name, value }))
+	}
+
+	const handleShippingSelectChange = (selectedOption, actionMeta) => {
+		const { name } = actionMeta
+		const { value } = selectedOption
+		dispatch(detailsInputsActions.setInputValue({ name, value }))
+	}
 
 	return (
 		<div className={style.details}>

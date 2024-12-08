@@ -5,6 +5,7 @@ import { actions } from '@/store/basket/basket.slice.js'
 
 export const NavigationOrder = ({ currentPage, fieldCheck, setBasket, clearBasketIfConfirmed }) => {
 	const navigate = useNavigate()
+	const dispatch = useDispatch()
 
 	const handleNextClick = event => {
 		// if (!fieldCheck(event)) return
@@ -29,9 +30,6 @@ export const NavigationOrder = ({ currentPage, fieldCheck, setBasket, clearBaske
 			navigate('/order/payment')
 		}
 	}
-
-	// redux
-	const dispatch = useDispatch()
 
 	return (
 		<div className={style.buttons}>

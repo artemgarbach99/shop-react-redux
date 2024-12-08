@@ -6,20 +6,23 @@ import { Modal } from '@/components/Modal/Modal.jsx'
 import { useSelector } from 'react-redux'
 
 export const Shipping = ({
-	shippingInputValues,
-	selectedOption,
-	handleOptionChange,
-	fieldCheck,
-	modalActive,
-	modalMessage
+	// shippingInputValues,
+	// selectedOption,
+	// handleOptionChange,
+	fieldCheck
+	// modalActive,
+	// modalMessage
 }) => {
 	const modalReduxActive = useSelector(state => state.modal.isOpen)
 	const modalReduxMessage = useSelector(state => state.modal.message)
 	return (
 		<div className={shipping.shipping}>
 			<div className={shipping.main}>
-				<InfoShipping shippingInputValues={shippingInputValues} />
-				<RadioShipping selectedOption={selectedOption} handleOptionChange={handleOptionChange} />
+				<InfoShipping />
+				<RadioShipping
+				// selectedOption={selectedOption}
+				// handleOptionChange={handleOptionChange}
+				/>
 			</div>
 			<NavigationOrder currentPage='shipping' fieldCheck={fieldCheck} />
 			{/*<Modal active={modalActive} message={modalMessage} />*/}

@@ -19,7 +19,7 @@ const Layout = () => {
 	)
 }
 
-const OrderPlacementLayout = ({ basket, subtotal, isLoading, selectedOptionValue }) => {
+const OrderPlacementLayout = ({ basket, subtotal }) => {
 	return (
 		<div className='wrapper'>
 			<div className={style.page}>
@@ -33,8 +33,8 @@ const OrderPlacementLayout = ({ basket, subtotal, isLoading, selectedOptionValue
 							<OrderProducts
 								basket={basket}
 								subtotal={subtotal}
-								isLoading={isLoading}
-								selectedOptionValue={selectedOptionValue}
+								// isLoading={isLoading}
+								// selectedOptionValue={selectedOptionValue}
 							/>
 						</div>
 					</div>

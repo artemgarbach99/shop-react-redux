@@ -19,7 +19,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { actions } from '@/store/basket/basket.slice.js'
 import { modalActions } from '@/store/modal/modal.slice.js'
 import { validationFormActions } from '@/store/validationForm/validationForm.slice.js'
-import { detailsInputsActions } from '@/store/detailsInputs/detailsInputs.slice.js'
 import { fetchProducts } from '@/store/products/products.actions.js'
 
 export const App = () => {
@@ -37,19 +36,29 @@ export const App = () => {
 	// 	inputProvince: null,
 	// 	inputCountry: null
 	// })
-	const [selectedOption, setSelectedOption] = useState('')
-	const [selectedOptionValue, setSelectedOptionValue] = useState('')
-	const [selectedOptionLabel, setSelectedOptionLabel] = useState('')
+	// const [selectedOption, setSelectedOption] = useState('')
+	// const [selectedOptionValue, setSelectedOptionValue] = useState('')
+	// const [selectedOptionLabel, setSelectedOptionLabel] = useState('')
 
-	//! добавить в redux
-	const handleOptionChange = event => {
-		setSelectedOption(event.target.value)
-		const value = event.target.getAttribute('data-value')
-		setSelectedOptionValue(value)
+	const dispatch = useDispatch()
 
-		const label = event.target.getAttribute('data-label')
-		setSelectedOptionLabel(label)
-	}
+	// const handleOptionChange = event => {
+	// 	const { name, value } = event.target
+	// 	const dataValue = event.target.getAttribute('data-value')
+	// 	const dataLabel = event.target.getAttribute('data-label')
+	// 	dispatch(shippingInputsActions.setOptionShipping({ name, value }))
+	// 	dispatch(shippingInputsActions.setDataValue(dataValue))
+	// 	dispatch(shippingInputsActions.setDataLabel(dataLabel))
+	// }
+
+	// const handleOptionChange = event => {
+	// 	setSelectedOption(event.target.value)
+	// 	const value = event.target.getAttribute('data-value')
+	// 	setSelectedOptionValue(value)
+	//
+	// 	const label = event.target.getAttribute('data-label')
+	// 	setSelectedOptionLabel(label)
+	// }
 
 	// redux setTimeout modal
 	const modalReduxActive = useSelector(state => state.modal.isOpen)
@@ -82,8 +91,6 @@ export const App = () => {
 	// https://fakestoreapi.in/api/products
 	// https://fakestoreapi.com/products
 	// https://api.escuelajs.co/api/v1/products
-	//! изнчальное получение products
-
 	// useEffect(() => {
 	// 	fetch('https://fakestoreapi.in/api/products')
 	// 		.then(res => res.json())
@@ -96,9 +103,6 @@ export const App = () => {
 	// }, [])
 
 	//redux
-	const dispatch = useDispatch()
-
-	//! redux productsSlice
 
 	// const { products, loading, error } = useSelector(state => state.products)
 
@@ -129,24 +133,24 @@ export const App = () => {
 		dispatch(actions.UpdateQuantity({ id, quantity }))
 	}
 
-	const handleShippingInputChange = event => {
-		const { name, value } = event.target
-		dispatch(detailsInputsActions.setInputValue({ name, value }))
-		// setShippingInputValues({
-		// 	...shippingInputValues,
-		// 	[name]: value
-		// })
-	}
-
-	const handleShippingSelectChange = (selectedOption, actionMeta) => {
-		const { name } = actionMeta
-		const { value } = selectedOption
-		dispatch(detailsInputsActions.setInputValue({ name, value }))
-		// setShippingInputValues({
-		// 	...shippingInputValues,
-		// 	[name]: selectedOption
-		// })
-	}
+	// const handleShippingInputChange = event => {
+	// 	const { name, value } = event.target
+	// 	dispatch(detailsInputsActions.setInputValue({ name, value }))
+	// 	// setShippingInputValues({
+	// 	// 	...shippingInputValues,
+	// 	// 	[name]: value
+	// 	// })
+	// }
+	//
+	// const handleShippingSelectChange = (selectedOption, actionMeta) => {
+	// 	const { name } = actionMeta
+	// 	const { value } = selectedOption
+	// 	dispatch(detailsInputsActions.setInputValue({ name, value }))
+	// 	// setShippingInputValues({
+	// 	// 	...shippingInputValues,
+	// 	// 	[name]: selectedOption
+	// 	// })
+	// }
 
 	// const showModal = message => {
 	// 	setModalMessage(message)
@@ -192,10 +196,6 @@ export const App = () => {
 				input.classList.remove(`${paymentMethod.error}`)
 			}
 		})
-
-		// if (!shippingInputValues.inputProvince || !shippingInputValues.inputCountry) {
-		// 	formIsValid = false
-		// }
 
 		if (!shippingInputProvince || !shippingInputCountry) {
 			selects.forEach(select => {
@@ -281,7 +281,7 @@ export const App = () => {
 							basket={basket}
 							subtotal={subtotal}
 							// isLoading={isLoading}
-							selectedOptionValue={selectedOptionValue}
+							// selectedOptionValue={selectedOptionValue}
 						/>
 					}>
 					<Route index element={<Navigate to='details' />} />
@@ -291,8 +291,8 @@ export const App = () => {
 							<Details
 								/*{...modalProps}*/
 								// shippingInputValues={shippingInputValues}
-								handleShippingInputChange={handleShippingInputChange}
-								handleShippingSelectChange={handleShippingSelectChange}
+								// handleShippingInputChange={handleShippingInputChange}
+								// handleShippingSelectChange={handleShippingSelectChange}
 								fieldCheck={fieldCheck}
 							/>
 						}
@@ -303,8 +303,8 @@ export const App = () => {
 							<Shipping
 								/*{...modalProps}*/
 								// shippingInputValues={shippingInputValues}
-								selectedOption={selectedOption}
-								handleOptionChange={handleOptionChange}
+								// selectedOption={selectedOption}
+								// handleOptionChange={handleOptionChange}
 								fieldCheck={fieldCheck}
 							/>
 						}
@@ -315,8 +315,8 @@ export const App = () => {
 							<Payment
 								/*{...modalProps}*/
 								// shippingInputValues={shippingInputValues}
-								selectedOptionValue={selectedOptionValue}
-								selectedOptionLabel={selectedOptionLabel}
+								// selectedOptionValue={selectedOptionValue}
+								// selectedOptionLabel={selectedOptionLabel}
 								fieldCheck={fieldCheck}
 							/>
 						}

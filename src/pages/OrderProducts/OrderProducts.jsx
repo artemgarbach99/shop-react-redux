@@ -4,21 +4,22 @@ import { Skeleton } from '@/components/Skeleton/Skeleton.jsx'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-export const OrderProducts = ({ basket, subtotal, isLoading, selectedOptionValue }) => {
+export const OrderProducts = ({ basket, subtotal }) => {
 	const navigate = useNavigate()
 
 	const { loading } = useSelector(state => state.products)
 
 	const basketRedux = useSelector(state => state.basket.basket)
 	const totalPriceRedux = useSelector(state => state.basket.totalPrice)
+	const dataValue = useSelector(state => state.shippingInputs.dataValue)
 
 	const calculateTotalPrice = item => {
 		return (item.price * item.quantity).toFixed(2)
 	}
 
 	const TotalPriceWithShipping = () => {
-		const additionalCost = parseFloat(selectedOptionValue.replace('$', ''))
-		// const subtotalNumber = parseFloat(subtotal)
+		// const additionalCost = parseFloat(selectedOptionValue.replace('$', ''))
+		const additionalCost = parseFloat(dataValue.replace('$', ''))
 		const subtotalNumber = parseFloat(totalPriceRedux)
 
 		if (isNaN(additionalCost)) {
@@ -63,7 +64,8 @@ export const OrderProducts = ({ basket, subtotal, isLoading, selectedOptionValue
 							<div className={order.row}>
 								<div className={order.label}>Shipping:</div>
 								<div className={order.description}>
-									{selectedOptionValue ? selectedOptionValue : 'Calculated at the next step'}
+									{/*{selectedOptionValue ? selectedOptionValue : 'Calculated at the next step'}*/}
+									{dataValue ? dataValue : 'Calculated at the next step'}
 								</div>
 							</div>
 						</div>
