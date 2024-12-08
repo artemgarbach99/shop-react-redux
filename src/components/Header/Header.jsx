@@ -3,13 +3,13 @@ import style from '@components/Header/Header.module.scss'
 import { Link } from 'react-router-dom'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 
-export const Header = ({ itemCount, clearBasketIfConfirmed }) => {
+export const Header = ({ itemCount }) => {
 	return (
 		<div className={style.header}>
 			<div className='container'>
 				<div className={style.body}>
 					<div className={style.logo}>
-						<Link to='/main' onClick={clearBasketIfConfirmed}>
+						<Link to='/main'>
 							<img src='/src/assets/images/logo.svg' alt='Logo' />
 						</Link>
 					</div>

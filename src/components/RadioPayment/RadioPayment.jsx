@@ -14,7 +14,6 @@ export const RadioPayment = () => {
 	}
 
 	const billingAddressValue = useSelector(state => state.paymentInputs.billingAddress)
-	console.log(billingAddressValue)
 
 	return (
 		<div className={radio.radio}>

@@ -7,17 +7,19 @@ import { actions } from '@/store/basket/basket.slice.js'
 import { modalActions } from '@/store/modal/modal.slice.js'
 import { useDispatch, useSelector } from 'react-redux'
 
-export const CardDetails = ({
-	cards,
-	// addToBasket,
-	// basket,
-	isLoading
-	// products
-	// setModalActive,
-	// setModalMessage,
-	// modalActive,
-	// modalMessage
-}) => {
+export const CardDetails = (
+	{
+		// cards,
+		// addToBasket,
+		// basket,
+		// isLoading
+		// products
+		// setModalActive,
+		// setModalMessage,
+		// modalActive,
+		// modalMessage
+	}
+) => {
 	//redux modal
 	const basketRedux = useSelector(state => state.basket.basket)
 	const modalReduxActive = useSelector(state => state.modal.isOpen)

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Skeleton } from '@/components/Skeleton/Skeleton.jsx'
 import { useSelector } from 'react-redux'
 
-export const Card = ({ title, image, price, id, isLoading }) => {
+export const Card = ({ title, image, price, id }) => {
 	const { loading } = useSelector(state => state.products)
 	return (
 		<div className={style.card}>
