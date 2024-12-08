@@ -3,7 +3,7 @@ import '@assets/styles/null.scss'
 import '@assets/styles/index.scss'
 import { Products } from '@/pages/Products/Products.jsx'
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { CardDetails } from '@/pages/CardDetails/CardDetails.jsx'
 import { Basket } from '@/pages/Basket/Basket.jsx'
 import { Main } from '@/pages/Main/Main.jsx'
@@ -16,15 +16,14 @@ import style from '@/pages/Details/Details.module.scss'
 import radio from '@/pages/Shipping/Radio.module.scss'
 import paymentMethod from '@/components/PaymentMethod/PaymentMethod.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { actions } from '@/store/basket/basket.slice.js'
 import { modalActions } from '@/store/modal/modal.slice.js'
 import { validationFormActions } from '@/store/validationForm/validationForm.slice.js'
 import { fetchProducts } from '@/store/products/products.actions.js'
 
 export const App = () => {
-	const [basket, setBasket] = useState([])
+	// const [basket, setBasket] = useState([])
 	// const [cards, setCards] = useState([])
-	const [subtotal, setSubtotal] = useState(0)
+	// const [subtotal, setSubtotal] = useState(0)
 	// const [isLoading, setLoading] = useState(true)
 	// const [modalActive, setModalActive] = useState(false)
 	// const [modalMessage, setModalMessage] = useState('')
@@ -127,11 +126,12 @@ export const App = () => {
 	// 	setBasket(prevBasket => prevBasket.filter(item => item.id !== id))
 	// }
 
-	// обновление количество redux
-	const updateQuantity = (id, quantity) => {
-		// setBasket(prevBasket => prevBasket.map(item => (item.id === id ? { ...item, quantity } : item)))
-		dispatch(actions.UpdateQuantity({ id, quantity }))
-	}
+	//! обновление количество redux
+
+	// const updateQuantity = (id, quantity) => {
+	// 	// setBasket(prevBasket => prevBasket.map(item => (item.id === id ? { ...item, quantity } : item)))
+	// 	dispatch(actions.UpdateQuantity({ id, quantity }))
+	// }
 
 	// const handleShippingInputChange = event => {
 	// 	const { name, value } = event.target
@@ -263,13 +263,13 @@ export const App = () => {
 						path='/basket'
 						element={
 							<Basket
-								basket={basket}
-								// removeFromBasket={removeFromBasket}
-								subtotal={subtotal}
-								setSubtotal={setSubtotal}
-								updateQuantity={updateQuantity}
-								// isLoading={isLoading}
-								// basketRedux={basketRedux}
+							// basket={basket}
+							// removeFromBasket={removeFromBasket}
+							// subtotal={subtotal}
+							// setSubtotal={setSubtotal}
+							// updateQuantity={updateQuantity}
+							// isLoading={isLoading}
+							// basketRedux={basketRedux}
 							/>
 						}
 					/>
@@ -278,10 +278,10 @@ export const App = () => {
 					path='/order'
 					element={
 						<OrderPlacementLayout
-							basket={basket}
-							subtotal={subtotal}
-							// isLoading={isLoading}
-							// selectedOptionValue={selectedOptionValue}
+						// basket={basket}
+						// subtotal={subtotal}
+						// isLoading={isLoading}
+						// selectedOptionValue={selectedOptionValue}
 						/>
 					}>
 					<Route index element={<Navigate to='details' />} />
@@ -321,7 +321,7 @@ export const App = () => {
 							/>
 						}
 					/>
-					<Route path='confirmed' element={<Confirmed setBasket={setBasket} />} />
+					<Route path='confirmed' element={<Confirmed />} />
 				</Route>
 			</Routes>
 		</Router>

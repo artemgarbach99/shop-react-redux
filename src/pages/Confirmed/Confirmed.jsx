@@ -2,7 +2,7 @@ import { NavigationOrder } from '@/components/NavigationOrder/NavigationOrder.js
 import { GiConfirmed } from 'react-icons/gi'
 import style from '@pages/Confirmed/Confirmed.module.scss'
 
-export const Confirmed = ({ setBasket, clearBasketIfConfirmed }) => {
+export const Confirmed = () => {
 	return (
 		<div className={style.confirmed}>
 			<div className={style.top}>
@@ -14,7 +14,7 @@ export const Confirmed = ({ setBasket, clearBasketIfConfirmed }) => {
 				Thank you Joe for buying Candleaf. The nature is grateful to you. Now that your order is confirmed it will be
 				ready to ship in 2 days. Please check your inbox in the future for your order updates.
 			</div>
-			<NavigationOrder currentPage='confirmed' setBasket={setBasket} clearBasketIfConfirmed={clearBasketIfConfirmed} />
+			<NavigationOrder currentPage='confirmed' />
 		</div>
 	)
 }

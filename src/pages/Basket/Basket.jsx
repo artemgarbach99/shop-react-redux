@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { CardBasket } from '@/components/CardBasket/CardBasket.jsx'
 import { useSelector } from 'react-redux'
 
-export const Basket = ({ basket, removeFromBasket, setSubtotal, updateQuantity, isLoading, subtotal }) => {
+export const Basket = () => {
 	// const [totalPrices, setTotalPrices] = useState({})
 	//
 	// const updateTotalPrice = (id, totalPrice) => {
@@ -18,7 +18,6 @@ export const Basket = ({ basket, removeFromBasket, setSubtotal, updateQuantity, 
 	// }, [totalPrices])
 
 	const basketRedux = useSelector(state => state.basket.basket)
-
 	const totalPriceRedux = useSelector(state => state.basket.totalPrice)
 
 	// const updateTotalPrice = (id, totalPrice) => {
@@ -72,10 +71,10 @@ export const Basket = ({ basket, removeFromBasket, setSubtotal, updateQuantity, 
 									<CardBasket
 										key={index}
 										{...item}
-										removeFromBasket={removeFromBasket}
+										// removeFromBasket={removeFromBasket}
 										// updateTotalPrice={updateTotalPrice}
-										updateQuantity={updateQuantity}
-										isLoading={isLoading}
+										// updateQuantity={updateQuantity}
+										// isLoading={isLoading}
 									/>
 								))}
 							</ul>

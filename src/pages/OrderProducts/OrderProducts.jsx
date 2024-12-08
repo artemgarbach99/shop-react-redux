@@ -4,7 +4,7 @@ import { Skeleton } from '@/components/Skeleton/Skeleton.jsx'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-export const OrderProducts = ({ basket, subtotal }) => {
+export const OrderProducts = () => {
 	const navigate = useNavigate()
 
 	const { loading } = useSelector(state => state.products)

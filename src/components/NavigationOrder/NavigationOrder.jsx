@@ -3,7 +3,7 @@ import style from '@/layouts/Layouts.module.scss'
 import { useDispatch } from 'react-redux'
 import { actions } from '@/store/basket/basket.slice.js'
 
-export const NavigationOrder = ({ currentPage, fieldCheck, setBasket, clearBasketIfConfirmed }) => {
+export const NavigationOrder = ({ currentPage, fieldCheck }) => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 

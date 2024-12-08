@@ -12,16 +12,20 @@ export const CardBasket = ({
 	title,
 	image,
 	price,
-	quantity,
-	removeFromBasket,
+	quantity
+	// removeFromBasket,
 	// updateTotalPrice,
-	updateQuantity,
-	isLoading
+	// updateQuantity,
+	// isLoading
 }) => {
 	// redux
 	const dispatch = useDispatch()
 
 	const { loading } = useSelector(state => state.products)
+
+	const updateQuantity = (id, quantity) => {
+		dispatch(actions.UpdateQuantity({ id, quantity }))
+	}
 
 	// useEffect(() => {
 	// 	const totalPrice = price * quantity
