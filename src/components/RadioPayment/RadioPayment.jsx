@@ -1,22 +1,31 @@
 import radio from '@/pages/Shipping/Radio.module.scss'
 import shipping from '@/pages/Shipping/Shipping.module.scss'
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { paymentInputsActions } from '@/store/paymentInputs/paymentInputs.slice.js'
 
 export const RadioPayment = () => {
-	const [selectedPaymentOption, setSelectedPaymentOption] = useState('')
+	// const [selectedPaymentOption, setSelectedPaymentOption] = useState('')
+	const dispatch = useDispatch()
+
 	const handleOptionChange = event => {
-		setSelectedPaymentOption(event.target.value)
+		const { name, value } = event.target
+		dispatch(paymentInputsActions.setValuePayment({ name, value }))
+		// setSelectedPaymentOption(event.target.value)
 	}
+
+	const billingAddressValue = useSelector(state => state.paymentInputs.billingAddress)
+	console.log(billingAddressValue)
 
 	return (
 		<div className={radio.radio}>
-			<div className='heading'>Shipping method</div>
+			<div className='heading'>Billing address</div>
 			<div className={radio.block}>
 				<label className={shipping.item}>
 					<input
 						type='radio'
 						value='option1'
-						checked={selectedPaymentOption === 'option1'}
+						name='billingAddress'
+						checked={billingAddressValue === 'option1'}
 						onChange={handleOptionChange}
 						className={radio.input}
 					/>
@@ -26,7 +35,8 @@ export const RadioPayment = () => {
 					<input
 						type='radio'
 						value='option2'
-						checked={selectedPaymentOption === 'option2'}
+						name='billingAddress'
+						checked={billingAddressValue === 'option2'}
 						onChange={handleOptionChange}
 						className={radio.input}
 					/>

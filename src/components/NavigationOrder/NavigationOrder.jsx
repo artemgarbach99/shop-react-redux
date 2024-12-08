@@ -7,7 +7,7 @@ export const NavigationOrder = ({ currentPage, fieldCheck, setBasket, clearBaske
 	const navigate = useNavigate()
 
 	const handleNextClick = event => {
-		if (!fieldCheck(event)) return
+		// if (!fieldCheck(event)) return
 
 		if (currentPage === 'details') {
 			navigate('/order/shipping')
