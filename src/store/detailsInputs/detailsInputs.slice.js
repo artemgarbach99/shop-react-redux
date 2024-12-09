@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { fetchDetailsCountries } from '@/store/detailsInputs/detailsInputs.actions.js'
 
 const initialState = {
 	inputContacts: '',
@@ -9,7 +10,10 @@ const initialState = {
 	inputCountry: null,
 	inputName: '',
 	inputSecondName: '',
-	inputOptional: ''
+	inputOptional: '',
+	countries: [],
+	loading: false,
+	error: null
 }
 
 export const detailsInputsSlice = createSlice({
@@ -20,6 +24,20 @@ export const detailsInputsSlice = createSlice({
 			const { name, value } = action.payload
 			return { ...state, [name]: value }
 		}
+	},
+	extraReducers: builder => {
+		builder
+			.addCase(fetchDetailsCountries.pending, state => {
+				state.loading = true
+			})
+			.addCase(fetchDetailsCountries.fulfilled, (state, action) => {
+				state.countries = action.payload
+				state.loading = false
+			})
+			.addCase(fetchDetailsCountries.rejected, (state, action) => {
+				state.loading = false
+				state.error = action.payload
+			})
 	}
 })
 

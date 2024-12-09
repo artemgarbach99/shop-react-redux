@@ -27,6 +27,7 @@
 
 	&__value-container {
 		padding: 10px !important;
+		font-weight: 400 !important;
 	}
 	&__placeholder {
 		font-weight: 400 !important;
@@ -40,6 +41,7 @@
 
 		.item-select__value-container--has-value & {
 			color: $colorGreen !important;
+			font-weight: 400 !important;
 		}
 	}
 

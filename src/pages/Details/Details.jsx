@@ -1,24 +1,14 @@
 import style from '@/pages/Details/Details.module.scss'
 import Select from 'react-select'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import '@/pages/Details/select.scss'
 import { NavigationOrder } from '@/components/NavigationOrder/NavigationOrder.jsx'
 import { Modal } from '@/components/Modal/Modal.jsx'
 import { useDispatch, useSelector } from 'react-redux'
 import { detailsInputsActions } from '@/store/detailsInputs/detailsInputs.slice.js'
+import { fetchDetailsCountries } from '@/store/detailsInputs/detailsInputs.actions.js'
 
-export const Details = ({
-	// setModalActive,
-	// setModalMessage,
-	// modalActive,
-	// modalMessage,
-	// contactInputValue,
-	// handleContactInputChange,
-	// shippingInputValues,
-	// handleShippingInputChange,
-	// handleShippingSelectChange,
-	fieldCheck
-}) => {
+export const Details = ({ fieldCheck }) => {
 	// const [selectedOption, setSelectedOption] = useState(null);
 	// const [countries, setCountries] = useState([])
 	// const [isValid, setIsValid] = useState(true)
@@ -28,30 +18,49 @@ export const Details = ({
 	const dispatch = useDispatch()
 
 	//! добавить в redux
-	const [optionsCities, setOptionsCities] = useState([])
-	// https://countriesnow.space/api/v0.1/countries
-	useEffect(() => {
-		fetch('https://countriesnow.space/api/v0.1/countries')
-			.then(res => res.json())
-			.then(json => {
-				// setCountries(json.data)
-				const citiesOptions = json.data.map(country => ({
-					value: country.country,
-					label: country.country
-				}))
-				setOptionsCities(citiesOptions)
-			})
 
-			.catch(err => {
-				console.warn(err)
-				alert('Ошибка при получении данных!')
-			})
-	}, [])
+	// const [optionsCities, setOptionsCities] = useState([])
+
+	// https://countriesnow.space/api/v0.1/countries
+	// useEffect(() => {
+	// 	fetch('https://countriesnow.space/api/v0.1/countries')
+	// 		.then(res => res.json())
+	// 		.then(json => {
+	// 			// setCountries(json.data)
+	// 			const citiesOptions = json.data.map(country => ({
+	// 				value: country.country,
+	// 				label: country.country
+	// 			}))
+	// 			setOptionsCities(citiesOptions)
+	// 		})
+	//
+	// 		.catch(err => {
+	// 			console.warn(err)
+	// 			alert('Ошибка при получении данных!')
+	// 		})
+	// }, [])
+
+	// redux
+	useEffect(() => {
+		dispatch(fetchDetailsCountries())
+	}, [dispatch])
+
+	const { countries, loading, error } = useSelector(state => state.detailsInputs)
+
 	// контент в селект province
 	const optionsProvince = [
-		{ value: 'province', label: 'province' },
-		{ value: 'region', label: 'region' },
-		{ value: 'state', label: 'state' }
+		// { value: 'province', label: 'province' },
+		// { value: 'region', label: 'region' },
+		// { value: 'state', label: 'state' }
+		{ value: 'province', label: 'Province' },
+		{ value: 'region', label: 'Region' },
+		{ value: 'state', label: 'State' },
+		{ value: 'city', label: 'City' },
+		{ value: 'district', label: 'District' },
+		{ value: 'county', label: 'County' },
+		{ value: 'municipality', label: 'Municipality' },
+		{ value: 'territory', label: 'Territory' },
+		{ value: 'division', label: 'Division' }
 	]
 
 	const modalReduxActive = useSelector(state => state.modal.isOpen)
@@ -161,21 +170,23 @@ export const Details = ({
 						</div>
 						<Select
 							name='inputProvince'
-							defaultValue={detailsInputsProvince}
+							value={optionsProvince.find(option => option.value === detailsInputsProvince)}
+							// defaultValue={detailsInputsProvince}
 							// defaultValue={shippingInputValues.inputProvince}
 							onChange={handleShippingSelectChange}
 							options={optionsProvince}
 							className={style.select}
 							classNamePrefix='item-select'
-							placeholder='province'
+							placeholder='region'
 						/>
 					</div>
 					<Select
 						name='inputCountry'
-						defaultValue={detailsInputsCountry}
+						value={countries.find(option => option.value === detailsInputsCountry)}
+						// defaultValue={detailsInputsCountry}
 						// defaultValue={shippingInputValues.inputCountry}
 						onChange={handleShippingSelectChange}
-						options={optionsCities}
+						options={countries}
 						className={style.select}
 						classNamePrefix='item-select'
 						placeholder='country'
@@ -183,7 +194,6 @@ export const Details = ({
 				</div>
 			</div>
 			<NavigationOrder currentPage='details' fieldCheck={fieldCheck} />
-			{/*<Modal active={modalActive} message={modalMessage} />*/}
 			<Modal active={modalReduxActive} message={modalReduxMessage} />
 		</div>
 	)

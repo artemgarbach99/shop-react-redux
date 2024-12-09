@@ -8,7 +8,7 @@ export const NavigationOrder = ({ currentPage, fieldCheck }) => {
 	const dispatch = useDispatch()
 
 	const handleNextClick = event => {
-		if (!fieldCheck(event)) return
+		// if (!fieldCheck(event)) return
 
 		if (currentPage === 'details') {
 			navigate('/order/shipping')
