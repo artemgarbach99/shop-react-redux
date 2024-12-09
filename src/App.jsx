@@ -157,34 +157,33 @@ export const App = () => {
 	// 	setModalActive(true)
 	// }
 
+	const cardNumber = useSelector(state => state.paymentInputs.cardNumber)
+	const expiration = useSelector(state => state.paymentInputs.expiration)
+	const cvvCode = useSelector(state => state.paymentInputs.cvvCode)
 	const shippingInputProvince = useSelector(state => state.detailsInputs.inputProvince)
 	const shippingInputCountry = useSelector(state => state.detailsInputs.inputCountry)
 
 	const fieldCheck = () => {
 		const inputs = document.querySelectorAll(`.${style.input} input, .${paymentMethod.input} input`)
 		const radioButtons = document.querySelectorAll(`.${radio.input}[type='radio']`)
-		// const selects = document.querySelectorAll(`.${style.select}`)
 		const selects = document.querySelectorAll('.item-select__control')
 		const blockRadioButtons = document.querySelectorAll(`.${radio.block}`)
+		const cardNumberInput = document.querySelector('[data-card]')
+		const expirationInput = document.querySelector('[data-expiration]')
+		const cvvCodeInput = document.querySelector('[data-cvvCode]')
 
 		let formIsValid = true
 
 		dispatch(validationFormActions.valid())
 
-		// for (let input of inputs) {
-		// 	if (!input.value.trim()) {
-		// 		formIsValid = false
-		// 		break
-		// 	}
-		// 	inputs.forEach(input => {
-		// 		if (!input.value.trim()) {
-		// 			input.classList.add(`${style.error}`)
-		// 			formIsValid = false
-		// 		} else {
-		// 			input.classList.remove(`${style.error}`)
-		// 		}
-		// 	})
-		// }
+		const checkFullLength = (element, input, value) => {
+			if (element.length !== value) {
+				input.classList.add(`${paymentMethod.error}`)
+				formIsValid = false
+			} else {
+				input.classList.remove(`${paymentMethod.error}`)
+			}
+		}
 
 		inputs.forEach(input => {
 			if (!input.value.trim()) {
@@ -194,6 +193,33 @@ export const App = () => {
 			} else {
 				input.classList.remove(`${style.error}`)
 				input.classList.remove(`${paymentMethod.error}`)
+			}
+			if (cardNumber && cardNumberInput) {
+				checkFullLength(cardNumber, cardNumberInput, 19)
+				// if (cardNumber.length !== 19) {
+				// 	cardNumberInput.classList.add(`${paymentMethod.error}`)
+				// 	formIsValid = false
+				// } else {
+				// 	cardNumberInput.classList.remove(`${paymentMethod.error}`)
+				// }
+			}
+			if (expiration && expirationInput) {
+				checkFullLength(expiration, expirationInput, 5)
+				// if (expiration.length !== 5) {
+				// 	expirationInput.classList.add(`${paymentMethod.error}`)
+				// 	formIsValid = false
+				// } else {
+				// 	expirationInput.classList.remove(`${paymentMethod.error}`)
+				// }
+			}
+			if (cvvCode && cvvCodeInput) {
+				checkFullLength(cvvCode, cvvCodeInput, 3)
+				// if (cvvCode.length !== 3) {
+				// 	cvvCodeInput.classList.add(`${paymentMethod.error}`)
+				// 	formIsValid = false
+				// } else {
+				// 	cvvCodeInput.classList.remove(`${paymentMethod.error}`)
+				// }
 			}
 		})
 

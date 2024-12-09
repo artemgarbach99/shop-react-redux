@@ -70,7 +70,9 @@ export const PaymentMethod = () => {
 							value={cardNumberValue}
 							// value={inputValueCard}
 							onChange={inputChangeCard}
-							className={style.inputMasked}
+							data-card
+							maskChar=''
+							// className={style.inputMasked}
 						/>
 					</div>
 					<div className={style.input}>
@@ -93,6 +95,8 @@ export const PaymentMethod = () => {
 								// value={inputValueDate}
 								onChange={inputChangeDate}
 								placeholder='Expiration (MM/YY)'
+								data-expiration
+								maskChar=''
 							/>
 						</div>
 						<div className={style.input}>
@@ -101,6 +105,7 @@ export const PaymentMethod = () => {
 								name='cvvCode'
 								value={cvvCode}
 								placeholder='CVV'
+								data-cvvCode
 								maskChar=''
 								onChange={inputChangeCard}
 							/>
