@@ -21,6 +21,7 @@ import { validationFormActions } from '@/store/validationForm/validationForm.sli
 import { fetchProducts } from '@/store/products/products.actions.js'
 import { usePayments } from '@/hooks/usePayments.js'
 import { useDetails } from '@/hooks/useDetails.js'
+import { Favorites } from '@/pages/Favorites/Favorites.jsx'
 
 export const App = () => {
 	// const [basket, setBasket] = useState([])
@@ -269,89 +270,16 @@ export const App = () => {
 				<Route element={<Layout />}>
 					<Route path='/' element={<Navigate to='/main' />} />
 					<Route path='/main' element={<Main />} />
-					<Route
-						path='/products'
-						element={
-							<Products
-							// cards={cards}
-							// isLoading={isLoading}
-							/>
-						}
-					/>
-					<Route
-						path='card/:id'
-						element={
-							<CardDetails
-							// cards={cards}
-							// addToBasket={addToBasket}
-							// basket={basket}
-							// isLoading={isLoading}
-							/*{...modalProps}*/
-							/>
-						}
-					/>
-					<Route
-						path='/basket'
-						element={
-							<Basket
-							// basket={basket}
-							// removeFromBasket={removeFromBasket}
-							// subtotal={subtotal}
-							// setSubtotal={setSubtotal}
-							// updateQuantity={updateQuantity}
-							// isLoading={isLoading}
-							// basketRedux={basketRedux}
-							/>
-						}
-					/>
+					<Route path='/products' element={<Products />} />
+					<Route path='card/:id' element={<CardDetails />} />
+					<Route path='/basket' element={<Basket />} />
+					<Route path='/favorites' element={<Favorites />} />
 				</Route>
-				<Route
-					path='/order'
-					element={
-						<OrderPlacementLayout
-						// basket={basket}
-						// subtotal={subtotal}
-						// isLoading={isLoading}
-						// selectedOptionValue={selectedOptionValue}
-						/>
-					}>
+				<Route path='/order' element={<OrderPlacementLayout />}>
 					<Route index element={<Navigate to='details' />} />
-					<Route
-						path='details'
-						element={
-							<Details
-								/*{...modalProps}*/
-								// shippingInputValues={shippingInputValues}
-								// handleShippingInputChange={handleShippingInputChange}
-								// handleShippingSelectChange={handleShippingSelectChange}
-								fieldCheck={fieldCheck}
-							/>
-						}
-					/>
-					<Route
-						path='shipping'
-						element={
-							<Shipping
-								/*{...modalProps}*/
-								// shippingInputValues={shippingInputValues}
-								// selectedOption={selectedOption}
-								// handleOptionChange={handleOptionChange}
-								fieldCheck={fieldCheck}
-							/>
-						}
-					/>
-					<Route
-						path='payment'
-						element={
-							<Payment
-								/*{...modalProps}*/
-								// shippingInputValues={shippingInputValues}
-								// selectedOptionValue={selectedOptionValue}
-								// selectedOptionLabel={selectedOptionLabel}
-								fieldCheck={fieldCheck}
-							/>
-						}
-					/>
+					<Route path='details' element={<Details fieldCheck={fieldCheck} />} />
+					<Route path='shipping' element={<Shipping fieldCheck={fieldCheck} />} />
+					<Route path='payment' element={<Payment fieldCheck={fieldCheck} />} />
 					<Route path='confirmed' element={<Confirmed />} />
 				</Route>
 			</Routes>

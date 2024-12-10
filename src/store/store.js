@@ -6,6 +6,7 @@ import { detailsInputsReducer } from '@/store/detailsInputs/detailsInputs.slice.
 import { productsSlice } from '@/store/products/products.slice.js'
 import { paymentInputsReducer } from '@/store/paymentInputs/paymentInputs.slice.js'
 import { shippingInputsReducer } from '@/store/shippingInputs/shippingInputs.slice.js'
+import { favoritesReducer } from '@/store/favorites/favorites.slice.js'
 
 const reducers = combineReducers({
 	basket: basketReducer,
@@ -14,7 +15,8 @@ const reducers = combineReducers({
 	detailsInputs: detailsInputsReducer,
 	products: productsSlice.reducer,
 	paymentInputs: paymentInputsReducer,
-	shippingInputs: shippingInputsReducer
+	shippingInputs: shippingInputsReducer,
+	favorites: favoritesReducer
 })
 
 export const store = configureStore({

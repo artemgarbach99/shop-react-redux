@@ -27,14 +27,15 @@ export const CardDetails = () => {
 	// const card = cards.find(card => card.id === parseInt(id))
 	// redux
 	const product = products.find(prod => prod.id === parseInt(id))
+	console.log(product)
 
 	// const onClickButton = () => {
 	// 	handleAddToCart()
 	// 	// setModalActive(true)
 	// }
-	if (!product) {
-		return <div className={style['not-found']}>Card not found!</div>
-	}
+	// if (!product) {
+	// 	return <div className={style['not-found']}>Card not found!</div>
+	// }
 
 	// if (!card) {
 	// 	return <div className={style['not-found']}>Card not found!</div>
@@ -48,61 +49,65 @@ export const CardDetails = () => {
 
 	const handleAddToCart = () => {
 		if (isInBasket) {
-			// setModalMessage('The product is already in your cart!')
 			dispatch(modalActions.modalActive('The product is already in your cart!'))
 		} else {
-			// handleAddToBasket(card)
-			// addToBasket({ ...card })
-			// setModalMessage('Product added!')
 			dispatch(actions.AddToBasket(product))
 			dispatch(modalActions.modalActive('Product added!'))
 		}
 	}
 
 	return (
-		<div className={style.card}>
-			<div className='container'>
-				<div className={style.body}>
-					<div className={style.main}>
-						<div className={style.image}>
-							{loading ? (
-								<div className='loader-svg-wrap'>
-									<Skeleton />
+		<div className={style.cardDetails}>
+			{product ? (
+				<div className={style.card}>
+					<div className='container'>
+						<div className={style.body}>
+							<div className={style.main}>
+								<div className={style.image}>
+									{loading ? (
+										<div className='loader-svg-wrap'>
+											<Skeleton />
+										</div>
+									) : (
+										<img src={product.image} alt={product.title} />
+									)}
 								</div>
-							) : (
-								<img src={product.image} alt={product.title} />
-							)}
-						</div>
-						<div className={style.content}>
-							<div className={style.top}>
-								<h1 className={style.title}>{product.title}</h1>
-								<div className={style.description}>{product.description}</div>
+								<div className={style.content}>
+									<div className={style.top}>
+										<h1 className={style.title}>{product.title}</h1>
+										<div className={style.description}>{product.description}</div>
+									</div>
+									<div className={style.row}>
+										<div className={style.column}>
+											<p className={style.price}>$ {product.price}</p>
+										</div>
+										<div className={style.column}>
+											{/*<button className={`${style.button}`} onClick={onClickButton}>*/}
+											{/*	<AiOutlineShoppingCart size='20' />*/}
+											{/*	/!*{isInBasket ? 'In Basket' : 'Add to cart'}*!/*/}
+											{/*</button>*/}
+											<button
+												className={`${style.button} ${isInBasket ? style.inBasket : ''}`}
+												onClick={handleAddToCart}>
+												<AiOutlineShoppingCart size='20' />
+												{isInBasket ? 'In Basket' : 'Add to cart'}
+											</button>
+										</div>
+									</div>
+								</div>
 							</div>
-							<div className={style.row}>
-								<div className={style.column}>
-									<p className={style.price}>$ {product.price}</p>
-								</div>
-								<div className={style.column}>
-									{/*<button className={`${style.button}`} onClick={onClickButton}>*/}
-									{/*	<AiOutlineShoppingCart size='20' />*/}
-									{/*	/!*{isInBasket ? 'In Basket' : 'Add to cart'}*!/*/}
-									{/*</button>*/}
-									<button className={`${style.button} ${isInBasket ? style.inBasket : ''}`} onClick={handleAddToCart}>
-										<AiOutlineShoppingCart size='20' />
-										{isInBasket ? 'In Basket' : 'Add to cart'}
-									</button>
-								</div>
-							</div>
+							<Link to='/products' className={style.link}>
+								<AiOutlineArrowLeft size={20} />
+								Back to shopping
+							</Link>
 						</div>
 					</div>
-					<Link to='/products' className={style.link}>
-						<AiOutlineArrowLeft size={20} />
-						Back to shopping
-					</Link>
+					{/*<Modal active={modalActive} message={modalMessage} />*/}
+					<Modal active={isOpen} message={message} />
 				</div>
-			</div>
-			{/*<Modal active={modalActive} message={modalMessage} />*/}
-			<Modal active={isOpen} message={message} />
+			) : (
+				<div className={style['not-found']}>Card not found!</div>
+			)}
 		</div>
 	)
 }

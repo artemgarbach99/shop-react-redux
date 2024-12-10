@@ -7,10 +7,10 @@ import { OrderProducts } from '@/pages/OrderProducts/OrderProducts.jsx'
 import { useSelector } from 'react-redux'
 
 const Layout = () => {
-	const basketRedux = useSelector(state => state.basket.basket)
+	const basket = useSelector(state => state.basket.basket)
 	return (
 		<div className='wrapper'>
-			<Header itemCount={basketRedux.length} />
+			<Header itemCount={basket.length} />
 			<main>
 				<Outlet />
 			</main>

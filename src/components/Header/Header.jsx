@@ -2,6 +2,7 @@ import { Navigation } from '@/components/Navigation/Navigation.jsx'
 import style from '@components/Header/Header.module.scss'
 import { Link } from 'react-router-dom'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { MdFavoriteBorder } from 'react-icons/md'
 
 export const Header = ({ itemCount }) => {
 	return (
@@ -15,6 +16,9 @@ export const Header = ({ itemCount }) => {
 					</div>
 					<Navigation />
 					<div className={style.buttons}>
+						<Link to={'/favorites'}>
+							<MdFavoriteBorder size={30} />
+						</Link>
 						<Link to='/basket' className={style.basket} data-item-count={itemCount}>
 							<AiOutlineShoppingCart size={30} />
 						</Link>

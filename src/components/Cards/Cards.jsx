@@ -9,9 +9,6 @@ export const Cards = () => {
 			{products.map((obj, index) => (
 				<Card key={index} title={obj.title} image={obj.image} price={obj.price} id={obj.id} />
 			))}
-			{/*{cards.map((obj, index) => (*/}
-			{/*	<Card key={index} title={obj.title} image={obj.image} price={obj.price} id={obj.id} isLoading={isLoading} />*/}
-			{/*))}*/}
 		</div>
 	)
 }
