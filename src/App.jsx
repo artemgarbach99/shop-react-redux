@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { modalActions } from '@/store/modal/modal.slice.js'
 import { validationFormActions } from '@/store/validationForm/validationForm.slice.js'
 import { fetchProducts } from '@/store/products/products.actions.js'
+import { usePayments } from '@/hooks/usePayments.js'
 
 export const App = () => {
 	// const [basket, setBasket] = useState([])
@@ -157,9 +158,12 @@ export const App = () => {
 	// 	setModalActive(true)
 	// }
 
-	const cardNumber = useSelector(state => state.paymentInputs.cardNumber)
-	const expiration = useSelector(state => state.paymentInputs.expiration)
-	const cvvCode = useSelector(state => state.paymentInputs.cvvCode)
+	const { cardNumber, expiration, cvvCode } = usePayments()
+	console.log(cardNumber, expiration, cvvCode)
+
+	// const cardNumber = useSelector(state => state.paymentInputs.cardNumber)
+	// const expiration = useSelector(state => state.paymentInputs.expiration)
+	// const cvvCode = useSelector(state => state.paymentInputs.cvvCode)
 	const shippingInputProvince = useSelector(state => state.detailsInputs.inputProvince)
 	const shippingInputCountry = useSelector(state => state.detailsInputs.inputCountry)
 
