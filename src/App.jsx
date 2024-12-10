@@ -20,6 +20,7 @@ import { modalActions } from '@/store/modal/modal.slice.js'
 import { validationFormActions } from '@/store/validationForm/validationForm.slice.js'
 import { fetchProducts } from '@/store/products/products.actions.js'
 import { usePayments } from '@/hooks/usePayments.js'
+import { useDetails } from '@/hooks/useDetails.js'
 
 export const App = () => {
 	// const [basket, setBasket] = useState([])
@@ -159,13 +160,13 @@ export const App = () => {
 	// }
 
 	const { cardNumber, expiration, cvvCode } = usePayments()
-	console.log(cardNumber, expiration, cvvCode)
+	const { inputProvince, inputCountry } = useDetails()
 
 	// const cardNumber = useSelector(state => state.paymentInputs.cardNumber)
 	// const expiration = useSelector(state => state.paymentInputs.expiration)
 	// const cvvCode = useSelector(state => state.paymentInputs.cvvCode)
-	const shippingInputProvince = useSelector(state => state.detailsInputs.inputProvince)
-	const shippingInputCountry = useSelector(state => state.detailsInputs.inputCountry)
+	// const inputProvince = useSelector(state => state.detailsInputs.inputProvince)
+	// const inputCountry = useSelector(state => state.detailsInputs.inputCountry)
 
 	const fieldCheck = () => {
 		const inputs = document.querySelectorAll(`.${style.input} input, .${paymentMethod.input} input`)
@@ -227,7 +228,7 @@ export const App = () => {
 			}
 		})
 
-		if (!shippingInputProvince || !shippingInputCountry) {
+		if (!inputProvince || !inputCountry) {
 			selects.forEach(select => {
 				select.classList.add('error')
 			})

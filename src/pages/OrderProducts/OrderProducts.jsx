@@ -9,8 +9,8 @@ export const OrderProducts = () => {
 
 	const { loading } = useSelector(state => state.products)
 
-	const basketRedux = useSelector(state => state.basket.basket)
-	const totalPriceRedux = useSelector(state => state.basket.totalPrice)
+	const { basket, totalPrice } = useSelector(state => state.basket)
+	// const totalPriceRedux = useSelector(state => state.basket.totalPrice)
 	const dataValue = useSelector(state => state.shippingInputs.dataValue)
 
 	const calculateTotalPrice = item => {
@@ -20,7 +20,7 @@ export const OrderProducts = () => {
 	const TotalPriceWithShipping = () => {
 		// const additionalCost = parseFloat(selectedOptionValue.replace('$', ''))
 		const additionalCost = parseFloat(dataValue.replace('$', ''))
-		const subtotalNumber = parseFloat(totalPriceRedux)
+		const subtotalNumber = parseFloat(totalPrice)
 
 		if (isNaN(additionalCost)) {
 			return subtotalNumber.toFixed(2)
@@ -29,17 +29,17 @@ export const OrderProducts = () => {
 	}
 
 	useEffect(() => {
-		if (basketRedux.length === 0) {
+		if (basket.length === 0) {
 			navigate('/basket')
 		}
-	}, [basketRedux, navigate])
+	}, [basket, navigate])
 
 	return (
 		<div className={order.body}>
-			{basketRedux.length > 0 && (
+			{basket.length > 0 && (
 				<div className={order.wrap}>
 					<div className={order.cards}>
-						{basketRedux.map(item => (
+						{basket.map(item => (
 							<div key={item.id} className={order.card}>
 								<div className={order.image}>
 									{loading ? <Skeleton /> : <img src={item.image} alt='' />}
@@ -59,7 +59,7 @@ export const OrderProducts = () => {
 							<div className={order.row}>
 								<div className={order.label}>total:</div>
 								{/*<div className={order.price}>{subtotal}</div>*/}
-								<div className={order.price}>{totalPriceRedux.toFixed(2)}</div>
+								<div className={order.price}>{totalPrice.toFixed(2)}</div>
 							</div>
 							<div className={order.row}>
 								<div className={order.label}>Shipping:</div>

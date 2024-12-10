@@ -7,23 +7,12 @@ import { actions } from '@/store/basket/basket.slice.js'
 import { modalActions } from '@/store/modal/modal.slice.js'
 import { useDispatch, useSelector } from 'react-redux'
 
-export const CardDetails = (
-	{
-		// cards,
-		// addToBasket,
-		// basket,
-		// isLoading
-		// products
-		// setModalActive,
-		// setModalMessage,
-		// modalActive,
-		// modalMessage
-	}
-) => {
+export const CardDetails = () => {
 	//redux modal
-	const basketRedux = useSelector(state => state.basket.basket)
-	const modalReduxActive = useSelector(state => state.modal.isOpen)
-	const modalReduxMessage = useSelector(state => state.modal.message)
+	const basket = useSelector(state => state.basket.basket)
+	const { isOpen, message } = useSelector(state => state.modal)
+	// const modalReduxActive = useSelector(state => state.modal.isOpen)
+	// const modalReduxMessage = useSelector(state => state.modal.message)
 
 	// const basketItem = useSelector(state => state.basket)
 	//
@@ -55,7 +44,7 @@ export const CardDetails = (
 	// 	dispatch(actions.AddToBasket(card))
 	// }
 
-	const isInBasket = basketRedux.some(basketItem => basketItem.id === product.id)
+	const isInBasket = basket.some(basketItem => basketItem.id === product.id)
 
 	const handleAddToCart = () => {
 		if (isInBasket) {
@@ -113,7 +102,7 @@ export const CardDetails = (
 				</div>
 			</div>
 			{/*<Modal active={modalActive} message={modalMessage} />*/}
-			<Modal active={modalReduxActive} message={modalReduxMessage} />
+			<Modal active={isOpen} message={message} />
 		</div>
 	)
 }

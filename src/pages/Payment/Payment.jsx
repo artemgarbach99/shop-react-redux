@@ -7,16 +7,10 @@ import { TaxInfo } from '@/components/TaxInfo/TaxInfo.jsx'
 import { Modal } from '@/components/Modal/Modal.jsx'
 import { useSelector } from 'react-redux'
 
-export const Payment = ({
-	// shippingInputValues,
-	// selectedOptionValue,
-	// selectedOptionLabel,
-	fieldCheck
-	// modalActive,
-	// modalMessage
-}) => {
-	const modalReduxActive = useSelector(state => state.modal.isOpen)
-	const modalReduxMessage = useSelector(state => state.modal.message)
+export const Payment = ({ fieldCheck }) => {
+	const { isOpen, message } = useSelector(state => state.modal)
+	// const modalReduxActive = useSelector(state => state.modal.isOpen)
+	// const modalReduxMessage = useSelector(state => state.modal.message)
 	return (
 		<div>
 			<div className={shipping.shipping}>
@@ -32,7 +26,7 @@ export const Payment = ({
 				</div>
 				<NavigationOrder currentPage='payment' fieldCheck={fieldCheck} />
 				{/*<Modal active={modalActive} message={modalMessage} />*/}
-				<Modal active={modalReduxActive} message={modalReduxMessage} />
+				<Modal active={isOpen} message={message} />
 			</div>
 		</div>
 	)

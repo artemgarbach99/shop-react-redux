@@ -17,8 +17,10 @@ export const Basket = () => {
 	// 	setSubtotal(newSubtotal)
 	// }, [totalPrices])
 
-	const basketRedux = useSelector(state => state.basket.basket)
-	const totalPriceRedux = useSelector(state => state.basket.totalPrice)
+	const { basket, totalPrice } = useSelector(state => state.basket)
+
+	// const basketRedux = useSelector(state => state.basket.basket)
+	// const totalPriceRedux = useSelector(state => state.basket.totalPrice)
 
 	// const updateTotalPrice = (id, totalPrice) => {
 	// 	setTotalPrices(prevPrices => ({ ...prevPrices, [id]: totalPrice }))
@@ -45,7 +47,7 @@ export const Basket = () => {
 							Back to shopping
 						</Link>
 					</div>
-					{basketRedux.length === 0 ? (
+					{basket.length === 0 ? (
 						<div className={style.void}>
 							<p>Shopping cart is empty!</p>
 						</div>
@@ -67,7 +69,7 @@ export const Basket = () => {
 							</ul>
 							<ul className={style.list}>
 								{/*{basket.map((item, index) => (*/}
-								{basketRedux.map((item, index) => (
+								{basket.map((item, index) => (
 									<CardBasket
 										key={index}
 										{...item}
@@ -82,7 +84,7 @@ export const Basket = () => {
 								<div className={style.line}>
 									<h3 className={style.label}>Sub-total:</h3>
 									{/*<div className={itemStyles.price}>${subtotal}</div>*/}
-									<div className={itemStyles.price}>${totalPriceRedux.toFixed(2)}</div>
+									<div className={itemStyles.price}>${totalPrice.toFixed(2)}</div>
 								</div>
 								<Link to='/order' className={style.button}>
 									Check-out

@@ -7,6 +7,7 @@ import { Modal } from '@/components/Modal/Modal.jsx'
 import { useDispatch, useSelector } from 'react-redux'
 import { detailsInputsActions } from '@/store/detailsInputs/detailsInputs.slice.js'
 import { fetchDetailsCountries } from '@/store/detailsInputs/detailsInputs.actions.js'
+import { useDetails } from '@/hooks/useDetails.js'
 
 export const Details = ({ fieldCheck }) => {
 	// const [selectedOption, setSelectedOption] = useState(null);
@@ -16,8 +17,6 @@ export const Details = ({ fieldCheck }) => {
 	// const [selectedOptionCity, setSelectedOptionCity] = useState(null)]
 
 	const dispatch = useDispatch()
-
-	//! добавить в redux
 
 	// const [optionsCities, setOptionsCities] = useState([])
 
@@ -63,19 +62,33 @@ export const Details = ({ fieldCheck }) => {
 		{ value: 'division', label: 'Division' }
 	]
 
-	const modalReduxActive = useSelector(state => state.modal.isOpen)
-	const modalReduxMessage = useSelector(state => state.modal.message)
+	const { isOpen, message } = useSelector(state => state.modal)
+
+	// const modalReduxActive = useSelector(state => state.modal.isOpen)
+	// const modalReduxMessage = useSelector(state => state.modal.message)
+
+	const {
+		inputContacts,
+		inputAddress,
+		inputCity,
+		inputCode,
+		inputProvince,
+		inputCountry,
+		inputName,
+		inputSecondName,
+		inputOptional
+	} = useDetails()
 
 	// shippingInputsSlice
-	const detailsInputContacts = useSelector(state => state.detailsInputs.inputContacts)
-	const detailsInputsAddress = useSelector(state => state.detailsInputs.inputAddress)
-	const detailsInputsCity = useSelector(state => state.detailsInputs.inputCity)
-	const detailsInputsCode = useSelector(state => state.detailsInputs.inputCode)
-	const detailsInputsProvince = useSelector(state => state.detailsInputs.inputProvince)
-	const detailsInputsCountry = useSelector(state => state.detailsInputs.inputCountry)
-	const detailsInputsName = useSelector(state => state.detailsInputs.inputName)
-	const detailsInputsSecondName = useSelector(state => state.detailsInputs.inputSecondName)
-	const detailsInputsOptional = useSelector(state => state.detailsInputs.inputOptional)
+	// const detailsInputContacts = useSelector(state => state.detailsInputs.inputContacts)
+	// const detailsInputsAddress = useSelector(state => state.detailsInputs.inputAddress)
+	// const detailsInputsCity = useSelector(state => state.detailsInputs.inputCity)
+	// const detailsInputsCode = useSelector(state => state.detailsInputs.inputCode)
+	// const detailsInputsProvince = useSelector(state => state.detailsInputs.inputProvince)
+	// const detailsInputsCountry = useSelector(state => state.detailsInputs.inputCountry)
+	// const detailsInputsName = useSelector(state => state.detailsInputs.inputName)
+	// const detailsInputsSecondName = useSelector(state => state.detailsInputs.inputSecondName)
+	// const detailsInputsOptional = useSelector(state => state.detailsInputs.inputOptional)
 
 	const handleShippingInputChange = event => {
 		const { name, value } = event.target
@@ -96,7 +109,7 @@ export const Details = ({ fieldCheck }) => {
 					<input
 						type='text'
 						name='inputContacts'
-						value={detailsInputContacts}
+						value={inputContacts}
 						onChange={handleShippingInputChange}
 						placeholder='Email or mobile phone number'
 					/>
@@ -110,7 +123,7 @@ export const Details = ({ fieldCheck }) => {
 							<input
 								type='text'
 								name='inputName'
-								value={detailsInputsName}
+								value={inputName}
 								onChange={handleShippingInputChange}
 								placeholder='Name'
 							/>
@@ -120,7 +133,7 @@ export const Details = ({ fieldCheck }) => {
 							<input
 								type='text'
 								name='inputSecondName'
-								value={detailsInputsSecondName}
+								value={inputSecondName}
 								onChange={handleShippingInputChange}
 								placeholder='Second Name'
 							/>
@@ -131,7 +144,7 @@ export const Details = ({ fieldCheck }) => {
 						<input
 							type='text'
 							name='inputAddress'
-							value={detailsInputsAddress}
+							value={inputAddress}
 							// value={shippingInputValues.inputAddress}
 							onChange={handleShippingInputChange}
 							placeholder='Address and number'
@@ -141,7 +154,7 @@ export const Details = ({ fieldCheck }) => {
 						<input
 							type='text'
 							name='inputOptional'
-							value={detailsInputsOptional}
+							value={inputOptional}
 							onChange={handleShippingInputChange}
 							placeholder='Shipping note (optional)'
 						/>
@@ -152,7 +165,7 @@ export const Details = ({ fieldCheck }) => {
 							<input
 								type='text'
 								name='inputCity'
-								value={detailsInputsCity}
+								value={inputCity}
 								// value={shippingInputValues.inputCity}
 								onChange={handleShippingInputChange}
 								placeholder='City'
@@ -162,7 +175,7 @@ export const Details = ({ fieldCheck }) => {
 							<input
 								type='text'
 								name='inputCode'
-								value={detailsInputsCode}
+								value={inputCode}
 								// value={shippingInputValues.inputCode}
 								onChange={handleShippingInputChange}
 								placeholder='Postal Code'
@@ -170,7 +183,7 @@ export const Details = ({ fieldCheck }) => {
 						</div>
 						<Select
 							name='inputProvince'
-							value={optionsProvince.find(option => option.value === detailsInputsProvince)}
+							value={optionsProvince.find(option => option.value === inputProvince)}
 							// defaultValue={detailsInputsProvince}
 							// defaultValue={shippingInputValues.inputProvince}
 							onChange={handleShippingSelectChange}
@@ -182,7 +195,7 @@ export const Details = ({ fieldCheck }) => {
 					</div>
 					<Select
 						name='inputCountry'
-						value={countries.find(option => option.value === detailsInputsCountry)}
+						value={countries.find(option => option.value === inputCountry)}
 						// defaultValue={detailsInputsCountry}
 						// defaultValue={shippingInputValues.inputCountry}
 						onChange={handleShippingSelectChange}
@@ -194,7 +207,7 @@ export const Details = ({ fieldCheck }) => {
 				</div>
 			</div>
 			<NavigationOrder currentPage='details' fieldCheck={fieldCheck} />
-			<Modal active={modalReduxActive} message={modalReduxMessage} />
+			<Modal active={isOpen} message={message} />
 		</div>
 	)
 }
