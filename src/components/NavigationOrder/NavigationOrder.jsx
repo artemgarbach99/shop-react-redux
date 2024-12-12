@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import style from '@/layouts/Layouts.module.scss'
 import { useDispatch } from 'react-redux'
 import { actions } from '@/store/basket/basket.slice.js'
@@ -31,6 +31,12 @@ export const NavigationOrder = ({ currentPage, fieldCheck }) => {
 		}
 	}
 
+	const handleBackToProducts = elem => {
+		elem.preventDefault()
+		dispatch(actions.clearBasket())
+		navigate('/products')
+	}
+
 	return (
 		<div className={style.buttons}>
 			{currentPage === 'confirmed' ? (
@@ -48,9 +54,12 @@ export const NavigationOrder = ({ currentPage, fieldCheck }) => {
 
 			{currentPage === 'confirmed' ? (
 				// <Link to='/products' className={style.button} onClick={clearBasketIfConfirmed}>
-				<Link to='/products' className={style.button} onClick={dispatch(actions.clearBasket)}>
+				// <Link to='/products' className={style.button} onClick={dispatch(actions.clearBasket)}>
+				// 	Back to shopping
+				// </Link>
+				<div className={style.button} onClick={handleBackToProducts}>
 					Back to shopping
-				</Link>
+				</div>
 			) : (
 				<button type='button' className={style.button} onClick={event => handleNextClick(event)}>
 					{currentPage === 'details' && 'Go to shipping'}

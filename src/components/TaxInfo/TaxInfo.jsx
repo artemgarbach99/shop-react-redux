@@ -1,11 +1,14 @@
 import style from '@/pages/Payment/Payment.module.scss'
 import paymentMethod from '@/components/PaymentMethod/PaymentMethod.module.scss'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { paymentInputsActions } from '@/store/paymentInputs/paymentInputs.slice.js'
+import { usePayments } from '@/hooks/usePayments.js'
 
 export const TaxInfo = () => {
-	const vatNumberValue = useSelector(state => state.paymentInputs.vatNumber)
-	const pecOptionalValue = useSelector(state => state.paymentInputs.pecOptional)
+	// const vatNumberValue = useSelector(state => state.paymentInputs.vatNumber)
+	// const pecOptionalValue = useSelector(state => state.paymentInputs.pecOptional)
+
+	const { vatNumber, pecOptional } = usePayments()
 
 	const dispatch = useDispatch()
 
@@ -22,7 +25,7 @@ export const TaxInfo = () => {
 					<input
 						type='text'
 						name='vatNumber'
-						value={vatNumberValue}
+						value={vatNumber}
 						onChange={inputChange}
 						placeholder='VAT number  (optional)'
 					/>
@@ -31,7 +34,7 @@ export const TaxInfo = () => {
 					<input
 						type='text'
 						name='pecOptional'
-						value={pecOptionalValue}
+						value={pecOptional}
 						onChange={inputChange}
 						placeholder='PEC (optional)'
 					/>

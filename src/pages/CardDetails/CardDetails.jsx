@@ -27,7 +27,6 @@ export const CardDetails = () => {
 	// const card = cards.find(card => card.id === parseInt(id))
 	// redux
 	const product = products.find(prod => prod.id === parseInt(id))
-	console.log(product)
 
 	// const onClickButton = () => {
 	// 	handleAddToCart()
