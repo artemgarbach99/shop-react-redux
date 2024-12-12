@@ -4,13 +4,11 @@ import { Footer } from '@/components/Footer/Footer.jsx'
 import style from '@/layouts/Layouts.module.scss'
 import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs.jsx'
 import { OrderProducts } from '@/pages/OrderProducts/OrderProducts.jsx'
-import { useSelector } from 'react-redux'
 
 const Layout = () => {
-	const basket = useSelector(state => state.basket.basket)
 	return (
 		<div className='wrapper'>
-			<Header itemCount={basket.length} />
+			<Header />
 			<main>
 				<Outlet />
 			</main>

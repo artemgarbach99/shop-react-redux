@@ -1,8 +1,8 @@
-@import "@assets/styles/index.scss";
+@import '@assets/styles/index.scss';
 
 .header {
 	height: 75px;
-	border-bottom: 1px solid #56B280;
+	border-bottom: 1px solid #56b280;
 }
 
 .body {
@@ -23,11 +23,50 @@
 	gap: 15px;
 }
 
-.basket {
-	position: relative;
+//.favorites {
+//	position: relative;
+//	& span {
+//		display: flex;
+//		align-items: center;
+//		justify-content: center;
+//		position: absolute;
+//		width: 15px;
+//		height: 15px;
+//		top: -5px;
+//		right: -5px;
+//		background-color: $colorGreen;
+//		color: $colorWhite;
+//		border-radius: 50%;
+//		font-size: 12px;
+//		line-height: 1;
+//		font-weight: 700;
+//	}
+//}
 
-	&::before {
-		content: attr(data-item-count);
+//.basket {
+//	position: relative;
+//	&::before {
+//		content: attr(data-item-count);
+//		display: flex;
+//		align-items: center;
+//		justify-content: center;
+//		position: absolute;
+//		width: 15px;
+//		height: 15px;
+//		top: -5px;
+//		right: -5px;
+//		background-color: $colorGreen;
+//		color: $colorWhite;
+//		border-radius: 50%;
+//		font-size: 12px;
+//		line-height: 1;
+//		font-weight: 700;
+//	}
+//}
+
+.link {
+	position: relative;
+	& span {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -43,5 +82,4 @@
 		line-height: 1;
 		font-weight: 700;
 	}
-
 }
