@@ -3,7 +3,7 @@ import style from '@/pages/Basket/Basket.module.scss'
 import { Link } from 'react-router-dom'
 import { Quantity } from '@/components/Quantity/Quantity.jsx'
 import { Skeleton } from '@/components/Skeleton/Skeleton.jsx'
-import '@assets/styles/global.scss'
+import '@/assets/styles/_global.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { actions } from '@/store/basket/basket.slice.js'
 

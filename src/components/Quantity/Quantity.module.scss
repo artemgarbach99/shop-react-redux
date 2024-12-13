@@ -1,5 +1,4 @@
-@import '@assets/styles/index.scss';
-
+@use '@assets/styles/global' as *;
 .wrap {
 	display: flex;
 	align-items: center;

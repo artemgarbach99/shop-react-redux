@@ -1,4 +1,4 @@
-@import '@assets/styles/index.scss';
+@use '@assets/styles/global' as *;
 
 .header {
 	height: 75px;
@@ -22,26 +22,6 @@
 	align-items: center;
 	gap: 15px;
 }
-
-//.favorites {
-//	position: relative;
-//	& span {
-//		display: flex;
-//		align-items: center;
-//		justify-content: center;
-//		position: absolute;
-//		width: 15px;
-//		height: 15px;
-//		top: -5px;
-//		right: -5px;
-//		background-color: $colorGreen;
-//		color: $colorWhite;
-//		border-radius: 50%;
-//		font-size: 12px;
-//		line-height: 1;
-//		font-weight: 700;
-//	}
-//}
 
 //.basket {
 //	position: relative;

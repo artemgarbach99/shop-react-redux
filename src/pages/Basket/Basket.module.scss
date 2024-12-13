@@ -1,5 +1,4 @@
-@import "@assets/styles/index.scss";
-@import "@/assets/styles/global";
+@use '@assets/styles/global' as *;
 
 .basket {
 	padding: 60px 0;
@@ -48,7 +47,7 @@
 	display: flex;
 	align-items: center;
 	padding-bottom: 20px;
-	border-bottom: 1px solid #E5E5E5;
+	border-bottom: 1px solid #e5e5e5;
 }
 
 .section {
@@ -62,7 +61,6 @@
 	font-size: 16px;
 	font-weight: 500;
 }
-
 
 .line {
 	display: flex;
@@ -81,5 +79,5 @@
 	justify-content: flex-end;
 	gap: 70px;
 	padding-top: 20px;
-	border-top: 1px solid #E5E5E5;
+	border-top: 1px solid #e5e5e5;
 }

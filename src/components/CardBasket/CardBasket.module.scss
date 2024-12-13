@@ -1,11 +1,11 @@
-@import "@assets/styles/index.scss";
+@use '@assets/styles/global' as *;
 
 .item {
 	display: flex;
 	align-items: center;
 	padding: 30px 0;
 	&:not(:first-child) {
-		border-top: 1px solid #E5E5E5;
+		border-top: 1px solid #e5e5e5;
 	}
 }
 .content {
@@ -45,7 +45,6 @@
 	@include greenLink;
 	align-self: flex-start;
 }
-
 
 .price {
 	font-size: 18px;

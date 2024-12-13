@@ -1,4 +1,6 @@
-@import '@/assets/styles/index';
+//@use '@/assets/styles/index' as *;
+//@use '@assets/styles/global.scss' as *;
+@use '@assets/styles/global' as *;
 
 .page {
 	//display: block;
@@ -11,10 +13,11 @@
 	height: 100%;
 }
 .order {
+	@include scroll-bar;
 	flex: 0 0 50%;
 	padding-right: 100px;
 	overflow: auto;
-	@include scroll-bar;
+	padding-bottom: 40px;
 }
 .logo {
 	width: 126px;

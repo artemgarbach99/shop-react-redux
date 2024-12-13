@@ -1,5 +1,5 @@
-import '@assets/styles/global.scss'
-import '@assets/styles/null.scss'
+import '@/assets/styles/_global.scss'
+import '@/assets/styles/_null.scss'
 import '@assets/styles/index.scss'
 import { Products } from '@/pages/Products/Products.jsx'
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom'

@@ -1,4 +1,4 @@
-@import '@/assets/styles/index';
+@use '@assets/styles/global' as *;
 
 .radio {
 	display: flex;

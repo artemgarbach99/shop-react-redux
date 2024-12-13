@@ -1,5 +1,4 @@
-@import '@assets/styles/global.scss';
-
+@use '@assets/styles/global' as *;
 .card {
 	display: flex;
 	flex-direction: column;

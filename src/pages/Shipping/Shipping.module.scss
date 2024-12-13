@@ -1,7 +1,6 @@
-@import '@/assets/styles/index';
+@use '@assets/styles/global' as *;
 
 .shipping {
-	//height: 100%;
 	padding-bottom: 40px;
 }
 

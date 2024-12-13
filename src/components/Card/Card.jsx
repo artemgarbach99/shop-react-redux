@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'
 import { modalActions } from '@/store/modal/modal.slice.js'
 import { favoritesActions } from '@/store/favorites/favorites.slice.js'
-// import global from '@assets/styles/global.scss'
+// import global from '@assets/styles/_global.scss'
 
 export const Card = ({ title, image, price, id }) => {
 	const dispatch = useDispatch()

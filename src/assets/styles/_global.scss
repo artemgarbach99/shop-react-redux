@@ -61,6 +61,7 @@ main {
 	position: relative;
 }
 
+// mixins
 @mixin price($size: 26px) {
 	color: $colorGreen;
 	font-size: $size;

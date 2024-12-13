@@ -1,4 +1,4 @@
-@import '@/assets/styles/index';
+@use '@assets/styles/global' as *;
 
 .body {
 	padding: 40px 0;
