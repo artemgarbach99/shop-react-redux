@@ -4,6 +4,8 @@ $colorGreen: #56b280;
 $colorGrey: #f7f8fa;
 $colorWhite: #ffffff;
 $colorBlack: #272727;
+$colorBoxShadow: #898989;
+$colorRed: rgba(255, 0, 0, 1);
 
 .container {
 	max-width: 1200px;
@@ -112,7 +114,10 @@ main {
 	width: 100%;
 
 	& input {
-		border: 1px solid #898989;
+		@include box-shadow($colorBoxShadow);
+		//box-shadow: 0 0 5px #898989;
+		//border: 1px solid #898989;
+		//margin: 3px;
 		border-radius: 5px;
 		overflow: hidden;
 		width: 100%;
@@ -126,21 +131,36 @@ main {
 		}
 
 		&:focus {
-			border: 1px solid $colorGreen;
+			box-shadow: $colorGreen;
+			//border: 1px solid $colorGreen;
 			outline: none;
 		}
 
 		&.error {
-			box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
-			border-color: red;
-			&:hover {
-				box-shadow: none;
-				border-color: red;
+			@include box-shadow($colorRed);
+			color: $colorRed;
+			&::placeholder {
+				color: $colorRed;
 			}
+			&:hover {
+				@include box-shadow($colorRed);
+			}
+			//box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+			//border-color: red;
+			//&:hover {
+			//	box-shadow: none;
+			//	border-color: red;
+			//}
 		}
 
 		&:hover {
-			border: 1px solid $colorGreen;
+			@include box-shadow($colorGreen);
+			//border: 1px solid $colorGreen;
 		}
 	}
+}
+
+@mixin box-shadow($color: $colorBoxShadow) {
+	box-shadow: 0 0 5px $color;
+	margin: 3px;
 }

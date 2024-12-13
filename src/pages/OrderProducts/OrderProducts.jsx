@@ -18,7 +18,6 @@ export const OrderProducts = () => {
 	}
 
 	const TotalPriceWithShipping = () => {
-		// const additionalCost = parseFloat(selectedOptionValue.replace('$', ''))
 		const additionalCost = parseFloat(dataValue.replace('$', ''))
 		const subtotalNumber = parseFloat(totalPrice)
 
@@ -58,15 +57,11 @@ export const OrderProducts = () => {
 						<div className={order.line}>
 							<div className={order.row}>
 								<div className={order.label}>total:</div>
-								{/*<div className={order.price}>{subtotal}</div>*/}
 								<div className={order.price}>{totalPrice.toFixed(2)}</div>
 							</div>
 							<div className={order.row}>
 								<div className={order.label}>Shipping:</div>
-								<div className={order.description}>
-									{/*{selectedOptionValue ? selectedOptionValue : 'Calculated at the next step'}*/}
-									{dataValue ? dataValue : 'Calculated at the next step'}
-								</div>
+								<div className={order.description}>{dataValue ? dataValue : 'Calculated at the next step'}</div>
 							</div>
 						</div>
 						<div className={order.line}>

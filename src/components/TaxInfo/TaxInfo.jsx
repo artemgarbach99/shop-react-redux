@@ -5,12 +5,8 @@ import { paymentInputsActions } from '@/store/paymentInputs/paymentInputs.slice.
 import { usePayments } from '@/hooks/usePayments.js'
 
 export const TaxInfo = () => {
-	// const vatNumberValue = useSelector(state => state.paymentInputs.vatNumber)
-	// const pecOptionalValue = useSelector(state => state.paymentInputs.pecOptional)
-
-	const { vatNumber, pecOptional } = usePayments()
-
 	const dispatch = useDispatch()
+	const { vatNumber, pecOptional } = usePayments()
 
 	const inputChange = e => {
 		const { name, value } = e.target

@@ -8,41 +8,13 @@ import { modalActions } from '@/store/modal/modal.slice.js'
 import { useDispatch, useSelector } from 'react-redux'
 
 export const CardDetails = () => {
-	//redux modal
 	const basket = useSelector(state => state.basket.basket)
 	const { isOpen, message } = useSelector(state => state.modal)
-	// const modalReduxActive = useSelector(state => state.modal.isOpen)
-	// const modalReduxMessage = useSelector(state => state.modal.message)
-
-	// const basketItem = useSelector(state => state.basket)
-	//
 	const dispatch = useDispatch()
-
 	const { products, loading, error } = useSelector(state => state.products)
-	//
-	// dispatch(modalActions.ModalActive('123'))
-	// console.log(basketItem)
 
 	const { id } = useParams()
-	// const card = cards.find(card => card.id === parseInt(id))
-	// redux
 	const product = products.find(prod => prod.id === parseInt(id))
-
-	// const onClickButton = () => {
-	// 	handleAddToCart()
-	// 	// setModalActive(true)
-	// }
-	// if (!product) {
-	// 	return <div className={style['not-found']}>Card not found!</div>
-	// }
-
-	// if (!card) {
-	// 	return <div className={style['not-found']}>Card not found!</div>
-	// }
-
-	// const handleAddToBasket = card => {
-	// 	dispatch(actions.AddToBasket(card))
-	// }
 
 	const isInBasket = basket.some(basketItem => basketItem.id === product.id)
 
@@ -81,10 +53,6 @@ export const CardDetails = () => {
 											<p className={style.price}>$ {product.price}</p>
 										</div>
 										<div className={style.column}>
-											{/*<button className={`${style.button}`} onClick={onClickButton}>*/}
-											{/*	<AiOutlineShoppingCart size='20' />*/}
-											{/*	/!*{isInBasket ? 'In Basket' : 'Add to cart'}*!/*/}
-											{/*</button>*/}
 											<button
 												className={`${style.button} ${isInBasket ? style.inBasket : ''}`}
 												onClick={handleAddToCart}>
@@ -101,7 +69,6 @@ export const CardDetails = () => {
 							</Link>
 						</div>
 					</div>
-					{/*<Modal active={modalActive} message={modalMessage} />*/}
 					<Modal active={isOpen} message={message} />
 				</div>
 			) : (

@@ -2,11 +2,16 @@
 
 .item-select {
 	&__control {
-		border: 1px solid #898989 !important;
+		@include box-shadow($colorBoxShadow);
+		//border: 1px solid #898989 !important;
+		//box-shadow: none !important;
+		border: none !important;
+		//box-shadow: 0 0 5px #898989 !important;
+		//margin: 3px;
 		border-radius: 5px !important;
 		overflow: hidden !important;
 		width: 100% !important;
-		box-shadow: none !important;
+
 		&.error {
 			box-shadow: 0 0 5px rgba(255, 0, 0, 0.5) !important;
 			border-color: red !important;

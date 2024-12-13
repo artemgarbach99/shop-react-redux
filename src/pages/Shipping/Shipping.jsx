@@ -14,7 +14,6 @@ export const Shipping = ({ fieldCheck }) => {
 				<RadioShipping />
 			</div>
 			<NavigationOrder currentPage='shipping' fieldCheck={fieldCheck} />
-			{/*<Modal active={modalActive} message={modalMessage} />*/}
 			<Modal active={isOpen} message={message} />
 		</div>
 	)

@@ -5,24 +5,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { paymentInputsActions } from '@/store/paymentInputs/paymentInputs.slice.js'
 
 export const PaymentMethod = () => {
-	// const [inputValueCard, setInputValueCard] = useState('')
-	// const [inputValueHolder, setInputValueHolder] = useState('')
-	// const [inputValueDate, setInputValueDate] = useState('')
-
 	const dispatch = useDispatch()
 
 	const inputChangeCard = e => {
 		const { name, value } = e.target
 		dispatch(paymentInputsActions.setValuePayment({ name, value }))
-		// setInputValueCard(value)
 	}
 
 	const inputChangeHolder = e => {
 		const { name, value } = e.target
 		const filteredValue = value.toUpperCase().replace(/[^A-Z ]/g, '')
 		dispatch(paymentInputsActions.setValuePayment({ name, value: filteredValue }))
-		// dispatch(paymentInputsActions.setValuePayment({ name, filteredValue }))
-		// setInputValueHolder(filteredValue)
 	}
 
 	const inputChangeDate = e => {
@@ -30,23 +23,11 @@ export const PaymentMethod = () => {
 		const [month, year] = value.split('/')
 		if (month && parseInt(month, 10) > 12) {
 			const conditionMaxYear = '12' + (year ? '/' + year : '')
-			// setInputValueDate('12' + (year ? '/' + year : ''))
 			dispatch(paymentInputsActions.setValuePayment({ name, value: conditionMaxYear }))
 		} else {
 			dispatch(paymentInputsActions.setValuePayment({ name, value }))
-			// setInputValueDate(value)
 		}
 	}
-
-	// const inputChangeDate = e => {
-	// 	const value = e.target.value
-	// 	const [month, year] = value.split('/')
-	// 	if (month && parseInt(month, 10) > 12) {
-	// 		setInputValueDate('12' + (year ? '/' + year : ''))
-	// 	} else {
-	// 		setInputValueDate(value)
-	// 	}
-	// }
 
 	const cardNumberValue = useSelector(state => state.paymentInputs.cardNumber)
 	const holderNameValue = useSelector(state => state.paymentInputs.holderName)
@@ -68,11 +49,9 @@ export const PaymentMethod = () => {
 							placeholder='Card Number'
 							name='cardNumber'
 							value={cardNumberValue}
-							// value={inputValueCard}
 							onChange={inputChangeCard}
 							data-card
 							maskChar=''
-							// className={style.inputMasked}
 						/>
 					</div>
 					<div className={style.input}>
@@ -92,7 +71,6 @@ export const PaymentMethod = () => {
 								mask='99/99'
 								name='expiration'
 								value={expirationValue}
-								// value={inputValueDate}
 								onChange={inputChangeDate}
 								placeholder='Expiration (MM/YY)'
 								data-expiration
@@ -105,7 +83,7 @@ export const PaymentMethod = () => {
 								name='cvvCode'
 								value={cvvCode}
 								placeholder='CVV'
-								data-cvvCode
+								data-cvv
 								maskChar=''
 								onChange={inputChangeCard}
 							/>

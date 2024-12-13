@@ -24,47 +24,11 @@ import { useDetails } from '@/hooks/useDetails.js'
 import { Favorites } from '@/pages/Favorites/Favorites.jsx'
 
 export const App = () => {
-	// const [basket, setBasket] = useState([])
-	// const [cards, setCards] = useState([])
-	// const [subtotal, setSubtotal] = useState(0)
-	// const [isLoading, setLoading] = useState(true)
-	// const [modalActive, setModalActive] = useState(false)
-	// const [modalMessage, setModalMessage] = useState('')
-	// const [shippingInputValues, setShippingInputValues] = useState({
-	// 	inputContacts: '',
-	// 	inputAddress: '',
-	// 	inputCity: '',
-	// 	inputCode: '',
-	// 	inputProvince: null,
-	// 	inputCountry: null
-	// })
-	// const [selectedOption, setSelectedOption] = useState('')
-	// const [selectedOptionValue, setSelectedOptionValue] = useState('')
-	// const [selectedOptionLabel, setSelectedOptionLabel] = useState('')
-
 	const dispatch = useDispatch()
-
-	// const handleOptionChange = event => {
-	// 	const { name, value } = event.target
-	// 	const dataValue = event.target.getAttribute('data-value')
-	// 	const dataLabel = event.target.getAttribute('data-label')
-	// 	dispatch(shippingInputsActions.setOptionShipping({ name, value }))
-	// 	dispatch(shippingInputsActions.setDataValue(dataValue))
-	// 	dispatch(shippingInputsActions.setDataLabel(dataLabel))
-	// }
-
-	// const handleOptionChange = event => {
-	// 	setSelectedOption(event.target.value)
-	// 	const value = event.target.getAttribute('data-value')
-	// 	setSelectedOptionValue(value)
-	//
-	// 	const label = event.target.getAttribute('data-label')
-	// 	setSelectedOptionLabel(label)
-	// }
-
-	// redux setTimeout modal
 	const modalReduxActive = useSelector(state => state.modal.isOpen)
-	// const modalReduxClose = useSelector(state => state.modal.isOpen)
+	const { cardNumber, expiration, cvvCode } = usePayments()
+	const { inputProvince, inputCountry } = useDetails()
+
 	useEffect(() => {
 		if (modalReduxActive) {
 			const timer = setTimeout(() => {
@@ -74,100 +38,9 @@ export const App = () => {
 		}
 	}, [modalReduxActive])
 
-	// useEffect(() => {
-	// 	if (modalActive) {
-	// 		const timer = setTimeout(() => {
-	// 			setModalActive(false)
-	// 		}, 2000)
-	// 		return () => clearTimeout(timer)
-	// 	}
-	// }, [modalActive])
-
-	// const modalProps = {
-	// 	modalActive,
-	// 	setModalActive,
-	// 	modalMessage,
-	// 	setModalMessage
-	// }
-
-	// https://fakestoreapi.in/api/products
-	// https://fakestoreapi.com/products
-	// https://api.escuelajs.co/api/v1/products
-	// useEffect(() => {
-	// 	fetch('https://fakestoreapi.in/api/products')
-	// 		.then(res => res.json())
-	// 		.then(json => setCards(json.products))
-	// 		.catch(err => {
-	// 			console.warn(err)
-	// 			alert('Ошибка при получении данных!')
-	// 		})
-	// 		.finally(() => setLoading(false))
-	// }, [])
-
-	//redux
-
-	// const { products, loading, error } = useSelector(state => state.products)
-
 	useEffect(() => {
 		dispatch(fetchProducts())
 	}, [dispatch])
-
-	// const addToBasket = item => {
-	// 	setBasket(prevBasket => {
-	// 		if (prevBasket.find(basketItem => basketItem.id === item.id)) {
-	// 			return prevBasket
-	// 		}
-	// 		return [...prevBasket, { ...item, quantity: 1 }]
-	// 	})
-	// }
-
-	// redux
-	// const basketRedux = useSelector(state => state.basket)
-	// const basketRedux = useSelector(state => state.basket.basket)
-
-	// const removeFromBasket = id => {
-	// 	setBasket(prevBasket => prevBasket.filter(item => item.id !== id))
-	// }
-
-	//! обновление количество redux
-
-	// const updateQuantity = (id, quantity) => {
-	// 	// setBasket(prevBasket => prevBasket.map(item => (item.id === id ? { ...item, quantity } : item)))
-	// 	dispatch(actions.UpdateQuantity({ id, quantity }))
-	// }
-
-	// const handleShippingInputChange = event => {
-	// 	const { name, value } = event.target
-	// 	dispatch(detailsInputsActions.setInputValue({ name, value }))
-	// 	// setShippingInputValues({
-	// 	// 	...shippingInputValues,
-	// 	// 	[name]: value
-	// 	// })
-	// }
-	//
-	// const handleShippingSelectChange = (selectedOption, actionMeta) => {
-	// 	const { name } = actionMeta
-	// 	const { value } = selectedOption
-	// 	dispatch(detailsInputsActions.setInputValue({ name, value }))
-	// 	// setShippingInputValues({
-	// 	// 	...shippingInputValues,
-	// 	// 	[name]: selectedOption
-	// 	// })
-	// }
-
-	// const showModal = message => {
-	// 	setModalMessage(message)
-	// 	setModalActive(true)
-	// }
-
-	const { cardNumber, expiration, cvvCode } = usePayments()
-	const { inputProvince, inputCountry } = useDetails()
-
-	// const cardNumber = useSelector(state => state.paymentInputs.cardNumber)
-	// const expiration = useSelector(state => state.paymentInputs.expiration)
-	// const cvvCode = useSelector(state => state.paymentInputs.cvvCode)
-	// const inputProvince = useSelector(state => state.detailsInputs.inputProvince)
-	// const inputCountry = useSelector(state => state.detailsInputs.inputCountry)
 
 	const fieldCheck = () => {
 		const inputs = document.querySelectorAll(`.${style.input} input, .${paymentMethod.input} input`)
@@ -176,7 +49,7 @@ export const App = () => {
 		const blockRadioButtons = document.querySelectorAll(`.${radio.block}`)
 		const cardNumberInput = document.querySelector('[data-card]')
 		const expirationInput = document.querySelector('[data-expiration]')
-		const cvvCodeInput = document.querySelector('[data-cvvCode]')
+		const cvvCodeInput = document.querySelector('[data-cvv]')
 
 		let formIsValid = true
 
@@ -259,10 +132,6 @@ export const App = () => {
 
 		return formIsValid
 	}
-
-	// const clearBasketIfConfirmed = () => {
-	// 	setBasket([])
-	// }
 
 	return (
 		<Router>

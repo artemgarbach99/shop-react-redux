@@ -12,9 +12,13 @@
 }
 
 .block {
+	@include box-shadow($colorGreen);
 	display: flex;
 	flex-direction: column;
-	border: 1px solid $colorGreen;
+	//border: 1px solid $colorGreen;
+	//box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	//box-shadow: 0 0 5px $colorGreen;
+	//margin: 3px;
 	border-radius: 7px;
 	padding: 20px;
 }

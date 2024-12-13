@@ -10,47 +10,13 @@ import { fetchDetailsCountries } from '@/store/detailsInputs/detailsInputs.actio
 import { useDetails } from '@/hooks/useDetails.js'
 
 export const Details = ({ fieldCheck }) => {
-	// const [selectedOption, setSelectedOption] = useState(null);
-	// const [countries, setCountries] = useState([])
-	// const [isValid, setIsValid] = useState(true)
-	// const [selectedOptionProvince, setSelectedOptionProvince] = useState(null)
-	// const [selectedOptionCity, setSelectedOptionCity] = useState(null)]
-
 	const dispatch = useDispatch()
 
-	// const [optionsCities, setOptionsCities] = useState([])
-
-	// https://countriesnow.space/api/v0.1/countries
-	// useEffect(() => {
-	// 	fetch('https://countriesnow.space/api/v0.1/countries')
-	// 		.then(res => res.json())
-	// 		.then(json => {
-	// 			// setCountries(json.data)
-	// 			const citiesOptions = json.data.map(country => ({
-	// 				value: country.country,
-	// 				label: country.country
-	// 			}))
-	// 			setOptionsCities(citiesOptions)
-	// 		})
-	//
-	// 		.catch(err => {
-	// 			console.warn(err)
-	// 			alert('Ошибка при получении данных!')
-	// 		})
-	// }, [])
-
-	// redux
 	useEffect(() => {
 		dispatch(fetchDetailsCountries())
 	}, [dispatch])
 
-	const { countries, loading, error } = useSelector(state => state.detailsInputs)
-
-	// контент в селект province
 	const optionsProvince = [
-		// { value: 'province', label: 'province' },
-		// { value: 'region', label: 'region' },
-		// { value: 'state', label: 'state' }
 		{ value: 'province', label: 'Province' },
 		{ value: 'region', label: 'Region' },
 		{ value: 'state', label: 'State' },
@@ -61,11 +27,8 @@ export const Details = ({ fieldCheck }) => {
 		{ value: 'territory', label: 'Territory' },
 		{ value: 'division', label: 'Division' }
 	]
-
+	const { countries, loading, error } = useSelector(state => state.detailsInputs)
 	const { isOpen, message } = useSelector(state => state.modal)
-
-	// const modalReduxActive = useSelector(state => state.modal.isOpen)
-	// const modalReduxMessage = useSelector(state => state.modal.message)
 
 	const {
 		inputContacts,
@@ -78,17 +41,6 @@ export const Details = ({ fieldCheck }) => {
 		inputSecondName,
 		inputOptional
 	} = useDetails()
-
-	// shippingInputsSlice
-	// const detailsInputContacts = useSelector(state => state.detailsInputs.inputContacts)
-	// const detailsInputsAddress = useSelector(state => state.detailsInputs.inputAddress)
-	// const detailsInputsCity = useSelector(state => state.detailsInputs.inputCity)
-	// const detailsInputsCode = useSelector(state => state.detailsInputs.inputCode)
-	// const detailsInputsProvince = useSelector(state => state.detailsInputs.inputProvince)
-	// const detailsInputsCountry = useSelector(state => state.detailsInputs.inputCountry)
-	// const detailsInputsName = useSelector(state => state.detailsInputs.inputName)
-	// const detailsInputsSecondName = useSelector(state => state.detailsInputs.inputSecondName)
-	// const detailsInputsOptional = useSelector(state => state.detailsInputs.inputOptional)
 
 	const handleShippingInputChange = event => {
 		const { name, value } = event.target
@@ -127,7 +79,6 @@ export const Details = ({ fieldCheck }) => {
 								onChange={handleShippingInputChange}
 								placeholder='Name'
 							/>
-							{/*<input type='text' name='' id='' placeholder='Name' />*/}
 						</div>
 						<div className={style.input}>
 							<input
@@ -137,7 +88,6 @@ export const Details = ({ fieldCheck }) => {
 								onChange={handleShippingInputChange}
 								placeholder='Second Name'
 							/>
-							{/*<input type='text' name='' id='' placeholder='Second Name' />*/}
 						</div>
 					</div>
 					<div className={style.input}>
@@ -145,7 +95,6 @@ export const Details = ({ fieldCheck }) => {
 							type='text'
 							name='inputAddress'
 							value={inputAddress}
-							// value={shippingInputValues.inputAddress}
 							onChange={handleShippingInputChange}
 							placeholder='Address and number'
 						/>
@@ -158,7 +107,6 @@ export const Details = ({ fieldCheck }) => {
 							onChange={handleShippingInputChange}
 							placeholder='Shipping note (optional)'
 						/>
-						{/*<input type='text' name='' id='' placeholder='Shipping note (optional)' />*/}
 					</div>
 					<div className={style.row}>
 						<div className={style.input}>
@@ -166,7 +114,6 @@ export const Details = ({ fieldCheck }) => {
 								type='text'
 								name='inputCity'
 								value={inputCity}
-								// value={shippingInputValues.inputCity}
 								onChange={handleShippingInputChange}
 								placeholder='City'
 							/>
@@ -176,7 +123,6 @@ export const Details = ({ fieldCheck }) => {
 								type='text'
 								name='inputCode'
 								value={inputCode}
-								// value={shippingInputValues.inputCode}
 								onChange={handleShippingInputChange}
 								placeholder='Postal Code'
 							/>
@@ -184,8 +130,6 @@ export const Details = ({ fieldCheck }) => {
 						<Select
 							name='inputProvince'
 							value={optionsProvince.find(option => option.value === inputProvince)}
-							// defaultValue={detailsInputsProvince}
-							// defaultValue={shippingInputValues.inputProvince}
 							onChange={handleShippingSelectChange}
 							options={optionsProvince}
 							className={style.select}
@@ -196,8 +140,6 @@ export const Details = ({ fieldCheck }) => {
 					<Select
 						name='inputCountry'
 						value={countries.find(option => option.value === inputCountry)}
-						// defaultValue={detailsInputsCountry}
-						// defaultValue={shippingInputValues.inputCountry}
 						onChange={handleShippingSelectChange}
 						options={countries}
 						className={style.select}

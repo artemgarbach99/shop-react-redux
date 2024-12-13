@@ -48,15 +48,10 @@ export const NavigationOrder = ({ currentPage, fieldCheck }) => {
 					{currentPage === 'details' && 'Back to basket'}
 					{currentPage === 'shipping' && 'Back to details'}
 					{currentPage === 'payment' && 'Back to shipping'}
-					{/*{currentPage === 'confirmed' && 'Print receipt'}*/}
 				</button>
 			)}
 
 			{currentPage === 'confirmed' ? (
-				// <Link to='/products' className={style.button} onClick={clearBasketIfConfirmed}>
-				// <Link to='/products' className={style.button} onClick={dispatch(actions.clearBasket)}>
-				// 	Back to shopping
-				// </Link>
 				<div className={style.button} onClick={handleBackToProducts}>
 					Back to shopping
 				</div>
@@ -65,7 +60,6 @@ export const NavigationOrder = ({ currentPage, fieldCheck }) => {
 					{currentPage === 'details' && 'Go to shipping'}
 					{currentPage === 'shipping' && 'Go to payment'}
 					{currentPage === 'payment' && 'Pay now'}
-					{/*{currentPage === 'confirmed' && 'Nice!'}*/}
 				</button>
 			)}
 		</div>

@@ -7,17 +7,7 @@ import '@assets/styles/global.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { actions } from '@/store/basket/basket.slice.js'
 
-export const CardBasket = ({
-	id,
-	title,
-	image,
-	price,
-	quantity
-	// removeFromBasket,
-	// updateTotalPrice,
-	// updateQuantity,
-	// isLoading
-}) => {
+export const CardBasket = ({ id, title, image, price, quantity }) => {
 	// redux
 	const dispatch = useDispatch()
 
@@ -27,15 +17,9 @@ export const CardBasket = ({
 		dispatch(actions.UpdateQuantity({ id, quantity }))
 	}
 
-	// useEffect(() => {
-	// 	const totalPrice = price * quantity
-	// 	updateTotalPrice(id, totalPrice)
-	// }, [quantity, price, id])
-
 	// обновление количества
 	const handleQuantityChange = newQuantity => {
 		updateQuantity(id, newQuantity)
-		// updateTotalPrice(id, price * newQuantity)
 	}
 
 	const totalPrice = (price * quantity).toFixed(2)
@@ -62,9 +46,6 @@ export const CardBasket = ({
 							onClick={() => dispatch(actions.RemoveFromBasket({ id, price, quantity }))}>
 							Remove
 						</button>
-						{/*<button className={itemStyles.link} onClick={() => removeFromBasket(id)}>*/}
-						{/*	Remove*/}
-						{/*</button>*/}
 					</div>
 				</div>
 			</div>

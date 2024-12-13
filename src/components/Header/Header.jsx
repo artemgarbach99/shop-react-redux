@@ -23,11 +23,7 @@ export const Header = () => {
 							<MdFavoriteBorder size={30} />
 							{favorites.length > 0 && <span>{favorites.length}</span>}
 						</Link>
-						<Link
-							to='/basket'
-							className={style.link}
-							// data-item-count={basket.length}
-						>
+						<Link to='/basket' className={style.link}>
 							<AiOutlineShoppingCart size={30} />
 							{basket.length > 0 && <span>{basket.length}</span>}
 						</Link>

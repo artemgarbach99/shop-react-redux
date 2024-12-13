@@ -28,12 +28,7 @@ const OrderPlacementLayout = () => {
 							<Outlet />
 						</div>
 						<div className={style.products}>
-							<OrderProducts
-							// basket={basket}
-							// subtotal={subtotal}
-							// isLoading={isLoading}
-							// selectedOptionValue={selectedOptionValue}
-							/>
+							<OrderProducts />
 						</div>
 					</div>
 				</div>

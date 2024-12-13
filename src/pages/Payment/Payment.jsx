@@ -9,23 +9,16 @@ import { useSelector } from 'react-redux'
 
 export const Payment = ({ fieldCheck }) => {
 	const { isOpen, message } = useSelector(state => state.modal)
-	// const modalReduxActive = useSelector(state => state.modal.isOpen)
-	// const modalReduxMessage = useSelector(state => state.modal.message)
 	return (
 		<div>
 			<div className={shipping.shipping}>
 				<div className={shipping.main}>
-					<InfoShipping
-					// shippingInputValues={shippingInputValues}
-					// selectedOptionValue={selectedOptionValue}
-					// selectedOptionLabel={selectedOptionLabel}
-					/>
+					<InfoShipping />
 					<PaymentMethod />
 					<TaxInfo />
 					<RadioPayment />
 				</div>
 				<NavigationOrder currentPage='payment' fieldCheck={fieldCheck} />
-				{/*<Modal active={modalActive} message={modalMessage} />*/}
 				<Modal active={isOpen} message={message} />
 			</div>
 		</div>

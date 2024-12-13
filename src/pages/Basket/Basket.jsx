@@ -5,37 +5,7 @@ import { CardBasket } from '@/components/CardBasket/CardBasket.jsx'
 import { useSelector } from 'react-redux'
 
 export const Basket = () => {
-	// const [totalPrices, setTotalPrices] = useState({})
-	//
-	// const updateTotalPrice = (id, totalPrice) => {
-	// 	setTotalPrices(prevPrices => ({ ...prevPrices, [id]: totalPrice }))
-	// }
-	// useEffect(() => {
-	// 	const newSubtotal = Object.values(totalPrices)
-	// 		.reduce((total, price) => total + parseFloat(price), 0)
-	// 		.toFixed(2)
-	// 	setSubtotal(newSubtotal)
-	// }, [totalPrices])
-
 	const { basket, totalPrice } = useSelector(state => state.basket)
-
-	// const basketRedux = useSelector(state => state.basket.basket)
-	// const totalPriceRedux = useSelector(state => state.basket.totalPrice)
-
-	// const updateTotalPrice = (id, totalPrice) => {
-	// 	setTotalPrices(prevPrices => ({ ...prevPrices, [id]: totalPrice }))
-	// }
-	//
-	// const subtotal = Object.values(totalPrices)
-	// 	.reduce((total, price) => total + parseFloat(price), 0)
-	// 	.toFixed(2)
-	//
-	// useEffect(() => {
-	// 	const newSubtotal = Object.values(totalPrices)
-	// 		.reduce((total, price) => total + parseFloat(price), 0)
-	// 		.toFixed(2)
-	// 	setSubtotal(newSubtotal)
-	// }, [totalPrices, setSubtotal])
 
 	return (
 		<div className={style.basket}>
@@ -68,22 +38,13 @@ export const Basket = () => {
 								</li>
 							</ul>
 							<ul className={style.list}>
-								{/*{basket.map((item, index) => (*/}
 								{basket.map((item, index) => (
-									<CardBasket
-										key={index}
-										{...item}
-										// removeFromBasket={removeFromBasket}
-										// updateTotalPrice={updateTotalPrice}
-										// updateQuantity={updateQuantity}
-										// isLoading={isLoading}
-									/>
+									<CardBasket key={index} {...item} />
 								))}
 							</ul>
 							<div className={style.check}>
 								<div className={style.line}>
 									<h3 className={style.label}>Sub-total:</h3>
-									{/*<div className={itemStyles.price}>${subtotal}</div>*/}
 									<div className={itemStyles.price}>${totalPrice.toFixed(2)}</div>
 								</div>
 								<Link to='/order' className={style.button}>

@@ -5,9 +5,10 @@
 	flex-direction: column;
 }
 .card {
+	@include box-shadow($colorBoxShadow);
 	display: flex;
 	flex-direction: column;
-	border: 1px solid rgba($colorBlack, 0.5);
+	//border: 1px solid rgba($colorBlack, 0.5);
 	border-radius: 7px;
 	overflow: hidden;
 }

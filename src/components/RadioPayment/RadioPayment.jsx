@@ -4,13 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { paymentInputsActions } from '@/store/paymentInputs/paymentInputs.slice.js'
 
 export const RadioPayment = () => {
-	// const [selectedPaymentOption, setSelectedPaymentOption] = useState('')
 	const dispatch = useDispatch()
 
 	const handleOptionChange = event => {
 		const { name, value } = event.target
 		dispatch(paymentInputsActions.setValuePayment({ name, value }))
-		// setSelectedPaymentOption(event.target.value)
 	}
 
 	const billingAddressValue = useSelector(state => state.paymentInputs.billingAddress)
