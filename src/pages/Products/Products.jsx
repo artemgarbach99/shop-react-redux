@@ -1,7 +1,10 @@
 import { Cards } from '@/components/Cards/Cards.jsx'
 import style from './Products.module.scss'
+import { useSelector } from 'react-redux'
+import { Modal } from '@/components/Modal/Modal.jsx'
 
 export const Products = () => {
+	const { isOpen, message } = useSelector(state => state.modal)
 	return (
 		<div className={style.products}>
 			<div className='container'>
@@ -11,6 +14,7 @@ export const Products = () => {
 					<Cards />
 				</div>
 			</div>
+			<Modal active={isOpen} message={message} />
 		</div>
 	)
 }

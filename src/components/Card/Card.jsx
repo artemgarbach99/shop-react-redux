@@ -1,11 +1,10 @@
 import style from '@components/Card/Card.module.scss'
 import { Link } from 'react-router-dom'
 import { Skeleton } from '@/components/Skeleton/Skeleton.jsx'
-import { useDispatch, useSelector } from 'react-redux'
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'
-import { modalActions } from '@/store/modal/modal.slice.js'
+import { useDispatch, useSelector } from 'react-redux'
 import { favoritesActions } from '@/store/favorites/favorites.slice.js'
-// import global from '@assets/styles/_global.scss'
+import { modalActions } from '@/store/modal/modal.slice.js'
 
 export const Card = ({ title, image, price, id }) => {
 	const dispatch = useDispatch()
@@ -16,15 +15,13 @@ export const Card = ({ title, image, price, id }) => {
 	const product = products.find(prod => prod.id === parseInt(id))
 	const isInFavorite = favorites.some(card => card.id === product.id)
 
-	// const colorGreen = global.colorGreen
-
 	const handleAddToFavorites = () => {
 		if (isInFavorite) {
 			dispatch(favoritesActions.removeFromFavorite(product))
-			dispatch(modalActions.modalActive('Product delete!'))
+			dispatch(modalActions.modalActive('Product delete from favorite!'))
 		} else {
 			dispatch(favoritesActions.addToFavorite(product))
-			dispatch(modalActions.modalActive('Product added!'))
+			dispatch(modalActions.modalActive('Product added to favorite!'))
 		}
 	}
 

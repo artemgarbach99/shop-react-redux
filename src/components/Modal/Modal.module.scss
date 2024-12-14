@@ -14,13 +14,14 @@
 }
 
 .content {
+	@include box-shadow($colorGreen);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	background-color: $colorWhite;
 	padding: 15px;
 	border-radius: 5px;
-	border: 1px solid $colorGreen;
+	//border: 1px solid $colorGreen;
 }
 
 .title {

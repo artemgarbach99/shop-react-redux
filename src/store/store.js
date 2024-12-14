@@ -7,6 +7,7 @@ import { productsSlice } from '@/store/products/products.slice.js'
 import { paymentInputsReducer } from '@/store/paymentInputs/paymentInputs.slice.js'
 import { shippingInputsReducer } from '@/store/shippingInputs/shippingInputs.slice.js'
 import { favoritesReducer } from '@/store/favorites/favorites.slice.js'
+import { logger } from 'redux-logger/src'
 
 const reducers = combineReducers({
 	basket: basketReducer,
@@ -20,5 +21,6 @@ const reducers = combineReducers({
 })
 
 export const store = configureStore({
-	reducer: reducers
+	reducer: reducers,
+	middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger)
 })
