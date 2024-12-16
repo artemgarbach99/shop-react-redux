@@ -3,7 +3,7 @@
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	gap: 15px;
-	padding-top: 60px;
+	padding-top: 20px;
 }
 .content {
 	flex: 1 1 100%;
@@ -15,4 +15,8 @@
 	height: 100%;
 	font-size: 20px;
 	font-weight: 500;
+}
+.select {
+	max-width: 400px;
+	width: 100%;
 }

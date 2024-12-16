@@ -14,7 +14,6 @@ import { Payment } from '@/pages/Payment/Payment.jsx'
 import { Confirmed } from '@/pages/Confirmed/Confirmed.jsx'
 import { useDispatch, useSelector } from 'react-redux'
 import { modalActions } from '@/store/modal/modal.slice.js'
-import { fetchProducts } from '@/store/products/products.actions.js'
 import { Favorites } from '@/pages/Favorites/Favorites.jsx'
 
 export const App = () => {
@@ -32,9 +31,9 @@ export const App = () => {
 		}
 	}, [modalReduxActive])
 
-	useEffect(() => {
-		dispatch(fetchProducts())
-	}, [dispatch])
+	// useEffect(() => {
+	// 	dispatch(fetchProducts())
+	// }, [dispatch])
 
 	// const fieldCheck = () => {
 	// 	const inputs = document.querySelectorAll(`.${style.input} input, .${paymentMethod.input} input`)

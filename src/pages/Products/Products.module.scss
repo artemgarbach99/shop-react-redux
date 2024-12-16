@@ -1,3 +1,5 @@
+@use '@assets/styles/global' as *;
+
 .products {
 	padding: 40px 0;
 	flex: 1 1 100%;
@@ -22,4 +24,15 @@
 	line-height: 1.2;
 	text-align: center;
 	margin-top: 15px;
+}
+
+.sort {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 10px;
+	padding-top: 30px;
+}
+.button {
+	@include greenButton();
 }

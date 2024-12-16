@@ -1,5 +1,9 @@
 @use '@assets/styles/global' as *;
 
+.select {
+	width: 100%;
+}
+
 .item-select {
 	&__control {
 		border: none !important;
@@ -71,11 +75,12 @@
 	}
 
 	&__option {
+		background-color: $colorWhite !important;
 		color: rgba($colorBlack, 0.5) !important;
 		padding: 10px;
 
 		&:hover {
-			background-color: rgba($colorBlack, 0.2) !important;
+			background-color: rgba($colorGreen, 0.8) !important;
 			color: $colorWhite !important;
 		}
 
@@ -85,8 +90,9 @@
 		}
 
 		&--is-focused {
-			background-color: rgba($colorGreen, 0.8) !important;
-			color: $colorWhite !important;
+			background-color: transparent !important;
+			//background-color: rgba($colorGreen, 0.8) !important;
+			//color: $colorWhite !important;
 		}
 	}
 }
