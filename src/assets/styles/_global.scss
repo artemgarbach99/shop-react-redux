@@ -139,7 +139,7 @@ main {
 
 		&.error {
 			@include box-shadow($colorRed);
-			color: $colorRed;
+			//color: $colorBoxShadow;
 			&::placeholder {
 				color: $colorRed;
 			}

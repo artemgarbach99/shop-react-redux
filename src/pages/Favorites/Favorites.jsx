@@ -1,7 +1,10 @@
 import style from '@/pages/Products/Products.module.scss'
 import { CardsFavorites } from '@/components/CardsFavorites/CardsFavorites.jsx'
+import { useSelector } from 'react-redux'
+import { Modal } from '@/components/Modal/Modal.jsx'
 
 export const Favorites = () => {
+	const { isOpen, message } = useSelector(state => state.modal)
 	return (
 		<div className={style.products}>
 			<div className='container'>
@@ -9,6 +12,7 @@ export const Favorites = () => {
 					<CardsFavorites />
 				</div>
 			</div>
+			<Modal active={isOpen} message={message} />
 		</div>
 	)
 }

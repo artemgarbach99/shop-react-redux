@@ -9,7 +9,7 @@ import { detailsInputsActions } from '@/store/detailsInputs/detailsInputs.slice.
 import { fetchDetailsCountries } from '@/store/detailsInputs/detailsInputs.actions.js'
 import { useDetails } from '@/hooks/useDetails.js'
 
-export const Details = ({ fieldCheck }) => {
+export const Details = () => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -148,7 +148,7 @@ export const Details = ({ fieldCheck }) => {
 					/>
 				</div>
 			</div>
-			<NavigationOrder currentPage='details' fieldCheck={fieldCheck} />
+			<NavigationOrder currentPage='details' />
 			<Modal active={isOpen} message={message} />
 		</div>
 	)

@@ -7,7 +7,7 @@ import { TaxInfo } from '@/components/TaxInfo/TaxInfo.jsx'
 import { Modal } from '@/components/Modal/Modal.jsx'
 import { useSelector } from 'react-redux'
 
-export const Payment = ({ fieldCheck }) => {
+export const Payment = () => {
 	const { isOpen, message } = useSelector(state => state.modal)
 	return (
 		<div>
@@ -18,7 +18,7 @@ export const Payment = ({ fieldCheck }) => {
 					<TaxInfo />
 					<RadioPayment />
 				</div>
-				<NavigationOrder currentPage='payment' fieldCheck={fieldCheck} />
+				<NavigationOrder currentPage='payment' />
 				<Modal active={isOpen} message={message} />
 			</div>
 		</div>

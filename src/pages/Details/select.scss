@@ -3,15 +3,16 @@
 .item-select {
 	&__control {
 		border: none !important;
-		box-shadow: 0 0 5px #898989 !important;
+		box-shadow: 0 0 5px $colorBoxShadow !important;
 		margin: 3px;
 		border-radius: 5px !important;
 		overflow: hidden !important;
 		width: 100% !important;
 
 		&.error {
-			@include box-shadow($colorRed);
+			box-shadow: 0 0 5px $colorRed !important;
 			&:hover {
+				box-shadow: 0 0 5px $colorRed !important;
 			}
 			& .item-select__placeholder {
 				color: $colorRed !important;

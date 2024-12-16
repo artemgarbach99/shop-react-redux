@@ -5,7 +5,7 @@ import { InfoShipping } from '@/components/InfoShipping/InfoShipping.jsx'
 import { Modal } from '@/components/Modal/Modal.jsx'
 import { useSelector } from 'react-redux'
 
-export const Shipping = ({ fieldCheck }) => {
+export const Shipping = () => {
 	const { isOpen, message } = useSelector(state => state.modal)
 	return (
 		<div className={shipping.shipping}>
@@ -13,7 +13,7 @@ export const Shipping = ({ fieldCheck }) => {
 				<InfoShipping />
 				<RadioShipping />
 			</div>
-			<NavigationOrder currentPage='shipping' fieldCheck={fieldCheck} />
+			<NavigationOrder currentPage='shipping' />
 			<Modal active={isOpen} message={message} />
 		</div>
 	)
