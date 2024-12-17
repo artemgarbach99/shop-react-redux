@@ -17,7 +17,8 @@ export const paymentInputsSlice = createSlice({
 		setValuePayment(state, action) {
 			const { name, value } = action.payload
 			return { ...state, [name]: value }
-		}
+		},
+		clearPaymentsInputs: () => initialState
 	}
 })
 export const { actions: paymentInputsActions, reducer: paymentInputsReducer } = paymentInputsSlice

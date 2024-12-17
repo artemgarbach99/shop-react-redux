@@ -21,7 +21,8 @@ export const shippingInputsSlice = createSlice({
 		setDataLabel: (state, action) => {
 			const label = action.payload
 			return { ...state, dataLabel: label }
-		}
+		},
+		clearShippingInputs: () => initialState
 	}
 })
 

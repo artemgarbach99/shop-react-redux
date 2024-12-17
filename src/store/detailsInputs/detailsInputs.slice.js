@@ -23,7 +23,8 @@ export const detailsInputsSlice = createSlice({
 		setInputValue: (state, action) => {
 			const { name, value } = action.payload
 			return { ...state, [name]: value }
-		}
+		},
+		clearDetailsInputs: () => initialState
 	},
 	extraReducers: builder => {
 		builder

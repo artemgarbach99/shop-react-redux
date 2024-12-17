@@ -10,6 +10,9 @@ import { validationFormActions } from '@/store/validationForm/validationForm.sli
 import { modalActions } from '@/store/modal/modal.slice.js'
 import { usePayments } from '@/hooks/usePayments.js'
 import { useDetails } from '@/hooks/useDetails.js'
+import { detailsInputsActions } from '@/store/detailsInputs/detailsInputs.slice.js'
+import { paymentInputsActions } from '@/store/paymentInputs/paymentInputs.slice.js'
+import { shippingInputsActions } from '@/store/shippingInputs/shippingInputs.slice.js'
 
 export const NavigationOrder = ({ currentPage }) => {
 	const navigate = useNavigate()
@@ -120,6 +123,9 @@ export const NavigationOrder = ({ currentPage }) => {
 	const handleBackToProducts = elem => {
 		elem.preventDefault()
 		dispatch(actions.clearBasket())
+		dispatch(detailsInputsActions.clearDetailsInputs())
+		dispatch(shippingInputsActions.clearShippingInputs())
+		dispatch(paymentInputsActions.clearPaymentsInputs())
 		navigate('/products')
 	}
 
