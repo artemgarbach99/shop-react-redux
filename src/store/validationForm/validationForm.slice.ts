@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-	isValid: true
+	isValid: true as boolean
 }
 
 export const validationFormSlice = createSlice({

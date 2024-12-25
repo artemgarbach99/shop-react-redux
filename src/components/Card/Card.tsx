@@ -5,23 +5,27 @@ import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { favoritesActions } from '@/store/favorites/favorites.slice'
 import { modalActions } from '@/store/modal/modal.slice'
+import { RootState } from '@/store/store'
+import { CardProduct, IProduct } from '@/types/produts.types'
 
-export const Card = ({ title, image, price, id }) => {
+export const Card = ({ title, image, price, id }: CardProduct) => {
 	const dispatch = useDispatch()
-	const { products, loading, error } = useSelector(state => state.products)
+	const { products, loading, error } = useSelector((state: RootState) => state.products)
 
-	const favorites = useSelector(state => state.favorites.favorites)
+	const favorites = useSelector((state: RootState) => state.favorites.favorites)
 
-	const product = products.find(prod => prod.id === parseInt(id))
-	const isInFavorite = favorites.some(card => card.id === product.id)
+	const product: IProduct | undefined = products.find(prod => prod.id === parseInt(String(id)))
+	const isInFavorite = product && favorites.some(card => card.id === product.id)
 
 	const handleAddToFavorites = () => {
-		if (isInFavorite) {
-			dispatch(favoritesActions.removeFromFavorite(product))
-			dispatch(modalActions.modalActive('Product delete from favorite!'))
-		} else {
-			dispatch(favoritesActions.addToFavorite(product))
-			dispatch(modalActions.modalActive('Product added to favorite!'))
+		if (product) {
+			if (isInFavorite) {
+				dispatch(favoritesActions.removeFromFavorite(product))
+				dispatch(modalActions.modalActive('Product delete from favorite!'))
+			} else {
+				dispatch(favoritesActions.addToFavorite(product))
+				dispatch(modalActions.modalActive('Product added to favorite!'))
+			}
 		}
 	}
 

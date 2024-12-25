@@ -1,7 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { fetchDetailsCountries } from '@/store/detailsInputs/detailsInputs.actions.ts'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { fetchDetailsCountries, TCountry } from '@/store/detailsInputs/detailsInputs.actions'
+import { TInputValues } from '@/types/input-values.types'
 
-const initialState = {
+export interface IStateDetailsInputs {
+	inputContacts: string
+	inputAddress: string
+	inputCity: string
+	inputCode: string
+	inputProvince: string | null
+	inputCountry: string | null
+	inputName: string
+	inputSecondName: string
+	inputOptional: string
+	countries: TCountry[]
+	loading: boolean
+	error: string | null
+}
+
+const initialState: IStateDetailsInputs = {
 	inputContacts: '',
 	inputAddress: '',
 	inputCity: '',
@@ -20,7 +36,7 @@ export const detailsInputsSlice = createSlice({
 	name: 'detailsInputs',
 	initialState,
 	reducers: {
-		setInputValue: (state, action) => {
+		setInputValue: (state, action: PayloadAction<TInputValues>) => {
 			const { name, value } = action.payload
 			return { ...state, [name]: value }
 		},
@@ -31,11 +47,11 @@ export const detailsInputsSlice = createSlice({
 			.addCase(fetchDetailsCountries.pending, state => {
 				state.loading = true
 			})
-			.addCase(fetchDetailsCountries.fulfilled, (state, action) => {
+			.addCase(fetchDetailsCountries.fulfilled, (state, action: PayloadAction<TCountry[]>) => {
 				state.countries = action.payload
 				state.loading = false
 			})
-			.addCase(fetchDetailsCountries.rejected, (state, action) => {
+			.addCase(fetchDetailsCountries.rejected, (state, action: any) => {
 				state.loading = false
 				state.error = action.payload
 			})

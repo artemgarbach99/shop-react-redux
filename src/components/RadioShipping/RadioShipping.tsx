@@ -8,10 +8,10 @@ export const RadioShipping = () => {
 
 	const dispatch = useDispatch()
 
-	const handleOptionChange = event => {
+	const handleOptionChange = (event: React.ChangeEvent<HTMLElement>) => {
 		const { name, value } = event.target
-		const dataValue = event.target.getAttribute('data-value')
-		const dataLabel = event.target.getAttribute('data-label')
+		const dataValue: string | null = event.target.getAttribute('data-value')
+		const dataLabel: string | null = event.target.getAttribute('data-label')
 		dispatch(shippingInputsActions.setOptionShipping({ name, value }))
 		dispatch(shippingInputsActions.setDataValue(dataValue))
 		dispatch(shippingInputsActions.setDataLabel(dataLabel))

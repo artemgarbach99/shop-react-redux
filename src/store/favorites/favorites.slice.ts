@@ -1,26 +1,26 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { product } from '@/types/produts.types'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { IProduct } from '@/types/produts.types'
 
-interface StateFavorites {
-	favorites: product[]
-	isFavorited: boolean
+interface IStateFavorites {
+	favorites: IProduct[]
+	// isFavorited: boolean
 }
 
-const initialState: StateFavorites = {
-	favorites: [],
-	isFavorited: false
+const initialState: IStateFavorites = {
+	favorites: []
+	// isFavorited: false
 }
 
 export const favoritesSlice = createSlice({
 	name: 'favorites',
 	initialState,
 	reducers: {
-		addToFavorite: (state, action: { payload: product }) => {
+		addToFavorite: (state, action: PayloadAction<IProduct>) => {
 			const card = action.payload
 			// if (state.favorites.some(item => item.id === card.id)) return
 			state.favorites.push(card)
 		},
-		removeFromFavorite: (state, action: { payload: product }) => {
+		removeFromFavorite: (state, action: { payload: IProduct }) => {
 			const card = action.payload
 			return {
 				...state,

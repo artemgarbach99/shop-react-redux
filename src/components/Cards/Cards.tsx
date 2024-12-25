@@ -6,9 +6,10 @@ import { useEffect, useState } from 'react'
 import Select, { components } from 'react-select'
 import { fetchProducts } from '@/store/products/products.actions'
 import { FaRegStar, FaSortAlphaDown, FaSortAlphaDownAlt, FaSortAmountDown, FaSortAmountDownAlt } from 'react-icons/fa'
+import { RootState } from '@/store/store'
 
 export const Cards = () => {
-	const { products, loading, error } = useSelector(state => state.products)
+	const { products, loading, error } = useSelector((state: RootState) => state.products)
 	const [sortedProducts, setSortedProducts] = useState(products)
 	const dispatch = useDispatch()
 

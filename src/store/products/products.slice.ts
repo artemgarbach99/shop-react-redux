@@ -1,17 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { fetchProducts } from '@/store/products/products.actions'
-import { product } from '@/types/produts.types'
-
-// interface product {
-// 	id: number
-// 	title: string
-// 	image: string
-// 	price: number
-// 	quantity: number
-// }
+import { IProduct } from '@/types/produts.types'
 
 export interface stateProducts {
-	products: product[]
+	products: IProduct[]
 	loading: boolean
 	error: string | null
 }
@@ -31,7 +23,7 @@ export const productsSlice = createSlice({
 			.addCase(fetchProducts.pending, state => {
 				state.loading = true
 			})
-			.addCase(fetchProducts.fulfilled, (state, action: PayloadAction<product[]>) => {
+			.addCase(fetchProducts.fulfilled, (state, action: PayloadAction<IProduct[]>) => {
 				state.products = action.payload
 				state.loading = false
 			})

@@ -6,19 +6,20 @@ import { Skeleton } from '@components/Skeleton/Skeleton'
 import '@/assets/styles/_global.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { actions } from '@/store/basket/basket.slice'
+import { IProduct } from '@/types/produts.types'
+import { AppDispatch, RootState } from '@/store/store'
 
-export const CardBasket = ({ id, title, image, price, quantity }) => {
-	// redux
-	const dispatch = useDispatch()
+export const CardBasket = ({ id, title, image, price, quantity }: IProduct) => {
+	const dispatch: AppDispatch = useDispatch()
 
-	const { loading } = useSelector(state => state.products)
+	const { loading } = useSelector((state: RootState) => state.products)
 
-	const updateQuantity = (id, quantity) => {
+	const updateQuantity = (id: number, quantity: number) => {
 		dispatch(actions.UpdateQuantity({ id, quantity }))
 	}
 
 	// обновление количества
-	const handleQuantityChange = newQuantity => {
+	const handleQuantityChange = (newQuantity: number) => {
 		updateQuantity(id, newQuantity)
 	}
 
