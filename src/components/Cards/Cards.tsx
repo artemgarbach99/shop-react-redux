@@ -1,17 +1,24 @@
 import style from './Cards.module.scss'
 import productsStyle from '@pages/Products/Products.module.scss'
-import { Card } from '@/components/Card/Card.tsx'
+import { Card } from '@components/Card/Card'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
-import Select, { components } from 'react-select'
+import React, { useEffect, useState } from 'react'
+import Select, { ActionMeta, components, MultiValue, OptionProps, SingleValue, SingleValueProps } from 'react-select'
 import { fetchProducts } from '@/store/products/products.actions'
 import { FaRegStar, FaSortAlphaDown, FaSortAlphaDownAlt, FaSortAmountDown, FaSortAmountDownAlt } from 'react-icons/fa'
-import { RootState } from '@/store/store'
+import { AppDispatch, RootState } from '@/store/store'
+import { IProduct } from '@/types/produts.types'
+
+interface IOption {
+	value: (() => void) | ((a: IProduct, b: IProduct) => number)
+	label: string
+	icon?: React.ReactNode
+}
 
 export const Cards = () => {
 	const { products, loading, error } = useSelector((state: RootState) => state.products)
 	const [sortedProducts, setSortedProducts] = useState(products)
-	const dispatch = useDispatch()
+	const dispatch: AppDispatch = useDispatch()
 
 	useEffect(() => {
 		dispatch(fetchProducts())
@@ -21,7 +28,7 @@ export const Cards = () => {
 		setSortedProducts(products)
 	}, [products])
 
-	const customOption = props => {
+	const customOption = (props: OptionProps<IOption>) => {
 		return (
 			<components.Option {...props}>
 				{props.data.icon && <span style={{ marginRight: 8 }}>{props.data.icon}</span>} {props.data.label}
@@ -29,7 +36,7 @@ export const Cards = () => {
 		)
 	}
 
-	const customSingleValue = props => {
+	const customSingleValue = (props: SingleValueProps<IOption>) => {
 		return (
 			<components.SingleValue {...props}>
 				{props.data.icon && <span style={{ marginRight: 8 }}>{props.data.icon}</span>} {props.data.label}
@@ -37,17 +44,44 @@ export const Cards = () => {
 		)
 	}
 
-	const options = [
+	const options: IOption[] = [
 		{ value: () => setSortedProducts(products), label: 'Sort by popular', icon: <FaRegStar /> },
-		{ value: (a, b) => a.title.localeCompare(b.title), label: 'Sort by Name Ascending', icon: <FaSortAlphaDown /> },
-		{ value: (a, b) => b.title.localeCompare(a.title), label: 'Sort by Name Descending', icon: <FaSortAlphaDownAlt /> },
-		{ value: (a, b) => a.price - b.price, label: 'Sort by Price Ascending', icon: <FaSortAmountDownAlt /> },
-		{ value: (a, b) => b.price - a.price, label: 'Sort by Price Descending', icon: <FaSortAmountDown /> }
+		{
+			value: (a: IProduct, b: IProduct) => a.title.localeCompare(b.title),
+			label: 'Sort by Name Ascending',
+			icon: <FaSortAlphaDown />
+		},
+		{
+			value: (a: IProduct, b: IProduct) => b.title.localeCompare(a.title),
+			label: 'Sort by Name Descending',
+			icon: <FaSortAlphaDownAlt />
+		},
+		{
+			value: (a: IProduct, b: IProduct) => a.price - b.price,
+			label: 'Sort by Price Ascending',
+			icon: <FaSortAmountDownAlt />
+		},
+		{
+			value: (a: IProduct, b: IProduct) => b.price - a.price,
+			label: 'Sort by Price Descending',
+			icon: <FaSortAmountDown />
+		}
 	]
 
-	const handleChange = selectedOption => {
-		const sorted = [...products].sort(selectedOption.value)
-		setSortedProducts(sorted)
+	// const handleChange = (selectedOption: IOption & { value: (a: IProduct, b: IProduct) => number }) => {
+	// 	const sorted = selectedOption && [...products].sort(selectedOption.value)
+	// 	setSortedProducts(sorted)
+	// }
+
+	const handleChange = (newValue: SingleValue<IOption> | MultiValue<IOption>, actionMeta: ActionMeta<IOption>) => {
+		const selectedOption = newValue as SingleValue<IOption>
+		if (selectedOption && 'value' in selectedOption) {
+			const sortingFunction = selectedOption.value as (a: IProduct, b: IProduct) => number
+			const sorted = [...products].sort(sortingFunction)
+			setSortedProducts(sorted)
+		} else {
+			console.log('No sorting option selected.')
+		}
 	}
 
 	return (

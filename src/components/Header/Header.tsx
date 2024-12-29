@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { MdFavoriteBorder } from 'react-icons/md'
 import { useSelector } from 'react-redux'
+import { RootState } from '@/store/store'
 
 export const Header = () => {
-	const basket = useSelector(state => state.basket.basket)
-	const favorites = useSelector(state => state.favorites.favorites)
+	const basket = useSelector((state: RootState) => state.basket.basket)
+	const favorites = useSelector((state: RootState) => state.favorites.favorites)
 	return (
 		<div className={style.header}>
 			<div className='container'>

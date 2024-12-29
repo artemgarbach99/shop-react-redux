@@ -1,21 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { TInputValues } from '@/types/input-values.types'
 
-interface IPaymentInputs {
-	cardNumber: string
+export interface IPaymentInputs {
+	cardNumber: number | null
 	holderName: string
-	expiration: string
-	cvvCode: string
+	expiration: number | null
+	cvvCode: number | null
 	vatNumber: string
 	pecOptional: string
 	billingAddress: string
 }
 
 const initialState: IPaymentInputs = {
-	cardNumber: '',
+	cardNumber: null,
 	holderName: '',
-	expiration: '',
-	cvvCode: '',
+	expiration: null,
+	cvvCode: null,
 	vatNumber: '',
 	pecOptional: '',
 	billingAddress: ''

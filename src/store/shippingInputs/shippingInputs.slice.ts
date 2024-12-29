@@ -6,9 +6,7 @@ interface IShippingInputs {
 	dataValue: string
 	dataLabel: string
 }
-type TShippingValue = string | null
-// export type TShippingValue = Pick<TInputValues, 'value'>
-// export type TShippingLabel = Pick<TInputValues, 'label'>
+type TShippingValue = string
 
 const initialState: IShippingInputs = {
 	optionsRadio: '',
@@ -26,6 +24,7 @@ export const shippingInputsSlice = createSlice({
 		},
 		setDataValue: (state, action: PayloadAction<TShippingValue>) => {
 			const value = action.payload
+			console.log(value)
 			return { ...state, dataValue: value }
 		},
 		setDataLabel: (state, action) => {

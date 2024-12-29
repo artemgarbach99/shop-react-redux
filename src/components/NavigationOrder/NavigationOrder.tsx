@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { actions } from '@/store/basket/basket.slice'
-import { useCallback } from 'react'
+import React, { MouseEvent, useCallback } from 'react'
 import details from '@/pages/Details/Details.module.scss'
 import paymentMethod from '@/components/PaymentMethod/PaymentMethod.module.scss'
 import radio from '@/pages/Shipping/Radio.module.scss'
@@ -13,30 +13,32 @@ import { useDetails } from '@/hooks/useDetails'
 import { detailsInputsActions } from '@/store/detailsInputs/detailsInputs.slice'
 import { paymentInputsActions } from '@/store/paymentInputs/paymentInputs.slice'
 import { shippingInputsActions } from '@/store/shippingInputs/shippingInputs.slice'
+import { AppDispatch } from '@/store/store'
 
-export const NavigationOrder = ({ currentPage }) => {
+export const NavigationOrder = ({ currentPage }: { currentPage: string }) => {
 	const navigate = useNavigate()
-	const dispatch = useDispatch()
+	const dispatch: AppDispatch = useDispatch()
 
-	// const { fieldCheck } = useFieldCheck()
 	const { cardNumber, expiration, cvvCode } = usePayments()
 	const { inputProvince, inputCountry } = useDetails()
 
 	const fieldCheck = useCallback(() => {
-		const inputs = document.querySelectorAll(`.${details.input} input, .${paymentMethod.input} input`)
-		const radioButtons = document.querySelectorAll(`.${radio.input}[type='radio']`)
+		const inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll(
+			`.${details.input} input, .${paymentMethod.input} input`
+		)
+		const radioButtons: NodeListOf<HTMLInputElement> = document.querySelectorAll(`.${radio.input}[type='radio']`)
 		const selects = document.querySelectorAll('.item-select__control')
 		const blockRadioButtons = document.querySelectorAll(`.${radio.block}`)
 		const cardNumberInput = document.querySelector('[data-card]')
 		const expirationInput = document.querySelector('[data-expiration]')
 		const cvvCodeInput = document.querySelector('[data-cvv]')
 
-		let formIsValid = true
+		let formIsValid: boolean = true
 
 		dispatch(validationFormActions.valid())
 
-		const checkFullLength = (element, input, value) => {
-			if (element.length !== value) {
+		const checkFullLength = (element: number, input: Element, value: number): void => {
+			if (element.toString().length !== value) {
 				input.classList.add(`${paymentMethod.error}`)
 				formIsValid = false
 			} else {
@@ -120,7 +122,7 @@ export const NavigationOrder = ({ currentPage }) => {
 		}
 	}
 
-	const handleBackToProducts = elem => {
+	const handleBackToProducts = (elem: MouseEvent) => {
 		elem.preventDefault()
 		dispatch(actions.clearBasket())
 		dispatch(detailsInputsActions.clearDetailsInputs())
@@ -148,7 +150,7 @@ export const NavigationOrder = ({ currentPage }) => {
 					Back to shopping
 				</div>
 			) : (
-				<button type='button' className={layouts.button} onClick={event => handleNextClick(event)}>
+				<button type='button' className={layouts.button} onClick={() => handleNextClick()}>
 					{currentPage === 'details' && 'Go to shipping'}
 					{currentPage === 'shipping' && 'Go to payment'}
 					{currentPage === 'payment' && 'Pay now'}

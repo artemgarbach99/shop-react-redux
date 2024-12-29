@@ -1,10 +1,11 @@
 import style from '@/components/Cards/Cards.module.scss'
-import { Card } from '@/components/Card/Card.tsx'
+import { Card } from '@components/Card/Card'
 import { useSelector } from 'react-redux'
 import products from '@/pages/Products/Products.module.scss'
+import { RootState } from '@/store/store'
 
 export const CardsFavorites = () => {
-	const favorites = useSelector(state => state.favorites.favorites)
+	const favorites = useSelector((state: RootState) => state.favorites.favorites)
 	return (
 		<div className={style.content}>
 			{favorites.length > 0 ? (

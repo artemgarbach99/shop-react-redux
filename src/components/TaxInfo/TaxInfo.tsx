@@ -3,12 +3,14 @@ import paymentMethod from '@/components/PaymentMethod/PaymentMethod.module.scss'
 import { useDispatch } from 'react-redux'
 import { paymentInputsActions } from '@/store/paymentInputs/paymentInputs.slice'
 import { usePayments } from '@/hooks/usePayments'
+import { ChangeEvent } from 'react'
+import { AppDispatch } from '@/store/store'
 
 export const TaxInfo = () => {
-	const dispatch = useDispatch()
+	const dispatch: AppDispatch = useDispatch()
 	const { vatNumber, pecOptional } = usePayments()
 
-	const inputChange = e => {
+	const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target
 		dispatch(paymentInputsActions.setValuePayment({ name, value }))
 	}

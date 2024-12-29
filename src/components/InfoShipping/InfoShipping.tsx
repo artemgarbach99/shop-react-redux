@@ -1,10 +1,11 @@
 import shipping from '@/pages/Shipping/Shipping.module.scss'
 import { useSelector } from 'react-redux'
 import { useDetails } from '@/hooks/useDetails'
+import { RootState } from '@/store/store'
 
 export const InfoShipping = () => {
 	const { inputContacts, inputAddress, inputCity, inputCode, inputProvince, inputCountry } = useDetails()
-	const { dataValue, dataLabel } = useSelector(state => state.shippingInputs)
+	const { dataValue, dataLabel } = useSelector((state: RootState) => state.shippingInputs)
 
 	return (
 		<div className={shipping.block}>

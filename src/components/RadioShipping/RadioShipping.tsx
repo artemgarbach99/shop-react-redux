@@ -1,17 +1,19 @@
 import radio from '@/pages/Shipping/Radio.module.scss'
 import shipping from '@/pages/Shipping/Shipping.module.scss'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useDispatch, useSelector } from 'react-redux'
 import { shippingInputsActions } from '@/store/shippingInputs/shippingInputs.slice'
+import { AppDispatch, RootState } from '@/store/store'
+import { ChangeEvent } from 'react'
 
 export const RadioShipping = () => {
-	const optionsRadioValue = useSelector(state => state.shippingInputs.optionsRadio)
+	const optionsRadioValue = useSelector((state: RootState) => state.shippingInputs.optionsRadio)
 
-	const dispatch = useDispatch()
+	const dispatch: AppDispatch = useDispatch()
 
-	const handleOptionChange = (event: React.ChangeEvent<HTMLElement>) => {
+	const handleOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target
-		const dataValue: string | null = event.target.getAttribute('data-value')
-		const dataLabel: string | null = event.target.getAttribute('data-label')
+		const dataValue: string = event.target.getAttribute('data-value') ?? ''
+		const dataLabel: string = event.target.getAttribute('data-label') ?? ''
 		dispatch(shippingInputsActions.setOptionShipping({ name, value }))
 		dispatch(shippingInputsActions.setDataValue(dataValue))
 		dispatch(shippingInputsActions.setDataLabel(dataLabel))

@@ -3,22 +3,24 @@ import { AiFillCreditCard } from 'react-icons/ai'
 import InputMask from 'react-input-mask'
 import { useDispatch, useSelector } from 'react-redux'
 import { paymentInputsActions } from '@/store/paymentInputs/paymentInputs.slice'
+import { AppDispatch, RootState } from '@/store/store'
+import { ChangeEvent } from 'react'
 
 export const PaymentMethod = () => {
-	const dispatch = useDispatch()
+	const dispatch: AppDispatch = useDispatch()
 
-	const inputChangeCard = e => {
+	const inputChangeCard = (e: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target
 		dispatch(paymentInputsActions.setValuePayment({ name, value }))
 	}
 
-	const inputChangeHolder = e => {
+	const inputChangeHolder = (e: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target
 		const filteredValue = value.toUpperCase().replace(/[^A-Z ]/g, '')
 		dispatch(paymentInputsActions.setValuePayment({ name, value: filteredValue }))
 	}
 
-	const inputChangeDate = e => {
+	const inputChangeDate = (e: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target
 		const [month, year] = value.split('/')
 		if (month && parseInt(month, 10) > 12) {
@@ -29,10 +31,10 @@ export const PaymentMethod = () => {
 		}
 	}
 
-	const cardNumberValue = useSelector(state => state.paymentInputs.cardNumber)
-	const holderNameValue = useSelector(state => state.paymentInputs.holderName)
-	const expirationValue = useSelector(state => state.paymentInputs.expiration)
-	const cvvCode = useSelector(state => state.paymentInputs.cvvCode)
+	const cardNumberValue = useSelector((state: RootState) => state.paymentInputs.cardNumber)
+	const holderNameValue = useSelector((state: RootState) => state.paymentInputs.holderName)
+	const expirationValue = useSelector((state: RootState) => state.paymentInputs.expiration)
+	const cvvCode = useSelector((state: RootState) => state.paymentInputs.cvvCode)
 
 	return (
 		<div className={style['payment-method']}>
@@ -48,7 +50,7 @@ export const PaymentMethod = () => {
 							mask='9999 9999 9999 9999'
 							placeholder='Card Number'
 							name='cardNumber'
-							value={cardNumberValue}
+							value={cardNumberValue || ''}
 							onChange={inputChangeCard}
 							data-card
 							maskChar=''
@@ -60,7 +62,6 @@ export const PaymentMethod = () => {
 							placeholder='Holder Name'
 							name='holderName'
 							value={holderNameValue}
-							// value={inputValueHolder}
 							onChange={inputChangeHolder}
 							className={style.inputHolder}
 						/>
@@ -70,7 +71,7 @@ export const PaymentMethod = () => {
 							<InputMask
 								mask='99/99'
 								name='expiration'
-								value={expirationValue}
+								value={expirationValue || ''}
 								onChange={inputChangeDate}
 								placeholder='Expiration (MM/YY)'
 								data-expiration
@@ -81,7 +82,7 @@ export const PaymentMethod = () => {
 							<InputMask
 								mask='999'
 								name='cvvCode'
-								value={cvvCode}
+								value={cvvCode || ''}
 								placeholder='CVV'
 								data-cvv
 								maskChar=''
