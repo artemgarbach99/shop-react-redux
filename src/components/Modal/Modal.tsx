@@ -2,7 +2,7 @@ import modal from '@components/Modal/Modal.module.scss'
 
 interface IModalProps {
 	active: boolean
-	message: string
+	message: string | null
 }
 
 export const Modal = ({ active, message }: IModalProps) => {

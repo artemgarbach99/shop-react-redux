@@ -1,22 +1,29 @@
 import style from '@/pages/Details/Details.module.scss'
-import Select from 'react-select'
+import Select, { ActionMeta, SingleValue } from 'react-select'
 import '@/pages/Details/select.scss'
 import { NavigationOrder } from '@components/NavigationOrder/NavigationOrder'
 import { Modal } from '@components/Modal/Modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { detailsInputsActions } from '@/store/detailsInputs/detailsInputs.slice'
 import { useDetails } from '@/hooks/useDetails'
-import { useEffect } from 'react'
+import { ChangeEvent, useEffect } from 'react'
 import { fetchDetailsCountries } from '@/store/detailsInputs/detailsInputs.actions'
+import { AppDispatch, RootState } from '@/store/store'
+
+interface IProvince {
+	value: string | null
+	label: string
+}
+export type TProvinceValue = Pick<IProvince, 'value'>
 
 export const Details = () => {
-	const dispatch = useDispatch()
+	const dispatch: AppDispatch = useDispatch()
 
 	useEffect(() => {
 		dispatch(fetchDetailsCountries())
 	}, [dispatch])
 
-	const optionsProvince = [
+	const optionsProvince: IProvince[] = [
 		{ value: 'province', label: 'Province' },
 		{ value: 'region', label: 'Region' },
 		{ value: 'state', label: 'State' },
@@ -27,8 +34,8 @@ export const Details = () => {
 		{ value: 'territory', label: 'Territory' },
 		{ value: 'division', label: 'Division' }
 	]
-	const { countries, loading, error } = useSelector(state => state.detailsInputs)
-	const { isOpen, message } = useSelector(state => state.modal)
+	const { countries, loading, error } = useSelector((state: RootState) => state.detailsInputs)
+	const { isOpen, message } = useSelector((state: RootState) => state.modal)
 
 	const {
 		inputContacts,
@@ -42,15 +49,22 @@ export const Details = () => {
 		inputOptional
 	} = useDetails()
 
-	const handleShippingInputChange = event => {
+	const handleShippingInputChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target
 		dispatch(detailsInputsActions.setInputValue({ name, value }))
 	}
 
-	const handleShippingSelectChange = (selectedOption, actionMeta) => {
+	const selectedOptionProvince: TProvinceValue | undefined = optionsProvince.find(
+		option => option.value === inputProvince
+	)
+
+	const handleShippingSelectChange = (selectedOption: SingleValue<TProvinceValue>, actionMeta: ActionMeta<string>) => {
 		const { name } = actionMeta
-		const { value } = selectedOption
-		dispatch(detailsInputsActions.setInputValue({ name, value }))
+		const value = selectedOption ? selectedOption.value : null
+		// const { value } = selectedOption
+		if (name) {
+			dispatch(detailsInputsActions.setInputValue({ name, value }))
+		}
 	}
 
 	return (
@@ -129,7 +143,8 @@ export const Details = () => {
 						</div>
 						<Select
 							name='inputProvince'
-							value={optionsProvince.find(option => option.value === inputProvince)}
+							// value={optionsProvince.find(option => option.value === inputProvince)}
+							value={selectedOptionProvince}
 							onChange={handleShippingSelectChange}
 							options={optionsProvince}
 							className={style.select}

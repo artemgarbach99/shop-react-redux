@@ -5,11 +5,11 @@ import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { favoritesActions } from '@/store/favorites/favorites.slice'
 import { modalActions } from '@/store/modal/modal.slice'
-import { RootState } from '@/store/store'
+import { AppDispatch, RootState } from '@/store/store'
 import { CardProduct, IProduct } from '@/types/produts.types'
 
 export const Card = ({ title, image, price, id }: CardProduct) => {
-	const dispatch = useDispatch()
+	const dispatch: AppDispatch = useDispatch()
 	const { products, loading, error } = useSelector((state: RootState) => state.products)
 
 	const favorites = useSelector((state: RootState) => state.favorites.favorites)

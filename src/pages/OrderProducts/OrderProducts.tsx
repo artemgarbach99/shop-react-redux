@@ -3,23 +3,24 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Skeleton } from '@components/Skeleton/Skeleton'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { RootState } from '@/store/store'
+import { IProduct } from '@/types/produts.types'
 
 export const OrderProducts = () => {
 	const navigate = useNavigate()
 
-	const { loading } = useSelector(state => state.products)
-
-	const { basket, totalPrice } = useSelector(state => state.basket)
+	const { loading } = useSelector((state: RootState) => state.products)
+	const { basket, totalPrice } = useSelector((state: RootState) => state.basket)
 	// const totalPriceRedux = useSelector(state => state.basket.totalPrice)
-	const dataValue = useSelector(state => state.shippingInputs.dataValue)
+	const dataValue = useSelector((state: RootState) => state.shippingInputs.dataValue)
 
-	const calculateTotalPrice = item => {
+	const calculateTotalPrice = (item: IProduct) => {
 		return (item.price * item.quantity).toFixed(2)
 	}
 
 	const TotalPriceWithShipping = () => {
 		const additionalCost = parseFloat(dataValue.replace('$', ''))
-		const subtotalNumber = parseFloat(totalPrice)
+		const subtotalNumber = totalPrice
 
 		if (isNaN(additionalCost)) {
 			return subtotalNumber.toFixed(2)

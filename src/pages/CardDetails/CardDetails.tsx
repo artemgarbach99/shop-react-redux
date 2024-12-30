@@ -6,24 +6,26 @@ import { Skeleton } from '@components/Skeleton/Skeleton'
 import { actions } from '@/store/basket/basket.slice'
 import { modalActions } from '@/store/modal/modal.slice'
 import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from '@/store/store'
 
 export const CardDetails = () => {
-	const basket = useSelector(state => state.basket.basket)
-	const { isOpen, message } = useSelector(state => state.modal)
-	const dispatch = useDispatch()
-	const { products, loading, error } = useSelector(state => state.products)
+	const basket = useSelector((state: RootState) => state.basket.basket)
+	const { isOpen, message } = useSelector((state: RootState) => state.modal)
+	const { products, loading, error } = useSelector((state: RootState) => state.products)
+	const dispatch: AppDispatch = useDispatch()
 
 	const { id } = useParams()
-	const product = products.find(prod => prod.id === parseInt(id))
-
-	const isInBasket = basket.some(basketItem => basketItem.id === product.id)
+	const product = products.find(prod => prod.id === parseInt(String(id)))
+	const isInBasket = product && basket.some(basketItem => basketItem.id === product.id)
 
 	const handleAddToCart = () => {
-		if (isInBasket) {
-			dispatch(modalActions.modalActive('The product is already in your cart!'))
-		} else {
-			dispatch(actions.AddToBasket(product))
-			dispatch(modalActions.modalActive('Product added!'))
+		if (product) {
+			if (isInBasket) {
+				dispatch(modalActions.modalActive('The product is already in your cart!'))
+			} else {
+				dispatch(actions.AddToBasket(product))
+				dispatch(modalActions.modalActive('Product added!'))
+			}
 		}
 	}
 
@@ -69,7 +71,7 @@ export const CardDetails = () => {
 							</Link>
 						</div>
 					</div>
-					<Modal active={isOpen} message={message} />
+					<Modal active={isOpen} message={message ?? ''} />
 				</div>
 			) : (
 				<div className={style['not-found']}>Card not found!</div>

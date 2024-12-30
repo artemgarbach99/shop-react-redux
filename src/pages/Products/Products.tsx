@@ -2,9 +2,10 @@ import { Cards } from '@components/Cards/Cards'
 import style from './Products.module.scss'
 import { useSelector } from 'react-redux'
 import { Modal } from '@components/Modal/Modal'
+import { RootState } from '@/store/store'
 
 export const Products = () => {
-	const { isOpen, message } = useSelector(state => state.modal)
+	const { isOpen, message } = useSelector((state: RootState) => state.modal)
 	return (
 		<div className={style.products}>
 			<div className='container'>

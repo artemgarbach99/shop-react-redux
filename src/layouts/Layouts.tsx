@@ -2,8 +2,8 @@ import { Outlet } from 'react-router-dom'
 import { Header } from '@components/Header/Header'
 import { Footer } from '@components/Footer/Footer'
 import style from '@/layouts/Layouts.module.scss'
-import { Breadcrumbs } from '@/components/Breadcrumbs/Breadcrumbs.tsx'
-import { OrderProducts } from '@pages/OrderProducts/OrderProducts.tsx'
+import { Breadcrumbs } from '@components/Breadcrumbs/Breadcrumbs'
+import { OrderProducts } from '@pages/OrderProducts/OrderProducts'
 
 const Layout = () => {
 	return (

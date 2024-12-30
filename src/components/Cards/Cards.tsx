@@ -9,7 +9,7 @@ import { FaRegStar, FaSortAlphaDown, FaSortAlphaDownAlt, FaSortAmountDown, FaSor
 import { AppDispatch, RootState } from '@/store/store'
 import { IProduct } from '@/types/produts.types'
 
-interface IOption {
+export interface IOption {
 	value: (() => void) | ((a: IProduct, b: IProduct) => number)
 	label: string
 	icon?: React.ReactNode
