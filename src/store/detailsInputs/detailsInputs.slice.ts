@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { fetchDetailsCountries, TCountry } from '@/store/detailsInputs/detailsInputs.actions'
-import { TInputValues } from '@/types/input-values.types'
+import { ISelectValues, TInputValues } from '@/types/input-values.types'
 
 export interface IStateDetailsInputs {
 	inputContacts: string
 	inputAddress: string
 	inputCity: string
 	inputCode: string
-	inputProvince: string | null
-	inputCountry: string | null
+	inputProvince: string
+	inputCountry: string
 	inputName: string
 	inputSecondName: string
 	inputOptional: string
@@ -22,8 +22,10 @@ const initialState: IStateDetailsInputs = {
 	inputAddress: '',
 	inputCity: '',
 	inputCode: '',
-	inputProvince: null,
-	inputCountry: null,
+	inputProvince: '',
+	inputCountry: '',
+	// inputProvince: null,
+	// inputCountry: null,
 	inputName: '',
 	inputSecondName: '',
 	inputOptional: '',
@@ -37,6 +39,10 @@ export const detailsInputsSlice = createSlice({
 	initialState,
 	reducers: {
 		setInputValue: (state, action: PayloadAction<TInputValues>) => {
+			const { name, value } = action.payload
+			return { ...state, [name]: value }
+		},
+		setValueSelect: (state, action: PayloadAction<ISelectValues>) => {
 			const { name, value } = action.payload
 			return { ...state, [name]: value }
 		},

@@ -123,13 +123,14 @@ main {
 		border-radius: 5px;
 		overflow: hidden;
 		width: 100%;
-		padding: 15px;
+		padding: 12px;
 		color: $colorGreen;
 		font-weight: 500;
+		font-size: 14px;
 
 		&::placeholder {
 			color: rgba($colorBlack, 0.5);
-			font-size: 16px;
+			font-size: 14px;
 		}
 
 		&:focus {

@@ -11,10 +11,9 @@ import { fetchDetailsCountries } from '@/store/detailsInputs/detailsInputs.actio
 import { AppDispatch, RootState } from '@/store/store'
 
 interface IProvince {
-	value: string | null
+	value: string
 	label: string
 }
-export type TProvinceValue = Pick<IProvince, 'value'>
 
 export const Details = () => {
 	const dispatch: AppDispatch = useDispatch()
@@ -54,16 +53,14 @@ export const Details = () => {
 		dispatch(detailsInputsActions.setInputValue({ name, value }))
 	}
 
-	const selectedOptionProvince: TProvinceValue | undefined = optionsProvince.find(
-		option => option.value === inputProvince
-	)
+	// const selectedOptionProvince: any = optionsProvince.find((option: IProvince) => option.value === inputProvince)
+	// const selectedOptionCountries: any = countries.find(option => option.value === inputCountry)
 
-	const handleShippingSelectChange = (selectedOption: SingleValue<TProvinceValue>, actionMeta: ActionMeta<string>) => {
+	const handleShippingSelectChange = (selectedOption: SingleValue<IProvince>, actionMeta: ActionMeta<IProvince>) => {
 		const { name } = actionMeta
-		const value = selectedOption ? selectedOption.value : null
-		// const { value } = selectedOption
+		const value = selectedOption?.value ?? ''
 		if (name) {
-			dispatch(detailsInputsActions.setInputValue({ name, value }))
+			dispatch(detailsInputsActions.setValueSelect({ name, value }))
 		}
 	}
 
@@ -144,22 +141,26 @@ export const Details = () => {
 						<Select
 							name='inputProvince'
 							// value={optionsProvince.find(option => option.value === inputProvince)}
-							value={selectedOptionProvince}
+							value={optionsProvince.find(option => option.value === inputProvince) ?? undefined}
 							onChange={handleShippingSelectChange}
 							options={optionsProvince}
 							className={style.select}
 							classNamePrefix='item-select'
 							placeholder='region'
+							getOptionLabel={(option: IProvince) => option.label}
+							getOptionValue={(option: IProvince) => option.value}
 						/>
 					</div>
 					<Select
 						name='inputCountry'
-						value={countries.find(option => option.value === inputCountry)}
+						value={countries.find(option => option.value === inputCountry) ?? undefined}
 						onChange={handleShippingSelectChange}
 						options={countries}
 						className={style.select}
 						classNamePrefix='item-select'
 						placeholder='country'
+						getOptionLabel={(option: IProvince) => option.label}
+						getOptionValue={(option: IProvince) => option.value}
 					/>
 				</div>
 			</div>
