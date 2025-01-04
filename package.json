@@ -2,12 +2,15 @@
   "name": "shop-react",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://artemgarbach99.github.io/shop-react-redux/",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
@@ -33,6 +36,7 @@
     "eslint-plugin-react": "^7.37.1",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.13",
+    "gh-pages": "^6.3.0",
     "globals": "^15.11.0",
     "prettier": "^3.3.3",
     "sass-embedded": "^1.80.4",
