@@ -5,6 +5,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { MdFavoriteBorder } from 'react-icons/md'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/store/store'
+// import logo from '@assets/images/logo.svg'
 
 export const Header = () => {
 	const basket = useSelector((state: RootState) => state.basket.basket)
@@ -15,7 +16,7 @@ export const Header = () => {
 				<div className={style.body}>
 					<div className={style.logo}>
 						<Link to='/main'>
-							<img src='/src/assets/images/logo.svg' alt='Logo' />
+							<img src='./logo.svg' alt='Logo' />
 						</Link>
 					</div>
 					<Navigation />

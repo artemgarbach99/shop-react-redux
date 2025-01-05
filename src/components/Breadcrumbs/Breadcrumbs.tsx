@@ -23,7 +23,7 @@ export const Breadcrumbs = () => {
 		<div className={breadcrumbs.breadcrumbs}>
 			<div className='logo'>
 				<Link to='/main'>
-					<img src='/src/assets/images/logo.svg' alt='Logo' />
+					<img src='./logo.svg' alt='Logo' />
 				</Link>
 			</div>
 			<ul className={breadcrumbs.nav}>

@@ -1,11 +1,22 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+// import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 // https://vite.dev/config/
 export default defineConfig({
-	plugins: [react()],
-	base: '/shop-react-redux',
+	plugins: [
+		react()
+		// viteStaticCopy({
+		// 	targets: [
+		// 		{
+		// 			src: 'src/assets/images/*',
+		// 			dest: 'assets/images'
+		// 		}
+		// 	]
+		// })
+	],
+	base: '/shop-react-redux/',
 	css: {
 		preprocessorOptions: {
 			scss: {

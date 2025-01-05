@@ -20,8 +20,6 @@ import { RootState } from '@/store/store'
 export const App = () => {
 	const dispatch = useDispatch()
 	const modalReduxActive = useSelector((state: RootState) => state.modal.isOpen)
-	// const { cardNumber, expiration, cvvCode } = usePayments()
-	// const { inputProvince, inputCountry } = useDetails()
 
 	useEffect(() => {
 		if (modalReduxActive) {
@@ -31,10 +29,6 @@ export const App = () => {
 			return () => clearTimeout(timer)
 		}
 	}, [modalReduxActive])
-
-	// useEffect(() => {
-	// 	dispatch(fetchProducts())
-	// }, [dispatch])
 
 	// const fieldCheck = () => {
 	// 	const inputs = document.querySelectorAll(`.${style.input} input, .${paymentMethod.input} input`)
@@ -128,7 +122,7 @@ export const App = () => {
 	// }
 
 	return (
-		<Router>
+		<Router basename='/shop-react-redux/'>
 			<Routes>
 				<Route element={<Layout />}>
 					<Route path='/' element={<Navigate to='/main' />} />
