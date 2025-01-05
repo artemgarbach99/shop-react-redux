@@ -122,7 +122,8 @@ export const App = () => {
 	// }
 
 	return (
-		<Router basename='/shop-react-redux/'>
+		// <Router basename='/shop-react-redux/'>
+		<Router basename={import.meta.env.BASE_URL}>
 			<Routes>
 				<Route element={<Layout />}>
 					<Route path='/' element={<Navigate to='/main' />} />
