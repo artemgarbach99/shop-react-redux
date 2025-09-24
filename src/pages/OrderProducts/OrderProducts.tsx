@@ -42,7 +42,7 @@ export const OrderProducts = () => {
 						{basket.map(item => (
 							<div key={item.id} className={order.card}>
 								<div className={order.image}>
-									{loading ? <Skeleton /> : <img src={item.image} alt='' />}
+									{loading ? <Skeleton /> : <img src={item.images[0]} alt='' />}
 									<span className={order.quantity}>{item.quantity}</span>
 								</div>
 								<div className={order.content}>

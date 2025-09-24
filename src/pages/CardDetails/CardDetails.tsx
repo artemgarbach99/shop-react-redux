@@ -42,7 +42,7 @@ export const CardDetails = () => {
 											<Skeleton />
 										</div>
 									) : (
-										<img src={product.image} alt={product.title} />
+										<img src={product.images[0]} alt={product.title} />
 									)}
 								</div>
 								<div className={style.content}>

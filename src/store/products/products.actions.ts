@@ -7,13 +7,19 @@ interface ApiResponse {
 
 export const fetchProducts = createAsyncThunk<IProduct[], void, { rejectValue: string }>(
 	'products/fetchProducts',
-	async (product, { rejectWithValue }) => {
+	async (_arg, thunkAPI) => {
 		try {
-			const response = await fetch('https://fakestoreapi.in/api/products')
-			const data: ApiResponse = await response.json()
-			return data.products
-		} catch (error) {
-			return rejectWithValue('Ошибка при получении данных!')
+			const response = await fetch('https://api.escuelajs.co/api/v1/products')
+			if (!response.ok) {
+				return thunkAPI.rejectWithValue('Ошибка при получении данных!')
+			}
+			const data = (await response.json()) as IProduct[]
+			return data
+		} catch {
+			return thunkAPI.rejectWithValue('Ошибка при получении данных!')
 		}
 	}
 )
+
+// https://api.escuelajs.co/api/v1/products
+// https://fakestoreapi.in/api/products

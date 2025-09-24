@@ -13,7 +13,7 @@ export const CardsFavorites = () => {
 					<div className={products.heading}>Favorites</div>
 					<div className={style.list}>
 						{favorites.map((obj, index) => (
-							<Card key={index} title={obj.title} image={obj.image} price={obj.price} id={obj.id} />
+							<Card key={index} title={obj.title} images={obj.images[0]} price={obj.price} id={obj.id} />
 						))}
 					</div>
 				</div>

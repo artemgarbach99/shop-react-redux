@@ -9,7 +9,7 @@ import { actions } from '@/store/basket/basket.slice'
 import { IProduct } from '@/types/produts.types'
 import { AppDispatch, RootState } from '@/store/store'
 
-export const CardBasket = ({ id, title, image, price, quantity }: IProduct) => {
+export const CardBasket = ({ id, title, images, price, quantity }: IProduct) => {
 	const dispatch: AppDispatch = useDispatch()
 
 	const { loading } = useSelector((state: RootState) => state.products)
@@ -35,7 +35,7 @@ export const CardBasket = ({ id, title, image, price, quantity }: IProduct) => {
 								<Skeleton />
 							</div>
 						) : (
-							<img src={image} alt={title} />
+							<img src={images} alt={title} />
 						)}
 					</div>
 					<div className={itemStyles.name}>

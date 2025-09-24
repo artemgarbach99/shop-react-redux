@@ -98,7 +98,7 @@ export const Cards = () => {
 			</div>
 			<div className={style.list}>
 				{sortedProducts.map((obj, index) => (
-					<Card key={index} title={obj.title} image={obj.image} price={obj.price} id={obj.id} />
+					<Card key={index} title={obj.title} images={obj.images[0]} price={obj.price} id={obj.id} />
 				))}
 			</div>
 		</div>

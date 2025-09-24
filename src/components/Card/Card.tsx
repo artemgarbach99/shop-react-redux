@@ -8,7 +8,7 @@ import { modalActions } from '@/store/modal/modal.slice'
 import { AppDispatch, RootState } from '@/store/store'
 import { CardProduct, IProduct } from '@/types/produts.types'
 
-export const Card = ({ title, image, price, id }: CardProduct) => {
+export const Card = ({ title, images, price, id }: CardProduct) => {
 	const dispatch: AppDispatch = useDispatch()
 	const { products, loading, error } = useSelector((state: RootState) => state.products)
 
@@ -38,7 +38,7 @@ export const Card = ({ title, image, price, id }: CardProduct) => {
 							<Skeleton />
 						</div>
 					) : (
-						<img src={image} alt='' />
+						<img src={images} alt='' />
 					)}
 				</Link>
 				<div className={style.block}>
