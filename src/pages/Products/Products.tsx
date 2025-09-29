@@ -10,7 +10,7 @@ export const Products = () => {
 		<div className={style.products}>
 			<div className='container'>
 				<div className={style.body}>
-					<div className={style.heading}>Products</div>
+					<div className={style.title}>Products</div>
 					<div className={style.subtitle}>Order it for you or for your beloved ones</div>
 					<Cards />
 				</div>

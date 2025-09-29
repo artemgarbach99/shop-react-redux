@@ -7,6 +7,12 @@
 	width: 100%;
 	max-width: 75px;
 	height: 30px;
+	@media (max-width: $mobile) {
+		max-width: 60px;
+	}
+	// @media (max-width: $mobileSmall) {
+	// 	max-width: 50px;
+	// }
 }
 
 .plus {
@@ -14,12 +20,18 @@
 	font-size: 18px;
 	font-weight: 500;
 	cursor: pointer;
+	@media (max-width: $mobile) {
+		font-size: 16px;
+	}
 }
 
 .value {
 	color: $colorBlack;
 	font-size: 18px;
 	font-weight: 500;
+	@media (max-width: $tablet) {
+		font-size: 14px;
+	}
 }
 
 .minus {
@@ -27,4 +39,7 @@
 	font-size: 18px;
 	font-weight: 500;
 	cursor: pointer;
+	@media (max-width: $mobile) {
+		font-size: 16px;
+	}
 }

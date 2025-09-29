@@ -1,8 +1,12 @@
 @use '@assets/styles/global' as *;
+@use '@assets/styles/main' as *;
 
 .products {
 	padding: 40px 0;
 	flex: 1 1 100%;
+	@media (max-width: $tablet) {
+		padding: rem(20) 0;
+	}
 }
 
 .body {
@@ -11,11 +15,17 @@
 	height: 100%;
 }
 
-.heading {
+.title {
 	font-size: 40px;
 	font-weight: 500;
 	line-height: 1.2;
 	text-align: center;
+	@media (max-width: $pc) {
+		font-size: rem(36);
+	}
+	@media (max-width: $tablet) {
+		font-size: rem(28);
+	}
 }
 
 .subtitle {
@@ -23,7 +33,14 @@
 	font-weight: 500;
 	line-height: 1.2;
 	text-align: center;
-	//margin-top: 15px;
+	margin-top: 15px;
+	@media (max-width: $pc) {
+		font-size: rem(16);
+	}
+	@media (max-width: $tablet) {
+		font-size: rem(14);
+		margin-top: rem(10);
+	}
 }
 
 .sort {
@@ -32,6 +49,9 @@
 	justify-content: flex-end;
 	gap: 10px;
 	padding-top: 30px;
+	@media (max-width: $mobile) {
+		padding-top: rem(20);
+	}
 }
 .button {
 	@include greenButton();

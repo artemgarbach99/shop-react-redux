@@ -1,13 +1,17 @@
 import order from '@/pages/OrderProducts/OrderProducts.module.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { Skeleton } from '@components/Skeleton/Skeleton'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/store/store'
 import { IProduct } from '@/types/produts.types'
+import { FaArrowLeft } from 'react-icons/fa6'
+import { ContextType } from '@/types/order.types'
 
-export const OrderProducts = () => {
+export const OrderProducts = ({ showOrder, setShowOrder }: ContextType) => {
 	const navigate = useNavigate()
+	// const [showOrder, SetShowOrder] = useState(false)
+	// const { showOrder, SetShowOrder } = useOutletContext()
 
 	const { loading } = useSelector((state: RootState) => state.products)
 	const { basket, totalPrice } = useSelector((state: RootState) => state.basket)
@@ -35,45 +39,53 @@ export const OrderProducts = () => {
 	}, [basket, navigate])
 
 	return (
-		<div className={order.body}>
-			{basket.length > 0 && (
-				<div className={order.wrap}>
-					<div className={order.cards}>
-						{basket.map(item => (
-							<div key={item.id} className={order.card}>
-								<div className={order.image}>
-									{loading ? <Skeleton /> : <img src={item.images[0]} alt='' />}
-									<span className={order.quantity}>{item.quantity}</span>
+		<div className={`${order.products} ${showOrder ? order.show : ''}`}>
+			<div className={order.body}>
+				{basket.length > 0 && (
+					<div className={order.wrap}>
+						<button type='button' className={order.hide} onClick={() => setShowOrder(false)}>
+							<FaArrowLeft />
+							close
+						</button>
+						<div className={order.cards}>
+							{basket.map(item => (
+								<div key={item.id} className={order.card}>
+									<div className={order.card_wrap}>
+										<div className={order.image}>
+											{loading ? <Skeleton /> : <img src={item.images[0]} alt='' />}
+											<span className={order.quantity}>{item.quantity}</span>
+										</div>
+										<div className={order.content}>
+											<Link to={`/card/${item.id}`} className={order.title}>
+												{item.title}
+											</Link>
+											<div className={order.price}>$ {calculateTotalPrice(item)}</div>
+										</div>
+									</div>
 								</div>
-								<div className={order.content}>
-									<Link to={`/card/${item.id}`} className={order.title}>
-										{item.title}
-									</Link>
-									<div className={order.price}>$ {calculateTotalPrice(item)}</div>
+							))}
+						</div>
+						<div className={order.info}>
+							<div className={order.line}>
+								<div className={order.row}>
+									<div className={order.label}>total:</div>
+									<div className={order.price}>{totalPrice.toFixed(2)}</div>
+								</div>
+								<div className={order.row}>
+									<div className={order.label}>Shipping:</div>
+									<div className={order.description}>{dataValue ? dataValue : 'Calculated at the next step'}</div>
 								</div>
 							</div>
-						))}
-					</div>
-					<div className={order.info}>
-						<div className={order.line}>
-							<div className={order.row}>
-								<div className={order.label}>total:</div>
-								<div className={order.price}>{totalPrice.toFixed(2)}</div>
-							</div>
-							<div className={order.row}>
-								<div className={order.label}>Shipping:</div>
-								<div className={order.description}>{dataValue ? dataValue : 'Calculated at the next step'}</div>
+							<div className={order.line}>
+								<div className={order.row}>
+									<div className={order.label}>subtotal:</div>
+									<div className={order.price}>${TotalPriceWithShipping()}</div>
+								</div>
 							</div>
 						</div>
-						<div className={order.line}>
-							<div className={order.row}>
-								<div className={order.label}>subtotal:</div>
-								<div className={order.price}>${TotalPriceWithShipping()}</div>
-							</div>
-						</div>
 					</div>
-				</div>
-			)}
+				)}
+			</div>
 		</div>
 	)
 }

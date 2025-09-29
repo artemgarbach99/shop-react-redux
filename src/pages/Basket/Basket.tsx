@@ -12,7 +12,7 @@ export const Basket = () => {
 		<div className={style.basket}>
 			<div className='container'>
 				<div className={style.body}>
-					<div className={style.heading}>
+					<div className={style.top}>
 						<h2>Your cart items</h2>
 						<Link to='/products' className={style.link}>
 							Back to shopping
@@ -25,7 +25,7 @@ export const Basket = () => {
 					) : (
 						<div className={style.main}>
 							<ul className={style.sections}>
-								<li className={style.section}>
+								<li className={style.section_first}>
 									<span className={style.label}>Product</span>
 								</li>
 								<li className={style.section}>

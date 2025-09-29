@@ -1,0 +1,70 @@
+@use 'sass:math'
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap')
+$font-size: 16
+
+// НАСТРОЙКИ
+// Минимальная ширина страницы
+$minWidth: 320px
+// Ширина полотна (макета)
+$maxWidth: 1920px
+// Ширина ограничивающего контейнера (0 = нет ограничения)
+$maxWidthContainer: 1300
+// Общий отступ у контейнера
+// (30 = по 15px слева и справа, 0 = нет отступа)
+$containerPadding: 40
+
+// Ширина срабатывания первого брейкпоинта
+$containerWidth: $maxWidthContainer + $containerPadding
+
+// Брейк-поинты
+// $pc: em($containerWidth) // ПК, ноутбуки, некоторые планшеты в горизонтальном положении
+// $laptop: em(1649.98px) // ноутбуки 14-16 inch
+// $bigTablet: em(1080px) // Планшеты, некоторые телефоны в горизонтальном положении
+// $tablet: em(991.98px) // Планшеты, некоторые телефоны в горизонтальном положении
+// $mobile: em(767.98px) // Телефоны L
+// $mobileSmall: em(479.98px) // Телефоны S
+
+// условия для адаптива
+// $responsiveType: 1
+
+// percent
+@function percent($w, $wContainer: $containerWidth)
+  @return calc($w*100%/$wContainer)
+
+// rem
+@function rem($size, $font-size : $font-size)
+  // $font-size: $font-size + 0px
+  $remSize: calc($size / $font-size)
+  @return #{$remSize}rem
+
+// em
+@function em($size, $font-size : $font-size)
+  // $font-size: $font-size + 0px
+  $remSize: calc($size / $font-size)
+  @return #{$remSize}em
+
+// адаптив
+// @if ($responsiveType==1)
+[class*="container"]
+  @if ($maxWidthContainer > 0)
+    max-width: rem($maxWidthContainer)
+    box-sizing: content-box
+    margin: 0 auto
+    height: 100%
+  @if ($containerPadding>0)
+    padding: 0 rem(calc($containerPadding / 2))
+
+// адаптивное свойство clamp-calc(мин. значение экрана, макс. значение экрана, мин. значение размера, макс. значение размера)
+// https://dev.to/christianmay21/easy-css-clamp-scss-mixin-1225
+@function clamp-calc($min-width, $max-width, $size-at-min-width, $size-at-max-width)
+  $slope: ($size-at-max-width - $size-at-min-width) / ($max-width - $min-width)
+  $y-axis-intersection: -1 * $min-width * $slope + $size-at-min-width
+  $return-value: clamp(#{$size-at-min-width}, #{$y-axis-intersection} + #{$slope} * 100vw, #{$size-at-max-width})
+  @return $return-value
+
+// ширина контейнера в адаптиве
+//[class*="__container"]
+//  @media (max-width: $notebook)
+//    max-width: rem(1300px)

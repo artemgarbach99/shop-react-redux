@@ -1,3 +1,4 @@
+@use '/src/assets//styles/_main.sass' as *;
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 $colorGreen: #56b280;
@@ -6,12 +7,19 @@ $colorWhite: #ffffff;
 $colorBlack: #272727;
 $colorBoxShadow: #898989;
 $colorRed: rgba(255, 0, 0, 1);
+// Брейк-поинты
+$laptop: em(1650); // ноутбуки 14-16 inch
+$pc: em($containerWidth);
+$bigTablet: em(1080);
+$tablet: em(991.98);
+$mobile: em(767.98);
+$mobileSmall: em(479.98);
 
-.container {
-	max-width: 1200px;
-	margin: 0 auto;
-	height: 100%;
-}
+// .container {
+// 	max-width: 1200px;
+// 	margin: 0 auto;
+// 	height: 100%;
+// }
 
 .wrapper {
 	display: flex;
@@ -20,15 +28,15 @@ $colorRed: rgba(255, 0, 0, 1);
 	min-height: 100%;
 }
 
-.logo {
-	width: 130px;
+// .logo {
+// 	width: 130px;
 
-	& img {
-		object-fit: contain;
-		width: 100%;
-		height: auto;
-	}
-}
+// 	& img {
+// 		object-fit: contain;
+// 		width: 100%;
+// 		height: auto;
+// 	}
+// }
 
 .loader-svg-wrap {
 	position: absolute;
@@ -55,6 +63,11 @@ $colorRed: rgba(255, 0, 0, 1);
 	padding-bottom: 20px;
 }
 
+.css-b62m3t-container {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
 main {
 	display: flex;
 	flex-direction: column;
@@ -73,13 +86,15 @@ main {
 
 @mixin greenLink {
 	color: $colorGreen;
-	border-bottom: 1px solid $colorGreen;
 	&:hover {
 		border-color: transparent;
 	}
+	@media (max-width: $tablet) {
+		font-size: 14px;
+	}
 }
 
-@mixin greenButton($bgc: $colorGreen, $color: $colorWhite, $borderColor: transparent) {
+@mixin greenButton($bgc: $colorGreen, $color: $colorWhite, $borderColor: transparent, $fz: rem(14)) {
 	font-family: 'Poppins', sans-serif;
 	display: flex;
 	align-items: center;
@@ -89,18 +104,25 @@ main {
 	padding: 15px;
 	background-color: $bgc;
 	color: $color;
-	font-size: 14px;
-	font-weight: 500;
+	font-size: $fz;
+	font-weight: 600;
 	text-transform: uppercase;
 	border: 2px solid $borderColor;
 	border-radius: 5px;
+	@media (max-width: $tablet) {
+		font-size: rem(12);
+		padding: rem(10);
+	}
+	// @media (max-width: $mobile) {
+	// 	font-size: rem(11);
+	// }
 }
 
 @mixin scroll-bar {
 	scrollbar-width: auto;
 	scrollbar-color: $colorWhite;
 	&::-webkit-scrollbar {
-		width: 12px;
+		width: 6px;
 	}
 	&::-webkit-scrollbar-track {
 		background: $colorWhite;
@@ -131,6 +153,9 @@ main {
 		&::placeholder {
 			color: rgba($colorBlack, 0.5);
 			font-size: 14px;
+			// @media (max-width: $mobile) {
+			// 	font-size: rem(12);
+			// }
 		}
 
 		&:focus {
@@ -159,6 +184,10 @@ main {
 		&:hover {
 			@include box-shadow($colorGreen);
 			//border: 1px solid $colorGreen;
+		}
+
+		@media (max-width: $pc) {
+			padding: rem(10);
 		}
 	}
 }

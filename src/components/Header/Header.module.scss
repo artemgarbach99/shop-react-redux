@@ -1,8 +1,9 @@
 @use '@assets/styles/global' as *;
+@use '@assets/styles/main' as *;
 
 .header {
-	height: 75px;
 	border-bottom: 1px solid #56b280;
+	padding: rem(10) 0;
 }
 
 .body {
@@ -14,7 +15,15 @@
 }
 
 .logo {
-	width: 126px;
+	width: 60px;
+	@media (max-width: $mobile) {
+		width: rem(50);
+	}
+	& img {
+		width: 100%;
+		height: auto;
+		object-fit: cover;
+	}
 }
 
 .buttons {

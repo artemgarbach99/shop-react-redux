@@ -9,6 +9,10 @@ import { useDetails } from '@/hooks/useDetails'
 import { ChangeEvent, useEffect } from 'react'
 import { fetchDetailsCountries } from '@/store/detailsInputs/detailsInputs.actions'
 import { AppDispatch, RootState } from '@/store/store'
+import { SlBasket } from 'react-icons/sl'
+import { useOutletContext } from 'react-router-dom'
+import { ContextType } from '@/types/order.types'
+import { MobileOrder } from '@/components/MobileOrder/MobileOrder'
 
 interface IProvince {
 	value: string
@@ -17,6 +21,7 @@ interface IProvince {
 
 export const Details = () => {
 	const dispatch: AppDispatch = useDispatch()
+	// const { showOrder, setShowOrder } = useOutletContext<ContextType>()
 
 	useEffect(() => {
 		dispatch(fetchDetailsCountries())
@@ -66,6 +71,11 @@ export const Details = () => {
 
 	return (
 		<div className={style.details}>
+			{/* <button type='button' className={style.show} onClick={() => setShowOrder(true)}>
+				<SlBasket size={24} />
+				See your order details
+			</button> */}
+			<MobileOrder />
 			<div className={style.block}>
 				<div className={style.title}>Contact</div>
 				<div className={style.input}>

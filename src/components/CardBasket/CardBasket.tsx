@@ -27,37 +27,37 @@ export const CardBasket = ({ id, title, images, price, quantity }: IProduct) => 
 
 	return (
 		<li className={itemStyles.item}>
-			<div className={style.section}>
-				<div className={itemStyles.content}>
-					<div className={itemStyles.image}>
-						{loading ? (
-							<div className='loader-svg-wrap'>
-								<Skeleton />
-							</div>
-						) : (
-							<img src={images} alt={title} />
-						)}
-					</div>
-					<div className={itemStyles.name}>
-						<Link to={`/card/${id}`}>
-							<div className={itemStyles.title}>{title}</div>
-						</Link>
-						<button
-							className={itemStyles.link}
-							onClick={() => dispatch(actions.RemoveFromBasket({ id, price, quantity }))}>
-							Remove
-						</button>
-					</div>
+			<div className={itemStyles.content}>
+				<div className={itemStyles.image}>
+					{loading ? (
+						<div className='loader-svg-wrap'>
+							<Skeleton />
+						</div>
+					) : (
+						<img src={images} alt={title} />
+					)}
+				</div>
+				<div className={itemStyles.name}>
+					<Link to={`/card/${id}`}>
+						<div className={itemStyles.title}>{title}</div>
+					</Link>
+					<button
+						className={itemStyles.link}
+						onClick={() => dispatch(actions.RemoveFromBasket({ id, price, quantity }))}>
+						Remove
+					</button>
 				</div>
 			</div>
-			<div className={style.section}>
-				<div className={itemStyles.price}>$ {price}</div>
-			</div>
-			<div className={style.section}>
-				<Quantity initialCount={quantity} onChange={handleQuantityChange} />
-			</div>
-			<div className={style.section}>
-				<div className={itemStyles.price}>$ {totalPrice}</div>
+			<div className={style.values}>
+				<div className={style.section}>
+					<div className={itemStyles.price}>$ {price}</div>
+				</div>
+				<div className={style.section}>
+					<Quantity initialCount={quantity} onChange={handleQuantityChange} />
+				</div>
+				<div className={style.section}>
+					<div className={itemStyles.price}>$ {totalPrice}</div>
+				</div>
 			</div>
 		</li>
 	)

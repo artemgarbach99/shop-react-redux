@@ -1,11 +1,15 @@
 @use '@assets/styles/global' as *;
+@use '@assets/styles/_main.sass' as *;
 
 .footer {
 	background-color: $colorBlack;
 	padding: 60px 0;
-}
-
-.container {
+	@media (max-width: $tablet) {
+		padding: rem(40) 0;
+	}
+	@media (max-width: $mobile) {
+		padding: rem(20) 0;
+	}
 }
 
 .body {
@@ -15,37 +19,65 @@
 	gap: 20px;
 	border-top: 2px solid $colorWhite;
 	padding-top: 20px;
+	@media (max-width: $mobile) {
+		flex-direction: column;
+	}
 }
 
-.logo {
+.block {
 	width: 250px;
 	display: flex;
 	flex-direction: column;
-	gap: 30px;
+	gap: rem(15);
+	@media (max-width: $mobile) {
+		align-items: center;
+	}
+}
+
+.logo {
+	width: rem(60);
+	@media (max-width: $mobile) {
+		width: rem(50);
+	}
+	& img {
+		width: 100%;
+		height: auto;
+		object-fit: cover;
+	}
 }
 
 .discription {
 	color: $colorWhite;
-	font-size: 16px;
-	line-height: 1.2;
+	font-size: rem(12);
+	line-height: 1.4;
+	@media (max-width: $mobile) {
+		text-align: center;
+	}
 }
 
 .row {
 	display: flex;
-	gap: 50px;
+	gap: rem(40);
+	@media (max-width: $mobile) {
+		gap: rem(30);
+	}
 }
 
 .links {
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
+	gap: rem(15);
 	color: $colorWhite;
 }
 
 .link {
-	font-size: 18px;
+	font-size: rem(12);
 	line-height: 1;
-	font-weight: 500;
+	font-weight: 600;
+	text-transform: uppercase;
+	@media (max-width: $mobileSmall) {
+		font-size: rem(10);
+	}
 
 	&:hover {
 		color: $colorGreen;

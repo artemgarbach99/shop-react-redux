@@ -1,9 +1,24 @@
 @use '@assets/styles/global' as *;
+@use '@assets/styles/main' as *;
+
 .list {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	gap: 15px;
 	padding-top: 20px;
+	@media (max-width: $tablet) {
+		grid-template-columns: repeat(4, 1fr);
+	}
+	@media (max-width: $mobile) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+	@media (max-width: em(560)) {
+		grid-template-columns: repeat(2, 1fr);
+		gap: rem(10);
+	}
+	// @media (max-width: $mobileSmall) {
+	// 	grid-template-columns: repeat(2, 1fr);
+	// }
 }
 .content {
 	flex: 1 1 100%;
@@ -17,6 +32,12 @@
 	font-weight: 500;
 }
 .select {
-	max-width: 400px;
+	max-width: 400px !important;
 	width: 100%;
+	@media (max-width: $tablet) {
+		max-width: rem(300) !important;
+	}
+	@media (max-width: $mobileSmall) {
+		max-width: 100% !important;
+	}
 }

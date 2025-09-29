@@ -21,11 +21,9 @@ export const Breadcrumbs = () => {
 
 	return (
 		<div className={breadcrumbs.breadcrumbs}>
-			<div className='logo'>
-				<Link to='/main'>
-					<img src='./logo.svg' alt='Logo' />
-				</Link>
-			</div>
+			<Link to='/main' className={breadcrumbs.logo}>
+				<img src='./logo.svg' alt='Logo' />
+			</Link>
 			<ul className={breadcrumbs.nav}>
 				<li className={getClassName('basket')}>
 					<Link to={'/basket'}>Basket</Link>

@@ -14,11 +14,9 @@ export const Header = () => {
 		<div className={style.header}>
 			<div className='container'>
 				<div className={style.body}>
-					<div className={style.logo}>
-						<Link to='/main'>
-							<img src='./logo.svg' alt='Logo' />
-						</Link>
-					</div>
+					<Link to='/main' className={style.logo}>
+						<img src='./logo.svg' alt='Logo' />
+					</Link>
 					<Navigation />
 					<div className={style.buttons}>
 						<Link to={'/favorites'} className={style.link}>

@@ -1,0 +1,140 @@
+// @use 'variables' as *;
+@use 'main' as *;
+
+@mixin ibg {
+	position: relative;
+	img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		object-fit: cover;
+	}
+}
+
+@mixin input {
+	width: 100%;
+
+	& input {
+		@include box-shadow($boxShadowColor);
+		border-radius: 3px;
+		overflow: hidden;
+		width: 100%;
+		padding: 12px;
+		color: $blackColor;
+		font-weight: 500;
+		font-size: 18px;
+		background-color: $greyColor;
+		@media (max-width: $pc) {
+			padding: rem(10);
+			font-size: rem(14);
+		}
+		@media (max-width: $mobile) {
+			padding: rem(8) rem(10);
+			font-size: rem(12);
+		}
+
+		&::placeholder {
+			color: rgba($blackColor, 0.5);
+			font-size: 16px;
+			font-family: $fontFamily;
+			@media (max-width: $pc) {
+				font-size: rem(14);
+			}
+			// @media (max-width: $mobile) {
+			// 	font-size: rem(12);
+			// }
+		}
+
+		&:focus {
+			box-shadow: $greenColor;
+			outline: none;
+		}
+
+		&.error {
+			@include box-shadow($redColor);
+			&::placeholder {
+				color: $redColor;
+			}
+			&:hover {
+				@include box-shadow($redColor);
+			}
+		}
+
+		&:hover {
+			@include box-shadow($blackColor);
+			transition: box-shadow 0.3s ease 0s;
+		}
+	}
+}
+
+// @mixin box-shadow($color: $boxShadowColor) {
+// 	box-shadow: 0 0 5px $color;
+// 	margin: 3px;
+// }
+
+@mixin sliderButtons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: rem(40);
+	height: rem(40);
+	background-color: $whiteColor;
+	border-radius: rem(12);
+	color: $blackColor;
+	@media (max-width: $pc) {
+		width: rem(36);
+		height: rem(36);
+	}
+}
+
+@mixin scrollbar {
+	&::-webkit-scrollbar {
+		width: rem(10);
+	}
+	&::-webkit-scrollbar-track {
+		background-color: #f0f0f0;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: #cecece;
+		border-radius: 22px;
+		padding: rem(3);
+		margin: rem(3);
+	}
+	// @media (max-width: $mobile) {
+	// 	&::-webkit-scrollbar {
+	// 		width: rem(8);
+	// 	}
+	// }
+}
+@mixin button($bg: $redColor, $color: $whiteColor, $fz: 14px) {
+	@include box-shadow($boxShadowColor);
+	border-radius: 3px;
+	overflow: hidden;
+	padding: 12px;
+	color: $color;
+	font-weight: 700;
+	font-size: $fz;
+	text-transform: uppercase;
+	background-color: $bg;
+	@media (max-width: $pc) {
+		padding: rem(8) rem(10);
+	}
+}
+@mixin listGrid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+	@media (max-width: $tablet) {
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+	}
+	@media (max-width: rem(650)) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	@media (max-width: rem(520)) {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
