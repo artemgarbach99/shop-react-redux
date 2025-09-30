@@ -5,12 +5,14 @@ import { InfoShipping } from '@components/InfoShipping/InfoShipping'
 import { Modal } from '@components/Modal/Modal'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/store/store'
+import { MobileOrder } from '@/components/MobileOrder/MobileOrder'
 
 export const Shipping = () => {
 	const { isOpen, message } = useSelector((state: RootState) => state.modal)
 	return (
 		<div className={shipping.shipping}>
 			<div className={shipping.main}>
+				<MobileOrder />
 				<InfoShipping />
 				<RadioShipping />
 			</div>

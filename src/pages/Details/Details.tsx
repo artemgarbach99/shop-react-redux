@@ -75,103 +75,105 @@ export const Details = () => {
 				<SlBasket size={24} />
 				See your order details
 			</button> */}
-			<MobileOrder />
-			<div className={style.block}>
-				<div className={style.title}>Contact</div>
-				<div className={style.input}>
-					<input
-						type='text'
-						name='inputContacts'
-						value={inputContacts}
-						onChange={handleShippingInputChange}
-						placeholder='Email or mobile phone number'
-					/>
+			<div className={style.main}>
+				<MobileOrder />
+				<div className={style.block}>
+					<div className={style.title}>Contact</div>
+					<div className={style.input}>
+						<input
+							type='text'
+							name='inputContacts'
+							value={inputContacts}
+							onChange={handleShippingInputChange}
+							placeholder='Email or mobile phone number'
+						/>
+					</div>
 				</div>
-			</div>
-			<div className={style.block}>
-				<div className={style.title}>Shipping Address</div>
-				<div className={style.inputs}>
-					<div className={style.row}>
+				<div className={style.block}>
+					<div className={style.title}>Shipping Address</div>
+					<div className={style.inputs}>
+						<div className={style.row}>
+							<div className={style.input}>
+								<input
+									type='text'
+									name='inputName'
+									value={inputName}
+									onChange={handleShippingInputChange}
+									placeholder='Name'
+								/>
+							</div>
+							<div className={style.input}>
+								<input
+									type='text'
+									name='inputSecondName'
+									value={inputSecondName}
+									onChange={handleShippingInputChange}
+									placeholder='Second Name'
+								/>
+							</div>
+						</div>
 						<div className={style.input}>
 							<input
 								type='text'
-								name='inputName'
-								value={inputName}
+								name='inputAddress'
+								value={inputAddress}
 								onChange={handleShippingInputChange}
-								placeholder='Name'
+								placeholder='Address and number'
 							/>
 						</div>
 						<div className={style.input}>
 							<input
 								type='text'
-								name='inputSecondName'
-								value={inputSecondName}
+								name='inputOptional'
+								value={inputOptional}
 								onChange={handleShippingInputChange}
-								placeholder='Second Name'
+								placeholder='Shipping note (optional)'
 							/>
 						</div>
-					</div>
-					<div className={style.input}>
-						<input
-							type='text'
-							name='inputAddress'
-							value={inputAddress}
-							onChange={handleShippingInputChange}
-							placeholder='Address and number'
-						/>
-					</div>
-					<div className={style.input}>
-						<input
-							type='text'
-							name='inputOptional'
-							value={inputOptional}
-							onChange={handleShippingInputChange}
-							placeholder='Shipping note (optional)'
-						/>
-					</div>
-					<div className={style.row}>
-						<div className={style.input}>
-							<input
-								type='text'
-								name='inputCity'
-								value={inputCity}
-								onChange={handleShippingInputChange}
-								placeholder='City'
-							/>
-						</div>
-						<div className={style.input}>
-							<input
-								type='text'
-								name='inputCode'
-								value={inputCode}
-								onChange={handleShippingInputChange}
-								placeholder='Postal Code'
+						<div className={style.row}>
+							<div className={style.input}>
+								<input
+									type='text'
+									name='inputCity'
+									value={inputCity}
+									onChange={handleShippingInputChange}
+									placeholder='City'
+								/>
+							</div>
+							<div className={style.input}>
+								<input
+									type='text'
+									name='inputCode'
+									value={inputCode}
+									onChange={handleShippingInputChange}
+									placeholder='Postal Code'
+								/>
+							</div>
+							<Select
+								name='inputProvince'
+								// value={optionsProvince.find(option => option.value === inputProvince)}
+								value={optionsProvince.find(option => option.value === inputProvince) ?? undefined}
+								onChange={handleShippingSelectChange}
+								options={optionsProvince}
+								className={style.select}
+								classNamePrefix='item-select'
+								placeholder='region'
+								getOptionLabel={(option: IProvince) => option.label}
+								getOptionValue={(option: IProvince) => option.value}
 							/>
 						</div>
 						<Select
-							name='inputProvince'
-							// value={optionsProvince.find(option => option.value === inputProvince)}
-							value={optionsProvince.find(option => option.value === inputProvince) ?? undefined}
+							name='inputCountry'
+							value={countries.find(option => option.value === inputCountry) ?? undefined}
 							onChange={handleShippingSelectChange}
-							options={optionsProvince}
+							options={countries}
 							className={style.select}
 							classNamePrefix='item-select'
-							placeholder='region'
+							placeholder='country'
 							getOptionLabel={(option: IProvince) => option.label}
 							getOptionValue={(option: IProvince) => option.value}
 						/>
 					</div>
-					<Select
-						name='inputCountry'
-						value={countries.find(option => option.value === inputCountry) ?? undefined}
-						onChange={handleShippingSelectChange}
-						options={countries}
-						className={style.select}
-						classNamePrefix='item-select'
-						placeholder='country'
-						getOptionLabel={(option: IProvince) => option.label}
-						getOptionValue={(option: IProvince) => option.value}
-					/>
 				</div>
 			</div>
 			<NavigationOrder currentPage='details' />

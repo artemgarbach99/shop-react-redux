@@ -7,7 +7,8 @@
 	//flex: 1 1 100%;
 	height: 100vh;
 	@media (max-width: $mobile) {
-		height: 100%;
+		overflow: auto;
+		// height: 100%;
 		// @include scroll-bar;
 	}
 	&.lock {
@@ -48,6 +49,8 @@
 }
 .order {
 	@include scroll-bar;
+	display: flex;
+	flex-direction: column;
 	flex: 0 0 50%;
 	padding-right: 100px;
 	overflow: auto;
@@ -62,9 +65,24 @@
 		// overflow: hidden;
 	}
 }
-.logo {
-	width: 126px;
+.header {
+	display: flex;
+	padding: rem(20) 0;
 }
+.logo {
+	width: 60px;
+	@media (max-width: $mobile) {
+		width: rem(50);
+	}
+	& img {
+		width: 100%;
+		height: auto;
+		object-fit: cover;
+	}
+}
+// .logo {
+// 	width: 126px;
+// }
 // .products {
 // 	flex: 0 0 50%;
 // 	background-color: #f2f2f2;
@@ -95,15 +113,32 @@
 
 .buttons {
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 20px;
+	align-items: flex-end;
 	padding-top: 40px;
+	flex: auto;
+	// align-self: flex-end;
+	// justify-self: end;
+	// align-self: flex-end;
 	@media (max-width: $pc) {
 		padding-top: rem(30);
 	}
-	@media (max-width: $tablet) {
-		padding-top: rem(20);
+	@media (max-width: $mobile) {
+		padding-bottom: rem(20);
+	}
+	// @media (max-width: $tablet) {
+	// 	padding-top: rem(20);
+	// }
+}
+
+.line {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+	flex: auto;
+	@media (max-width: $mobileSmall) {
+		flex-direction: column-reverse;
+		gap: rem(10);
 	}
 }
 
@@ -115,4 +150,13 @@
 	max-width: 220px;
 	cursor: pointer;
 	@include greenButton;
+	@media (max-width: $pc) {
+		max-width: 200px;
+	}
+	@media (max-width: $mobile) {
+		max-width: 180px;
+	}
+	@media (max-width: $mobileSmall) {
+		max-width: 100%;
+	}
 }

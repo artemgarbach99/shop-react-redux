@@ -21,9 +21,9 @@ export const Breadcrumbs = () => {
 
 	return (
 		<div className={breadcrumbs.breadcrumbs}>
-			<Link to='/main' className={breadcrumbs.logo}>
+			{/* <Link to='/main' className={breadcrumbs.logo}>
 				<img src='./logo.svg' alt='Logo' />
-			</Link>
+			</Link> */}
 			<ul className={breadcrumbs.nav}>
 				<li className={getClassName('basket')}>
 					<Link to={'/basket'}>Basket</Link>
@@ -40,6 +40,9 @@ export const Breadcrumbs = () => {
 				<li className={getClassName('payment')}>
 					<Link to={'/order/payment'}>Payment</Link>
 				</li>
+				{/* <li className={getClassName('confirmed')}>
+					<Link to={'/order/confirmed'}>Confirmed</Link>
+				</li> */}
 			</ul>
 		</div>
 	)

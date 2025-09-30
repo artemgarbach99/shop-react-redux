@@ -133,29 +133,31 @@ export const NavigationOrder = ({ currentPage }: { currentPage: string }) => {
 
 	return (
 		<div className={layouts.buttons}>
-			{currentPage === 'confirmed' ? (
-				<button type='button' className={layouts.back}>
-					Print receipt
-				</button>
-			) : (
-				<button className={layouts.back} onClick={handlePreviousClick}>
-					{currentPage === 'details' && 'Back to basket'}
-					{currentPage === 'shipping' && 'Back to details'}
-					{currentPage === 'payment' && 'Back to shipping'}
-				</button>
-			)}
+			<div className={layouts.line}>
+				{currentPage === 'confirmed' ? (
+					<button type='button' className={layouts.back}>
+						Print receipt
+					</button>
+				) : (
+					<button className={layouts.back} onClick={handlePreviousClick}>
+						{currentPage === 'details' && 'Back to basket'}
+						{currentPage === 'shipping' && 'Back to details'}
+						{currentPage === 'payment' && 'Back to shipping'}
+					</button>
+				)}
 
-			{currentPage === 'confirmed' ? (
-				<div className={layouts.button} onClick={handleBackToProducts}>
-					Back to shopping
-				</div>
-			) : (
-				<button type='button' className={layouts.button} onClick={() => handleNextClick()}>
-					{currentPage === 'details' && 'Go to shipping'}
-					{currentPage === 'shipping' && 'Go to payment'}
-					{currentPage === 'payment' && 'Pay now'}
-				</button>
-			)}
+				{currentPage === 'confirmed' ? (
+					<div className={layouts.button} onClick={handleBackToProducts}>
+						Back to shopping
+					</div>
+				) : (
+					<button type='button' className={layouts.button} onClick={() => handleNextClick()}>
+						{currentPage === 'details' && 'Go to shipping'}
+						{currentPage === 'shipping' && 'Go to payment'}
+						{currentPage === 'payment' && 'Pay now'}
+					</button>
+				)}
+			</div>
 		</div>
 	)
 }

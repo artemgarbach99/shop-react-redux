@@ -2,12 +2,14 @@ import { NavigationOrder } from '@components/NavigationOrder/NavigationOrder'
 import { GiConfirmed } from 'react-icons/gi'
 import style from '@pages/Confirmed/Confirmed.module.scss'
 import { useDetails } from '@/hooks/useDetails'
+import { MobileOrder } from '@/components/MobileOrder/MobileOrder'
 
 export const Confirmed = () => {
 	const { inputName, inputSecondName } = useDetails()
 
 	return (
 		<div className={style.confirmed}>
+			<MobileOrder />
 			<div className={style.top}>
 				<GiConfirmed size={100} color={'#56b280'} />
 				<div className={style.title}>Payment Confirmed</div>

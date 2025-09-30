@@ -36,8 +36,9 @@
 	@include ibg;
 	@media (max-width: 550px) {
 		width: 100%;
+		padding-bottom: 100%;
 		flex: auto;
-		padding-bottom: percent(300, 500);
+		// padding-bottom: percent(300, 500);
 	}
 }
 

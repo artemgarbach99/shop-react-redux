@@ -3,6 +3,12 @@
 .details {
 	display: flex;
 	flex-direction: column;
+	flex: auto;
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
 	gap: 40px;
 	@media (max-width: $pc) {
 		gap: 30px;
@@ -22,6 +28,9 @@
 	font-size: 22px;
 	line-height: 1;
 	font-weight: 500;
+	@media (max-width: $tablet) {
+		font-size: 18px;
+	}
 }
 
 .inputs {
